@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "the Python List"
+title:  "The Python List"
 date:   2015-03-31
 categories: python
 ---
@@ -10,20 +10,20 @@ categories: python
 Like the numerable daily lists made with pen and paper, the list in Python is an incredibly handy way to store information, but with extra *power*.
 
 We can start with an empty list:
-{% highlight python %}
+```python
 >>> switches = []
 >>> type(switches)
 <type 'list'>
-{% endhighlight %}
+```
 add to it:
-{% highlight python %}
+```python
 >>> switches.append('switch-01')
 >>> switches
 ['switch-01']
 >>> switches.append('switch-02')
 >>> switches
 ['switch-01', 'switch-02']
-{% endhighlight %}
+```
 Create another list, and concatenate these two lists into a new list:
 ```python
 >>> routers = ['router-03', 'router-01', 'router-02']
