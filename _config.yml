@@ -2,11 +2,16 @@
 title: BORDELTABERNACLE
 email: robertphoenix@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I'll think up something later, yah.
+  I used to be an artist. Now I write code.
+  I still read short stories and listen to Blues music.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://bordeltabernacle.github.io" # the base hostname & protocol for your site
 twitter_username: brdltbrncle
 github_username:  bordeltabernacle
-
+# Post settings
+excerpt_separator: <!--more-->
 # Build settings
+highlighter: pygments
 markdown: kramdown
+kramdown:
+  input: GFM
