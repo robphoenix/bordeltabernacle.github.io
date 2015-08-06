@@ -9,4 +9,4 @@ twitter_username: brdltbrncle
 github_username:  bordeltabernacle
 
 # Build settings
-markdown: GFM
+markdown: kramdown
