@@ -2,7 +2,6 @@
 layout: post
 title:  "The Python List"
 date:   2015-03-31
-slug:   the-python-list
 tags:   python
 ---
 
