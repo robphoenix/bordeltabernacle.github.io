@@ -5,7 +5,7 @@ date:   2015-04-13
 tags:   virtualization
 ---
 
-> How I installed [oVirt][1], the upstream project of  [Red Hat's Enterprise Virtualization][2] product, and [vSphere][3] alternative.
+Installing [oVirt][1], the upstream project of  [Red Hat's Enterprise Virtualization][2] product, and [vSphere][3] alternative.
 
 <!--more-->
 I started this install on Fedora, using the latest release, 21, ignoring the oVirt website where it said *"Important: It is recommended that you install oVirt on Fedora 20"*, assuming the latest is the greatest, only to find that oVirt is not available on Fedora 21.  This was the first bump on a rocky road.  I did start off installing on Fedora 20 but ended up using CentOS 7 instead.  If you're interested in using Fedora 20, you can download it [here][4] or [here][5].

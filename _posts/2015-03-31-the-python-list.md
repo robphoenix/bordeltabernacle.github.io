@@ -1,14 +1,12 @@
 ---
 layout: post
-title:  "The Python List"
+title:  "Notes on Python: Lists"
 date:   2015-03-31
 tags:   python
 ---
-
-> Lists are a really useful basic Python type that you will come back to over and again.
-
-<!--more-->
 Like the numerable daily lists made with pen and paper, the list in Python is an incredibly handy way to store information, but with extra *power*.
+<!--more-->
+
 We can start with an empty list:
 {% highlight python %}
 >>> switches = []

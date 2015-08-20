@@ -5,7 +5,7 @@ date:   2015-04-24
 tags:   virtualization, openvswitch
 ---
 
-> Setting up the lab to explore Linux virtualisation & OpenvSwitch
+Setting up the lab to explore Linux virtualisation & OpenvSwitch
 
 <!--more-->
 KVM & OpenvSwitch are technologies I've wanted to learn for a while now. I think it'll really help my understanding and knowledge of Linux and the underlying mechanics of virtualisation and how it interacts with the physical network.
