@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Context
-permalink: context/
+title: about
+permalink: about/
 ---
 
 My name is Rob Phoenix. I was born just before the 1980's. I used to be an [artist](http://rm-phoenix.co.uk/), working in retail/hospitality/care/youth work/education to support myself. Then, a few years back I fell in love and started a family. I made a *'life decision'*, decided not to be a teacher, and towards the end of 2014 completed an MSc in Computer Networking and got my CCNA. This was an interesting time in networking, still is, and talk of Network Automation and Software-Defined were rife.  So I started to learn Python, because I was shit-scared I wasn't going to get a job and wanted to arm myself with as many skills as possible.  Luckily, through some perseverance, luck and kindness from others, straight outta college I started working for a large UK VAR as an Alpha/Beta Testing Lab Engineer. Very quickly I became the *'Scripting Guy'*, something that unnerved me at first, but that I have now taken and am trying to run with.  My time these days is spent mostly developing in Django, Python, HTML, CSS & JavaScript/jQuery, fiddling about with VMware and Cisco virtual and physical machines, tentatively exploring PostgreSQL, vagrant Up-ing, git commit-ing, banging my head against my Linux laptop, and asking my son to say 'Please'. I *frickin'* love it, all of it.
