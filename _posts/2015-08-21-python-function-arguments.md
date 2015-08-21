@@ -24,7 +24,7 @@ Traceback (most recent call last):
 TypeError: the_blues() takes exactly 1 argument (0 given)
 {% endhighlight %}
 
-When we call the function with an argument we're all good.  But when we don't include an argument, no dice, we get an error.  Fair enough.
+When we call the function with an argument we're all good.  But when we don't include an argument, no dice, we get an error.  Fair enough, like it says `the_blues() takes exactly 1 argument (0 given)`.
 Often, I write scripts for other people to use.  My young son can be a bit timid around other people sometimes, but I tell him *"People are O.K."* Unfortunately other people don't always use scripts the way the writer intended.  You can't be too strict with these things, you've gotta account for people doing things differently, always.
 So let's stick an `if/else` in this function to make up for this.
 
@@ -59,7 +59,7 @@ TypeError: the_blues() takes exactly 1 argument (0 given)
 {% endhighlight %}
 
 Same again, no dice.  
-So, this is where an optional argument can come in handy.  Of course, this is also a pretty good situation to pull in a `try/except'.
+So, this is where an optional argument can come in handy.  Of course, this is also a pretty good situation to pull in a `try/except`.
 
 {% highlight python %}
 >>> def the_blues(name=''):
@@ -84,7 +84,7 @@ Lightnin' Hopkins got the blues.
 You got the blues.
 {% endhighlight %}
 
-By defining our argument as `name=` rather than `name` and passing an initial value to it we make it optional to give an argument when calling the function.  We're basically saying *'Look, we'll use `this value` unless you give us something different'*.
+By defining our argument as `name=` rather than `name`, and passing an initial value to it, we make it optional to give an argument when calling the function.  We're basically saying *'Look, we'll use `this value` unless you give us something different'*.
 
 Thanks to [exercism.io][exercism] for making me aware of this.  Exercism is very cool, check it out. Never stop learning.
 
