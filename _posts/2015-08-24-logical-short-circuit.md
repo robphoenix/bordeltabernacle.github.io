@@ -17,24 +17,19 @@ The `||` works by converting the value on it's left to a Boolean, and if it's `t
 
 {% highlight javascript %}
 > node  // Yep, node has a REPL!! Awesome!
-> var name = '';  // This could also be null or false, but not ' '
-undefined
+> var name = false;  // This could also be null or '', but not ' '
 > name
-''
+false
 > console.log(name);
-
-undefined
+false
 > console.log(name || 'Anonymous');
 Anonymous
-undefined
 > name = 'Son House';
 'Son House'
 > console.log(name);
 Son House
-undefined
 > console.log(name || 'Anonymous');
 Son House
-undefined
 {% endhighlight %}
 
 If we switch the values on either side of the `||`, then the left hand side will always convert to `true` and this will essentially make using this technique redundant.
@@ -43,7 +38,6 @@ If we switch the values on either side of the `||`, then the left hand side will
 'Son House'
 > console.log('Anonymous' || name);
 Anonymous
-undefined
 {% endhighlight %}
 
 This behaviour gives us a technique similar to the Python optional argument, and we can rewrite our Python `the_blues` function, from [previously][twoPost], in JavaScript as such:
@@ -61,15 +55,12 @@ Son House got the Blues.
 And what about `&&`?  Well, it does the same except that if the value on its left converts to `false`, rather than `true`, it returns that value, otherwise returning the value on its right.
 {% highlight javascript %}
 > var name = false;
-undefined
 > console.log(name && 'Anonymous');
 false
-undefined
 > name = 'Son House';
 'Son House'
 > console.log(name && 'Anonymous');
 Anonymous
-undefined
 {% endhighlight %}
 
 [Eloquent Javscript][ej] highlights the fact that *'the expression to their right is evaluated only when necessary.'* So, for `||` if the expression on the left is `true` then, no matter what it is, the expression on the right will not be evaluated.  and for `&&` if the expression on the left if `false`, the expression on the right will not be evaluated. This is called *short-circuit evaluation*.
