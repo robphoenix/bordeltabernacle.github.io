@@ -440,7 +440,7 @@ COMMIT
 {% endhighlight %}
 Let's visit the server in a web browser; http://oVirt-01.lab-test.local:80/ovirt-engine sign in using username *admin* and the password configured during setup and there we have our oVirt management portal:
 
-![oVirt screenshot]({{ site.url }}/assets/images/ovirt-mgmt-portal1.png)
+![oVirt screenshot]({{ site.url }}/images/ovirt-mgmt-portal1.png)
 
 
 [1]: http://www.ovirt.org/Home

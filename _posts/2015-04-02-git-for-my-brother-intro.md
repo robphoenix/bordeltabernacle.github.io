@@ -88,7 +88,7 @@ So basically, we've just started a new project to be tracked by *Git*, added a f
 
 I realise not everyone is comfortable on the command line and this can scare them away, but there are a number of different graphical user interfaces [(GUIs)][gitGUI], that can make it easier to deal with, and show a nice visual representation of your project, it's development and the changes made to it.  This in itself can provide an incredibly useful overview of what's going on in your project. Here's our new project in the *Github for Windows* client:
 
-![Github for Windows screenshot]({{ site.url }}/assets/images/gfmb01-github-for-windows.png)
+![Github for Windows screenshot]({{ site.url }}/images/gfmb01-github-for-windows.png)
 
 
 **Okay, but I'm not a software developer, do I really care?  Can I really be bothered?**
