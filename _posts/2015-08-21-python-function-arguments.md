@@ -88,4 +88,4 @@ By defining our argument as `name=` rather than `name`, and passing an initial v
 
 Thanks to [exercism.io][exercism] for making me aware of this.  Exercism is very cool, check it out. Never stop learning.
 
-[exercism]: (http://exercism.io/)
+[exercism]: http://exercism.io/

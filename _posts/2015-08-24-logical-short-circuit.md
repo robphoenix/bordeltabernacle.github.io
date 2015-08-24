@@ -67,8 +67,9 @@ Anonymous
 
 As an aside, my solo exhibition in 2011 was at a gallery called [*ANDOR*][andor]. Funny, huh?
 
-[onePost]:  (https://bordeltabernacle.github.io/2015/08/21/node-dipping-toes.html)
-[twoPost]: (https://bordeltabernacle.github.io/2015/08/21/python-function-arguments.html)
-[ej]:       (http://eloquentjavascript.net/)
-[exercism]: (http://exercism.io/)
-[andor]: (http://www.creativeandorcultural.com/index.php/nobodys-fault-but-mine-yours-ours-mine)
+
+[onePost]: https://bordeltabernacle.github.io/2015/08/21/node-dipping-toes.html
+[twoPost]: https://bordeltabernacle.github.io/2015/08/21/python-function-arguments.html
+[ej]:       http://eloquentjavascript.net/
+[exercism]: http://exercism.io/
+[andor]: http://www.creativeandorcultural.com/index.php/nobodys-fault-but-mine-yours-ours-mine

@@ -89,7 +89,7 @@ This brief summary really is brief and pulls heavily from others:
 - [Dive Into Python][dip]
 - [Brent Salisbury Python Tutorial][bspt]
 
-[pfi]:  (http://www.pythonlearn.com/html-009/book009.html)
-[gpc]:  (https://developers.google.com/edu/python/lists)
-[dip]:  (http://www.diveintopython.net/native_data_types/lists.html)
-[bspt]: (http://networkstatic.net/python-tutorial-functions-and-passing-lists-and-dictionaries-with-simple-examples/)
+[pfi]:  http://www.pythonlearn.com/html-009/book009.html
+[gpc]:  https://developers.google.com/edu/python/lists
+[dip]:  http://www.diveintopython.net/native_data_types/lists.html
+[bspt]: http://networkstatic.net/python-tutorial-functions-and-passing-lists-and-dictionaries-with-simple-examples/

@@ -44,6 +44,6 @@ Finished in 0 seconds
 
 So, it's basic, it's obvious, but it's blowin' my mind just a bit.  I'm well excited to get started with this and explore it further.  I'm gonna go over this little code snippet and work it out as best I can, and then who knows, maybe I'll get a MEAN stack up and running for my *new awesome web app idea*.
 
-[exercism]: (http://exercism.io/)
-[cn]:       (http://www.codenewbie.org/podcast/nitpicks-and-devils)
-[js-hello]: (https://github.com/exercism/xjavascript/blob/master/hello-world/example.js)
+[exercism]: http://exercism.io/
+[cn]:       http://www.codenewbie.org/podcast/nitpicks-and-devils
+[js-hello]: https://github.com/exercism/xjavascript/blob/master/hello-world/example.js
