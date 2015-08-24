@@ -15,7 +15,7 @@ gives the `name` variable the ability to be either the string `'world'` or the v
 
 The `||` works by converting the value on it's left to a Boolean, and if it's `true` then it will use that value, and if it converts to `false` it will use the value on it's right.
 
-{% hightlight javascript %}
+{% highlight javascript %}
 > node  // Yep, node has a REPL!! Awesome!
 > var name = '';  // This could also be null or false, but not ' '
 undefined
