@@ -11,7 +11,8 @@ As far as my understanding goes node.js is basically JavaScript, the programming
 I started out with a `Hello World` exercise, as you do.  I gotta say, it looked strange, no `$(document).ready()` here, and I did end up sneaking a peek [here][js-hello].  I really didn't know where to start with fixing the given code to make the tests pass, my mind was going down overly complicated unorganised paths, and I figured I'd be better off working backwards.  Which is what this will be a part of, break apart the code, understand the parts.
 
 So, anyway, this is the code.
-{% highlight javascript %}
+
+```javascript
 'use strict';
 
 var HelloWorld = function() {};
@@ -24,23 +25,26 @@ HelloWorld.prototype.hello = function(name) {
 module.exports = HelloWorld;
 
 var helloWorld = new HelloWorld();
-{% endhighlight %}
+```
 
 The `var` & `function` stuff I understand, but `strict`? `prototypes`? `module.exports`? Wha'fu'?
 
 What was interesting was running it.  Just like Python really; `node .\hello-world.js` in the CLI.  Let's stick a `console.log('Hello node, whaddya know?')` in there:
-{% highlight javascript %}
+
+```javascript
  > node .\hello-world.js
 Hello node, whaddya know?
-{% endhighlight %}
+```
+
 Cool, huh? And to run the tests:
-{% highlight javascript %}
+
+```javascript
  > jasmine-node .\hello-world.js
 
 
 Finished in 0 seconds
 0 tests, 0 assertions, 0 failures, 0 skipped
-{% endhighlight %}
+```
 
 So, it's basic, it's obvious, but it's blowin' my mind just a bit.  I'm well excited to get started with this and explore it further.  I'm gonna go over this little code snippet and work it out as best I can, and then who knows, maybe I'll get a MEAN stack up and running for my *new awesome web app idea*.
 

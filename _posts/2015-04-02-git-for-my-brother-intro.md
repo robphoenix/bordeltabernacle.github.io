@@ -27,6 +27,7 @@ Yeah, okay, it still sounds a bit like an obscure programmer's tool, right?  Ver
 - You realise your *wild idea* is actually rubbish and discard it: `filename-VERSION 4-LATEST`
 
 So now you have a project folder with these files in:
+
 - `filename`
 - `filename-VERSION 2`
 - `filename-VERSION 2b`
@@ -49,7 +50,7 @@ Well, kinda, but it's more of a system than a program. Once *Git* is installed y
 
 Here, let me show you.  In the *Git* command line on Windows I'm going to start a new project, in a folder called `git-formybrother`, that contains a single file called `test-file.txt`.  Here, the `$` is a command prompt, where the instructions to the computer are typed.
 
-{% highlight bash %}
+```bash
 Welcome to Git (version 1.9.5-preview20141217)
 
 Run 'git help git' to display the help index.
@@ -83,7 +84,8 @@ $ git commit -am "started new project"  #  Commit the current state of the files
 $ git status  # Check again the status of the Git repository
 On branch master
 nothing to commit, working directory clean
-{% endhighlight %}
+```
+
 So basically, we've just started a new project to be tracked by *Git*, added a file to it and commited/saved the state of the project to the *Git* log.
 
 I realise not everyone is comfortable on the command line and this can scare them away, but there are a number of different graphical user interfaces [(GUIs)][gitGUI], that can make it easier to deal with, and show a nice visual representation of your project, it's development and the changes made to it.  This in itself can provide an incredibly useful overview of what's going on in your project. Here's our new project in the *Github for Windows* client:

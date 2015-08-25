@@ -8,31 +8,38 @@ Like the numerable daily lists made with pen and paper, the list in Python is an
 <!--more-->
 
 We can start with an empty list:
-{% highlight python %}
+
+```python
 >>> switches = []
 >>> type(switches)
 <type 'list'>
-{% endhighlight %}
+```
+
 add to it:
-{% highlight python %}
+
+```python
 >>> switches.append('switch-01')
 >>> switches
 ['switch-01']
 >>> switches.append('switch-02')
 >>> switches
 ['switch-01', 'switch-02']
-{% endhighlight %}
+```
+
 Create another list, and concatenate these two lists into a new list:
-{% highlight python %}
+
+```python
 >>> routers = ['router-03', 'router-01', 'router-02']
 >>> routers
 ['router-03', 'router-01', 'router-02']
 >>> devices = switches + routers
 >>> devices
 ['switch-01', 'switch-02', 'router-03', 'router-01', 'router-02']
-{% endhighlight %}
+```
+
 Loop through our new list:
-{% highlight python %}
+
+```python
 >>>count = 0
 >>>for device in devices:
 ...		count += 1
@@ -45,17 +52,21 @@ Hostname: router-01
 Hostname: router-02
 >>>print 'There are', count, 'devices.'
 There are 5 devices.
-{% endhighlight %}
+```
+
 Sort the list:
-{% highlight python %}
+
+```python
 >>> devices
 ['switch-01', 'switch-02', 'router-03', 'router-01', 'router-02']
 >>> devices.sort()
 >>> devices
 ['router-01', 'router-02', 'router-03', 'switch-01', 'switch-02']
-{% endhighlight %}
+```
+
 Delete elements from the list:
-{% highlight python %}
+
+```python
 >>> devices.pop()
 'switch-02'
 >>> devices
@@ -64,26 +75,32 @@ Delete elements from the list:
 >>> devices.remove('router-03')
 >>> devices
 ['router-01', 'router-02', 'switch-01']
-{% endhighlight %}
+```
+
 Find the number of items in our list, and the maximum and minimum elements in the list:
-{% highlight python %}
+
+```python
 >>> len(devices)
 3
 >>> max(devices)
 'switch-01'
 >>> min(devices)
 'router-01'
-{% endhighlight %}
+```
+
 Select elements in the list through their index (not forgetting that python lists are zero-indexed!):
-{% highlight python %}
+
+```python
 >>> devices[0]
 'router-01'
 >>> devices[1]
 'router-02'
-{% endhighlight %}
+```
+
 Lists can be really useful as an interim holding bay while parsing a file, or extracting information from a directory, such as a folder of *show run* or *show version* files.
 
 This brief summary really is brief and pulls heavily from others:
+
 - [Python for Informatics][pfi]
 - [Google Python Course][gpc]
 - [Dive Into Python][dip]
