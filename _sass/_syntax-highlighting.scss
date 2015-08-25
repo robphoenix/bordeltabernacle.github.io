@@ -2,7 +2,9 @@
  * Syntax highlighting styles
  */
 .highlight {
-    background: #202020;
+    border: 1px solid $code-background;
+    border-radius: 3px;
+    background: $code-background;
     @extend %vertical-rhythm;
 
     .c { color: #999999; font-style: italic } /* Comment */
