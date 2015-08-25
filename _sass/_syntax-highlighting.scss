@@ -8,7 +8,7 @@
     @extend %vertical-rhythm;
 
     .c { color: #999999; font-style: italic } /* Comment */
-    .err { color: #a61717; background-color: #e3d2d2 } /* Error */
+    .err { color: #a61717; } /* Error */
     .esc { color: #d0d0d0 } /* Escape */
     .g { color: #d0d0d0 } /* Generic */
     .k { color: #6ab825; font-weight: bold } /* Keyword */
