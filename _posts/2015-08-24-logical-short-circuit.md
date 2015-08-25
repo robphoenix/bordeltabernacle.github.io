@@ -5,6 +5,7 @@ date: "2015-08-24 09:23"
 tags: javascript, python
 ---
 Following on from my last two posts ([1][onePost]/[2][twoPost]), I was reading [Eloquent Javascript][ej] over the weekend and learnt about a behaviour of logical operators relevant to both posts.
+
 <!--more-->
 
 This bit of code from the [exercism.io][exercism] *"Hello, world"* exercise:

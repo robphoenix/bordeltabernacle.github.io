@@ -5,6 +5,7 @@ date:   2015-08-21
 tags:   node.js, javascript
 ---
 I started using [exercism.io][exercism] this morning after hearing about it on [Code Newbies][cn], mainly to get more practice with Python.  I'm also learning JavaScript as well and, seeing there was a JS track, I thought I'd have a glance at it, and inadvertently started using node.js, something I've wanted to do for a while now.  I got that new *'don't quite understand but feel real excited'* feeling.
+
 <!--more-->
 
 As far as my understanding goes node.js is basically JavaScript, the programming language of the web, on a computer, desktop/laptop/server etc., rather than in a browser. It's easy enough to work out how to install node.js so I won't go into that here.  

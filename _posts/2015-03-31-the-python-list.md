@@ -5,6 +5,7 @@ date:   2015-03-31
 tags:   python
 ---
 Like the numerable daily lists made with pen and paper, the list in Python is an incredibly handy way to store information, but with extra *power*.
+
 <!--more-->
 
 We can start with an empty list:
