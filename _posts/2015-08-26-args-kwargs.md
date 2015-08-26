@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Notes on Python: `*args` 'n' `**kwargs`"
+title: "Notes on Python: args 'n' kwargs"
 date: "2015-08-26"
 tags: python
 ---
@@ -20,6 +20,7 @@ class myModel(models.Model):
 ```
 
 And so I thought I'd get to the bottom of what they are.
+
 <!--more-->
 
 Basically, they allow a function to accept an indeterminate, variable number of arguments or keyword arguments.  The `args` and `kwargs` bits are actually not important, it's the `*` & `**` that are, similar I guess to their use elsewhere as a wildcard symbol.  So you can just use the asterisks on their own or even `*thing` & `**things`, but don't do that, you'll upset people.
@@ -83,7 +84,7 @@ SyntaxError: invalid syntax
 
 ```Python
 >>> def blues_singer(**kwargs):
-...    # Notice we use `.items` as `kwargs` returns a dictionary
+...    # Notice we use `.items`, as `kwargs` returns a dictionary
 ...    for key, value in kwargs.items():
 ...        print key + ' = ' + value
 ...
