@@ -64,7 +64,7 @@ figcaption {
  * Lists
  */
 ul, ol {
-    margin-left: $spacing-unit;
+    list-style: none;
 }
 
 li {
@@ -89,11 +89,11 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-    color: $brand-color-light;
+    color: $brand-color;
     text-decoration: none;
 
     &:visited {
-        color: $brand-color-light;
+        color: $brand-color;
     }
 
     &:hover {
@@ -127,8 +127,6 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $code-background;
-    border-radius: 3px;
     background: $code-background;
 }
 
@@ -157,8 +155,6 @@ pre {
     max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
     margin-right: auto;
     margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
     @extend %clearfix;
 
     @include media-query($on-laptop) {
