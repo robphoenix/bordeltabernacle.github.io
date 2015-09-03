@@ -134,7 +134,7 @@ LANGUAGE_CODE = 'en-gb'
 TIME_ZONE = 'Europe/London'
 ```
 
-and create the `ststic` directory for CSS, JavaScript, fonts etc. and `media` directory for images, pdf's and the like:
+and create the `static` directory for CSS, JavaScript, fonts etc. and `media` directory for images, pdf's and the like:
 
 ```python
 STATIC_URL = '/static/'
