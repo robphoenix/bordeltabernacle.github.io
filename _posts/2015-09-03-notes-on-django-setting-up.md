@@ -126,6 +126,24 @@ DATABASES = {
     # of the Postgres VM, in as the Database host name, ahhhh niiice.
 ```
 
+Whilst in the settings file let's update our location:
+
+```python
+LANGUAGE_CODE = 'en-gb'
+
+TIME_ZONE = 'Europe/London'
+```
+
+and create the `ststic` directory for CSS, JavaScript, fonts etc. and `media` directory for images, pdf's and the like:
+
+```python
+STATIC_URL = '/static/'
+STATIC_ROOT = '/home/vagrant/shared/mysite/appname/static/'
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = '/home/vagrant/shared/mysite/appname/static/media/'
+```
+
+Don't forget to actually create these directories!
 Back in the django VM:
 
 ```bash
