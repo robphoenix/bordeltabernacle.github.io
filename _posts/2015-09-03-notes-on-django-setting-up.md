@@ -2,7 +2,7 @@
 layout: post
 title: "Notes on Django: Setting Up"
 date: "2015-09-03"
-tags: python, django
+tags: python, django, vagrant
 ---
 
 I'm starting to develop multiple Django projects, but am still referring to the *(excellent)* [Django tutorial][djt] to get set up, so I thought I'd write out the steps I take to set up a new Django project and it's associated development environment, just to help remember it and have an easy reference for the future.
