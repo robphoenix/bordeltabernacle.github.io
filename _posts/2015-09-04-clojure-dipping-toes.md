@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Notes on Clojure: Dipping My Toes In"
-date: "2015-09-03"
+date: "2015-09-04"
 tags: clojure
 ---
 
@@ -28,9 +28,9 @@ $ lein -v
 Leiningen 1.7.1 on Java 1.7.0_80 Java HotSpot(TM) 64-Bit Server VM
 ```
 
-So, I un installed that, and followed the instructions on the Leiningen site.  Copy and Paste the contents of the [lein][lein] file, into a file called `lein`.  Move the file into my `$PATH`, and make it executable.
+So, I uninstalled that, and followed the instructions on the Leiningen site.  Copy and Paste the contents of the [lein][lein] file, into a file called `lein`.  Move the file into my `$PATH`, and make it executable.
 
-```bash
+```
 $ sudo apt-get remove leiningen # remove apt-get installed lein
 $ vim ~/lein # copy and paste the contents of the lein file
 $ echo $PATH # check path
@@ -153,12 +153,13 @@ user=> (+ 1 1)
 2
 user=> 42
 42
-user=> 6/3 ; Clojure will reduce a ratio if it can
+user=> 6/3  ; Clojure will reduce a ratio if it can.
+            ; This is different to division
 2
-user=> 8/3  ; and won't if it can't, but will leave it as a ratio, rather than
+user=> 8/3  ; And won't if it can't, but will leave it as a ratio, rather than
             ; change it to a decimal
 8/3
-user=> 6.0/3 ; you can't mix 'n' match whole numbers & decimals
+user=> 6.0/3 ; you can't use decimals in a ratio.  
 NumberFormatException Invalid number: 6.0/3  clojure.lang.LispReader.readNumber (LispReader.java:330)
 
 user=> 6/3.0
@@ -169,9 +170,9 @@ user=> 6.0/3.0
 NumberFormatException Invalid number: 6.0/3.0  clojure.lang.LispReader.readNumber (LispReader.java:330)
 user=> (/ 6 3)
 2
-user=> (/ 3 6)
+user=> (/ 3 6) ; Dividing whole numbers will result in a ratio
 1/2
-user=> (/ 3.0 6.0)
+user=> (/ 3.0 6.0) ; To get a decimal result, use a decimal in the equation
 0.5
 user=> (/ 3.0 6)
 0.5
@@ -182,7 +183,7 @@ CompilerException java.lang.RuntimeException: Unable to resolve symbol: blues in
 
 user=> true ; Ain't nothing going on but a boolean, yo.
 true
-user=> nil ; nil is the absence of a value, I suppose like None in Python
+user=> nil ; nil is the absence of a value, like None in Python
 nil
 user=> (+ 5 (- 4 2)) ; Here's the beginning of the growth of the parens
 7
@@ -200,7 +201,7 @@ user=> (cons "down" (cons 7 '(5, "blues", :music))) ; and nest our cons
 ("down" 7 5 "blues" :music)
 ```
 
-That's as far as I got last night. I know it's not far, but having kids makes me tired.  And I just want to reiterate again, this is basically just regurgitating Carin's work, go buy her book.
+That's as far as I got last night. I know it's not far, but having kids makes me tired.  And I just want to reiterate again, this is basically just regurgitating Carin's work, go [buy her book][lc].
 
 Interestingly, the name *Leiningen* comes from the short story [Leiningen versus the Ants][story].  A tale of plantation owner Leiningen's battle against an invading army of flesh-eating ants.  It's a really good read, triumph over adversity, the importance of intelligence and resourcefulness, I highly recommend you [read][story] it.
 
