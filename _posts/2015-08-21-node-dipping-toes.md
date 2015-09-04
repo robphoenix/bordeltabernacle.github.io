@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Notes on Node.js: Dipping my toes in"
+title:  "Notes on Node.js: Dipping My Toes In"
 date:   2015-08-21
 tags:   node.js, javascript
 ---
