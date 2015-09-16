@@ -116,7 +116,7 @@ def create_super_user(username, email, password):
     raised if the SuperUser already exists
     '''
     try:
-        u, created = User.objects.create_superuser(username, email, password)
+        u = User.objects.create_superuser(username, email, password)
         return u
     except IntegrityError:
         pass
