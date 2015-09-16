@@ -42,17 +42,35 @@ def populate():
     jazz = add_genre('Jazz')
 
     add_musician('Billie Holiday',
-                'Eleanora Fagan, professionally known as Billie Holiday, was an American jazz musician and singer-songwriter. Nicknamed "Lady Day" by her friend and music partner Lester Young, Holiday had a seminal influence on jazz music and pop singing. Her vocal style, strongly inspired by jazz instrumentalists, pioneered a new way of manipulating phrasing and tempo.',
+                'Eleanora Fagan, professionally known as Billie Holiday, was \
+                an American jazz musician and singer-songwriter. Nicknamed \
+                "Lady Day" by her friend and music partner Lester Young, \
+                Holiday had a seminal influence on jazz music and pop singing. \
+                Her vocal style, strongly inspired by jazz instrumentalists, \
+                pioneered a new way of manipulating phrasing and tempo.',
                 False,
                 blues, jazz)
 
     add_musician('Big Mama Thornton',
-                "Willie Mae 'Big Mama' Thornton was an American rhythm and blues singer and songwriter. She was the first to record Leiber and Stoller's 'Hound Dog' in 1952, which became her biggest hit. It spent seven weeks at number one on the Billboard R&B charts in 1953 and sold almost two million copies. However, her success was overshadowed three years later, when Elvis Presley recorded his more popular rendition of 'Hound Dog'. Similarly, Thornton's 'Ball 'n' Chain' had a bigger impact when performed and recorded by Janis Joplin in the late 1960s."",
+                "Willie Mae 'Big Mama' Thornton was an American rhythm and \
+                blues singer and songwriter. She was the first to record \
+                Leiber and Stoller's 'Hound Dog' in 1952, which became her \
+                biggest hit. It spent seven weeks at number one on the \
+                Billboard R&B charts in 1953 and sold almost two million \
+                copies. However, her success was overshadowed three years \
+                later, when Elvis Presley recorded his more popular rendition \
+                of 'Hound Dog'. Similarly, Thornton's 'Ball 'n' Chain' had a \
+                bigger impact when performed and recorded by Janis Joplin in \
+                the late 1960s."",
                 False,
                 blues)
 
     add_musician('Ella Fitzgerald',
-                'Ella Jane Fitzgerald was an American jazz singer often referred to as the First Lady of Song, Queen of Jazz and Lady Ella. She was noted for her purity of tone, impeccable diction, phrasing and intonation, and a "horn-like" improvisational ability, particularly in her scat singing.',
+                'Ella Jane Fitzgerald was an American jazz singer often \
+                referred to as the First Lady of Song, Queen of Jazz and \
+                Lady Ella. She was noted for her purity of tone, impeccable \
+                diction, phrasing and intonation, and a "horn-like" \
+                improvisational ability, particularly in her scat singing.',
                 False,
                 jazz)
 
@@ -63,7 +81,7 @@ def populate():
     print '--------------------\n'
 
     for m in Musician.objects.all():
-        for g Genre.objects.filter(musician__name__startswith=m):
+        for g in Genre.objects.filter(musician__name__startswith=m):
             print '- {0}: {1}'.format(str(m), str(g))
 
     print '\nSuperUser:', User.objects.get(is_superuser=True).username
