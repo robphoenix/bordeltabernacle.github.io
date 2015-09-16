@@ -5,4 +5,4 @@ date:   2015-09-16
 tags:   blues
 ---
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=n4Ket08gies" frameborder="0"> </iframe>
+<iframe width="640" height="360" src="https://www.youtube.com/embed/n4Ket08gies"frameborder="0"></iframe>
