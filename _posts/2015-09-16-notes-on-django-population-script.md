@@ -10,6 +10,7 @@ After my last Django post I happened across [this population script][ps] from [T
 <!--more-->
 
 `example models.py`
+
 ```python
 class Genre(models.Model):
     name = models.CharField()
@@ -23,6 +24,7 @@ class Musician(models.Model):
 ```
 
 'example populate.py'
+
 ```python
 import os
 
@@ -116,6 +118,7 @@ if __name__ == '__main__':
 ```
 
 And in our root project directory, where `manage.py` is, we run our script.
+
 
 ```bash
 vagrant@django:~/shared/ProjectRootDirectory$ python populate.py
