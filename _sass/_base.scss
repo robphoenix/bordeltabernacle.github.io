@@ -19,7 +19,7 @@ body {
     line-height: $base-line-height;
     font-weight: 300;
     color: $text-color;
-    background-color: $grey-color-light;
+    background-color: $background-color;
     -webkit-text-size-adjust: 100%;
 }
 
@@ -193,7 +193,7 @@ pre {
         vertical-align: middle;
 
         path {
-            fill: $grey-color;
+            fill: $brand-color;
         }
     }
 }

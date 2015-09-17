@@ -9,11 +9,10 @@ layout: default
       <header class="post-title">
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       </header>
-      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
       <section class="post-excerpt">
         {{ post.excerpt }}
       </section>
-
     </li>
   {% endfor %}
 </ul>

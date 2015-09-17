@@ -17,6 +17,7 @@
     display: flex;
     flex-flow: row;
     align-items: baseline;
+    margin-bottom: $spacing-unit;
 
     a {
         color: $brand-color;
@@ -126,7 +127,8 @@
  * Page content
  */
 .page-content {
-
+    border-bottom: 3px solid $brand-color;
+    margin-bottom: 20px;
 }
 
 .page-heading {
@@ -150,14 +152,12 @@
     > li {
         background-color: $background-color;
         margin-bottom: $spacing-unit;
-        border-bottom: 3px solid $brand-color;
     }
 }
 
 .post-title {
     display: block;
     color: $brand-color;
-    background-color: $grey-color-light;
     font-family: 'Work Sans', sans-serif;
     font-size: 30px;
     padding: 5px;
@@ -189,12 +189,22 @@
 
 .post-excerpt {
     background-color: $background-color;
-    margin: auto;
-    padding: 10px 20px 0 20px;
+    width: 90%;
+    margin: 10px auto;
+
+    iframe {
+        width: 100%;
+    }
 }
 
 .post-content {
+    width: 90%;
+    margin: 0 auto;
     margin-bottom: $spacing-unit;
+
+    iframe {
+        width: 100%;
+    }
 
     h2 {
         font-size: 32px;
@@ -218,5 +228,23 @@
         @include media-query($on-laptop) {
             font-size: 18px;
         }
+    }
+}
+
+.pager {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+
+    li {
+        justify-content: space-between;
+        flex-grow: 1;
+    }
+}
+
+.next {
+    a {
+        text-align: right;
+        float: right;
     }
 }
