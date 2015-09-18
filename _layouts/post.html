@@ -5,7 +5,33 @@ layout: default
 
   <header class="post-header">
     <h1 class="post-title">{{ page.title }}</h1>
-    <p class="post-meta">{{ page.date | date: "%b %-d, %Y" }} • {{ page.tags | array_to_sentence_string }}{% if page.author %} • {{ page.author }}{% endif %}{% if page.meta %} • {{ page.meta }}{% endif %}</p>
+	<div class="post-meta-wrapper">
+		<p class="post-meta">
+			{{ page.date | date: "%b %-d, %Y" }} • {% unless page.tags == empty %}
+		</p>
+			  {% assign tags_list = page.tags %}
+			  {% if tags_list.first[0] == null %}
+				{% for tag in tags_list %}
+					<p class="post-meta">
+						<a href="{{ site.BASE_PATH }}/tags/#{{ tag }}-ref">
+						{{ tag }}({{ site.tags[tag].size }})
+						{% unless forloop.last %},{% endunless %}
+						</a>
+					</p>
+				{% endfor %}
+			  {% else %}
+				{% for tag in tags_list %}
+					<p class="post-meta">
+						<a href="{{ site.BASE_PATH }}/tags/#{{ tag[0] }}-ref">
+							{{ tag[0] }}({{ tag[1].size }})
+							{% unless forloop.last %},{% endunless %}
+						</a>
+					</p>
+				{% endfor %}
+			  {% endif %}
+			  {% assign tags_list = nil %}
+			{% endunless %}
+	</div>
   </header>
 
   <article class="post-content">
@@ -22,7 +48,7 @@ layout: default
     	{% if page.next %}
     	<li class="next"><a href="{{ site.BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &rarr;</a></li>
     	{% else %}
-    	<li class="next disabled"><a>Next &rarr;</a>
+    	<li class="next disabled"><a>Next &rarr;</a></li>
 	    {% endif %}
     </ul>
 

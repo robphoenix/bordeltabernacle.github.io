@@ -2,7 +2,7 @@
 layout: post
 title:  "Installing KVM & OVS on Ubuntu"
 date:   2015-04-24
-tags:   virtualization, openvswitch
+tags:   virtualization openvswitch
 ---
 
 Setting up the lab to explore Linux virtualisation & OpenvSwitch

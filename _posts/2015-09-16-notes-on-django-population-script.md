@@ -2,7 +2,7 @@
 layout: post
 title: "Notes on Django: Population Script"
 date: "2015-09-16"
-tags: python, django, vagrant
+tags: python django vagrant
 ---
 
 After my last Django post I happened across [this population script][ps] from [Tango with Django][twd].  So I've updated it and adapted it to my own needs.  Ha, Screw You [Technical Debt!][td]
