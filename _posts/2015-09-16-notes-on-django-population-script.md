@@ -23,7 +23,7 @@ class Musician(models.Model):
     alive = models.BooleanField()
 ```
 
-'example populate.py'
+`example populate.py`
 
 ```python
 import os
