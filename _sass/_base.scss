@@ -64,7 +64,7 @@ figcaption {
  * Lists
  */
 ul, ol {
-    margin-left: $spacing-unit;
+    list-style: none;
 }
 
 li {
@@ -93,11 +93,11 @@ a {
     text-decoration: none;
 
     &:visited {
-        color: darken($brand-color, 15%);
+        color: $brand-color;
     }
 
     &:hover {
-        color: $text-color;
+        color: $grey-color-light;
     }
 }
 
@@ -127,8 +127,6 @@ blockquote {
 pre,
 code {
     font-size: 15px;
-    border: 1px solid $code-background;
-    border-radius: 3px;
     background: $code-background;
 }
 
@@ -157,8 +155,6 @@ pre {
     max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2));
     margin-right: auto;
     margin-left: auto;
-    padding-right: $spacing-unit;
-    padding-left: $spacing-unit;
     @extend %clearfix;
 
     @include media-query($on-laptop) {
@@ -197,7 +193,7 @@ pre {
         vertical-align: middle;
 
         path {
-            fill: $grey-color;
+            fill: $brand-color;
         }
     }
 }
