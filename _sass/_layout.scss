@@ -205,3 +205,11 @@
 .tab-pane {
     color: $brand-color-light;
 }
+
+.pagination {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    border-top: 3px solid $brand-color;
+
+}
