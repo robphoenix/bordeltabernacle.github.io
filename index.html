@@ -10,30 +10,8 @@ layout: default
         <h1 class="post-title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
       <div class="post-meta-wrapper">
       <p class="post-meta">
-          {{ post.date | date: "%b %-d, %Y" }} • {% unless post.tags == empty %}
+          {{ post.date | date: "%b %-d, %Y" }}
       </p>
-            {% assign tags_list = post.tags %}
-            {% if tags_list.first[0] == null %}
-              {% for tag in tags_list %}
-                  <p class="post-meta">
-                      <a href="{{ site.BASE_PATH }}/tags/#{{ tag }}-ref">
-                      {{ tag }}({{ site.tags[tag].size }})
-                      {% unless forloop.last %},{% endunless %}
-                      </a>
-                  </p>
-              {% endfor %}
-            {% else %}
-              {% for tag in tags_list %}
-                  <p class="post-meta">
-                      <a href="{{ site.BASE_PATH }}/tags/#{{ tag[0] }}-ref">
-                          {{ tag[0] }}({{ tag[1].size }})
-                          {% unless forloop.last %},{% endunless %}
-                      </a>
-                  </p>
-              {% endfor %}
-            {% endif %}
-            {% assign tags_list = nil %}
-          {% endunless %}
       </div>
       </header>
       <section class="post-excerpt">
