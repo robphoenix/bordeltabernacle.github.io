@@ -135,6 +135,7 @@ if __name__ == '__main__':
 
 ```
 
+
 And in our root project directory, where `manage.py` is, we run our script.
 
 
@@ -163,6 +164,7 @@ SuperUser: uname
 
 ================================================================================
 ```
+
 
 So, buggering about with models and the database just got easier, now that it takes minutes to destroy it and rebuild it. Super.
 
