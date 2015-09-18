@@ -2,7 +2,7 @@
  * Site Main Container
  */
 .main-container {
-    width: $content-width;
+    max-width: $content-width;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -36,6 +36,7 @@
     color: $brand-color;
     font-family: $base-font-family;
     font-size: 40px;
+    padding-bottom: 10px;
 }
 
 .site-nav {
