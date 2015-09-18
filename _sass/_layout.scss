@@ -17,7 +17,7 @@
     flex: 1;
     display: flex;
     flex-flow: column;
-    margin: 20px auto;
+    padding: $spacing-unit 0;
 
     a {
         &:hover {
@@ -50,7 +50,7 @@
     }
 
     .page-links {
-        margin: 0 10px;
+        margin: 5px 10px;
         display: inline;
     }
 }

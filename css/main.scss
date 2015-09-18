@@ -15,6 +15,8 @@ $spacing-unit:     30px;
 
 $text-color:       rgb(210, 210, 210);
 $background-color: rgb(60, 60, 60);
+$background-color-light: lighten($background-color, 10%);
+$background-color-lighter: lighten($background-color-light, 10%);
 $brand-color:      #03947c;
 $brand-color-light:lighten($brand-color, 10%);
 $code-background:  #202020;
