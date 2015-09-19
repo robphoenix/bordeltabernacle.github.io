@@ -4,24 +4,22 @@
 
   <nav class="site-nav">
     <ul>
-       •
-      <li class="page-links"><a href="{{ site.baseurl }}/about/">About</a></li>
-      <li class="page-links"><a href="{{ site.baseurl }}/">Blog</a></li>
-      <li class="page-links">
+      <li class="page-links" title="Blog"><a href="{{ site.baseurl }}/"><i class="fa fa-home"></i></a></li>
+      <li class="page-links" title="About"><a href="{{ site.baseurl }}/about/"><i class="fa fa-info"></i></a></li>
+      <li class="page-links" title="twitter.com/brdltbrncle">
         <a href="https://twitter.com/{{ site.twitter_username }}">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
-      <li class="page-links">
+      <li class="page-links" title="github.com/bordeltabernacle">
         <a href="https://github.com/{{ site.github_username }}">
           <i class="fa fa-github"></i>
         </a>
       </li>
-      <li class="page-links">
+      <li class="page-links" title="Subscribe to RSS">
         <a href="{{ '/feed.xml' | prepend: site.baseurl }}">
           <i class="fa fa-rss"></i>
         </a>
       </li>
-       • 
     </ul>
   </nav>

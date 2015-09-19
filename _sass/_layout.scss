@@ -18,25 +18,24 @@
     display: flex;
     flex-flow: column;
     padding: $spacing-unit 0;
-
-    a {
-        &:hover {
-            border-bottom: 3px solid $brand-color-light;
-        }
-    }
-
 }
 
 /**
  * Site header
  */
 .site-title {
-    display: block;
+    display: inline;
     text-align: center;
     color: $brand-color;
     font-family: $base-font-family;
-    font-size: 40px;
-    padding-bottom: 10px;
+    font-size: 35px;
+    padding: 0 auto 10px auto;
+
+    a {
+        border-bottom: 3px solid $brand-color;
+        padding: 5px;
+        margin-bottom: 15px;
+    }
 }
 
 .site-nav {
@@ -45,6 +44,7 @@
     font-size: 20px;
     color: $brand-color;
     text-align: center;
+    margin-top: 15px;
 
     ul {
         width: 100%;
