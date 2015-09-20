@@ -14,7 +14,7 @@ layout: default
 				{% for tag in tags_list %}
 					<p class="post-meta">
 						<a href="{{ site.BASE_PATH }}/tags/#{{ tag }}-ref">
-						{{ tag }}({{ site.tags[tag].size }})
+						{{ tag }}
 						{% unless forloop.last %},{% endunless %}
 						</a>
 					</p>
@@ -23,7 +23,7 @@ layout: default
 				{% for tag in tags_list %}
 					<p class="post-meta">
 						<a href="{{ site.BASE_PATH }}/tags/#{{ tag[0] }}-ref">
-							{{ tag[0] }}({{ tag[1].size }})
+							{{ tag[0] }}
 							{% unless forloop.last %},{% endunless %}
 						</a>
 					</p>
