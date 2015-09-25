@@ -308,5 +308,15 @@ user=> ':blues'
 :blues'
 ```
 
-[cljdocs]: http://clojure.org/data_structures#Data Structures-Keywords
+The confusion is all mine, but I borrowed heavily from the following articles.
+  - [Why does Clojure have “keywords” in addition to “symbols”?](https://stackoverflow.com/questions/1527548/why-does-clojure-have-keywords-in-addition-to-symbols?rq=1)
+  - [ClojureDocs - Symbol](http://clojuredocs.org/clojure.core/symbol)
+  - [ClojureDocs - Keyword](http://clojuredocs.org/clojure.core/keyword)
+  - [Clojure For The Brave and True - Quoting](http://www.braveclojure.com/do-things/#2_10__Quoting)
+  - [Clojure For The Brave and True - Keywords](http://www.braveclojure.com/do-things/#2_5__Keywords)
+  - [Clojure For The Brave and True - Symbols & Naming](http://www.braveclojure.com/do-things/#2_9__Symbols_and_Naming)
+  - [Symbols in Clojure](https://stackoverflow.com/questions/2320348/symbols-in-clojure)
+
+
+[cljdocs]: http://clojure.org/data_structures#Data%20Structures-Keywords
 [wikiID]: https://en.wikipedia.org/wiki/Identifier
