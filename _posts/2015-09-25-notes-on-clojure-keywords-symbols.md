@@ -5,14 +5,14 @@ date: "2015-09-25"
 tags: clojure
 ---
 
-Having not used Clojure extensively yet, or really much at all, I'm still unsure as to when to use Keywords, so I just spent a bit of time exploring them, and subsequently touched on Symbols too.  And in writing this post, explored both further, confusing myself further in the process.  What you here then is not a formed explanation of either Keywords or Symbols, but observations on their behaviour. While reading this, imagine me saying 'huh' and scratching my head like Stan Laurel.
+Having not used Clojure extensively yet, or really much at all, I'm still unsure as to when to use Keywords.  So I just spent a bit of time exploring them, and subsequently touched on Symbols too.  And in writing this post confused myself further in the process.  What you have here then is not a formed explanation of either Keywords or Symbols, but observations on their behaviour. While reading this, imagine me saying 'huh?' and scratching my head like Stan Laurel.
 
 <!--more-->
 
 Keywords are described in the [Clojure docs][cljdocs], within the Data Structures section, as such:
 
-> Keywords are symbolic identifiers that evaluate to themselves. They provide very fast equality tests. Like Symbols, they have names and optional namespaces, both of which are strings. The leading ':' is not part of the namespace or name.
-Keywords implement IFn for invoke() of one argument (a map) with an optional second argument (a default value). For example (:mykey my-hash-map :none) means the same as (get my-hash-map :mykey :none).
+*"Keywords are symbolic identifiers that evaluate to themselves. They provide very fast equality tests. Like Symbols, they have names and optional namespaces, both of which are strings. The leading ':' is not part of the namespace or name.
+Keywords implement IFn for invoke() of one argument (a map) with an optional second argument (a default value). For example (:mykey my-hash-map :none) means the same as (get my-hash-map :mykey :none)."*
 
 And within the lein repl:
 
@@ -25,7 +25,7 @@ clojure.core/keyword
   in the keyword strings, it will be added automatically.
 ```
 
-Interestingly, on [Wikipedia][wikiID] identifiers are described as *"a name that identifies either a unique object or a unique class of objects"*, which immediately makes me think of Python variables or similar.  But that's not what these are, they don't hold another value, they evaluate to themselves, which just confuses me.  Anyway, let's get back in the lein repl and see what they're all about.
+Interestingly, on [Wikipedia][wikiID] identifiers are described as *"a name that identifies either a unique object or a unique class of objects"*, which immediately makes me think of Python variables or similar.  But that's not what these are, they don't hold another value, they evaluate to themselves, which kinda confuses me.  Anyway, let's get back in the lein repl and see what they're all about.
 
 ```clojure
 ; create a keyword from a string using the keyword method
@@ -66,7 +66,7 @@ user=> (get {"a" 1 "b" 2} "a")
 ; though we have to use get here, and it's a bit uglier.
 ; I also get the impression it's just common expectation to use keywords
 ; for map keys, and that frowning will occur if we use strings.
-
+;
 ; we can also define keywords with the colon
 user=> :blues
 :blues
@@ -80,12 +80,13 @@ user=> (keyword "blues" "Mississippi-Fred-McDowell")
 :blues/Mississippi-Fred-McDowell
 user=> (type :blues/Mississippi-Fred-McDowell)
 clojure.lang.Keyword
-; though I don't think you can define the name of the namespace, and
-; to be honest I don't yet know why you would do this
-; I though maybe it would have something to do with referencing a value
+; though I don't think you can define the name of the namespace using
+; the double colon method, and to be honest I don't yet know why you would
+; do this I thought maybe it would have something to do with referencing a value
 ; in a different namespace, but I really don't understand this yet, I need
 ; to actually start building stuff in Clojure. Understanding is a constant
-; cycle of learning and building and learning and building
+; cycle of learning and building and learning and building.
+;
 ; I tried this....
 user=> {:a 1 :b 2 :c 3}
 {:a 1, :b 2, :c 3}
@@ -123,8 +124,8 @@ user=> :a
 
 Symbols appear to be easily confused with Keywords in Clojure.
 
->Symbols are identifiers that are normally used to refer to something else. They can be used in program forms to refer to function parameters, let bindings, class names and global vars. They have names and optional namespaces, both of which are strings. Symbols can have metadata (see with-meta).
-Symbols, just like Keywords, implement IFn for invoke() of one argument (a map) with an optional second argument (a default value). For example ('mysym my-hash-map :none) means the same as (get my-hash-map 'mysym :none).
+*"Symbols are identifiers that are normally used to refer to something else. They can be used in program forms to refer to function parameters, let bindings, class names and global vars. They have names and optional namespaces, both of which are strings. Symbols can have metadata (see with-meta).
+Symbols, just like Keywords, implement IFn for invoke() of one argument (a map) with an optional second argument (a default value). For example ('mysym my-hash-map :none) means the same as (get my-hash-map 'mysym :none)."*
 
 ```clojure
 user=> (doc symbol)
@@ -162,7 +163,7 @@ user=> ('a {'a 1 'b 2})
 1
 ; but we can assign other values to Symbols, where we can't with Keywords.
 ; This comes back to the description of Keywords as
-; *"symbolic identifiers that evaluate to themselves"*
+; "symbolic identifiers that evaluate to themselves"
 user=> (eval :blues)
 :blues
 ; evaluates to itself
@@ -232,7 +233,7 @@ user=> (= :a :a)
 true
 user=> (= 'a 'a)
 true
-; which, like above has to do with the difference between the thing itself
+; which, like above, has to do with the difference between the thing itself
 ; and what the thing is referencing.
 ; Here is an example of this difference
 user=> (def blues ["Blind Willie Johnson" "Muddy Waters" "Sister Gertrude Morgan"])
@@ -308,6 +309,7 @@ user=> ':blues'
 ```
 
 The confusion is all mine, any insight is borrowed heavily from the following articles.
+
   - [Why does Clojure have “keywords” in addition to “symbols”?](https://stackoverflow.com/questions/1527548/why-does-clojure-have-keywords-in-addition-to-symbols?rq=1)
   - [ClojureDocs - Symbol](http://clojuredocs.org/clojure.core/symbol)
   - [ClojureDocs - Keyword](http://clojuredocs.org/clojure.core/keyword)
@@ -316,5 +318,5 @@ The confusion is all mine, any insight is borrowed heavily from the following ar
   - [Clojure For The Brave and True - Symbols & Naming](http://www.braveclojure.com/do-things/#2_9__Symbols_and_Naming)
   - [Symbols in Clojure](https://stackoverflow.com/questions/2320348/symbols-in-clojure)
 
-[cljdocs]: http://clojure.org/data_structures#Data Structures-Keywords
+[cljdocs]: http://clojure.org/data_structures#Data%20Structures-Keywords
 [wikiID]: https://en.wikipedia.org/wiki/Identifier
