@@ -4,6 +4,7 @@
 .highlight {
     background: $code-background;
     @extend %vertical-rhythm;
+    margin: $spacing-unit 0;
 
     .c { color: #999999; font-style: italic } /* Comment */
     .err { color: #a61717; } /* Error */
