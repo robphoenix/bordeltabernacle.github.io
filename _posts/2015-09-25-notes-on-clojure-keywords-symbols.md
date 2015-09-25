@@ -194,8 +194,7 @@ user=> (blues "Muddy Waters")
 "Muddy Waters got the blues"
 user=> 'blues
 blues
-; So my assumption is that when assigning a value to a Symbol you don't
-; use the quote.  Which is, I think going to confuse me
+; So when assigning a value to a Symbol you don't use the quote.
 user=> (symbol? 'blues)
 true
 user=> (symbol? (quote blues))
@@ -308,7 +307,7 @@ user=> ':blues'
 :blues'
 ```
 
-The confusion is all mine, but I borrowed heavily from the following articles.
+The confusion is all mine, any insight is borrowed heavily from the following articles.
   - [Why does Clojure have “keywords” in addition to “symbols”?](https://stackoverflow.com/questions/1527548/why-does-clojure-have-keywords-in-addition-to-symbols?rq=1)
   - [ClojureDocs - Symbol](http://clojuredocs.org/clojure.core/symbol)
   - [ClojureDocs - Keyword](http://clojuredocs.org/clojure.core/keyword)
@@ -317,6 +316,5 @@ The confusion is all mine, but I borrowed heavily from the following articles.
   - [Clojure For The Brave and True - Symbols & Naming](http://www.braveclojure.com/do-things/#2_9__Symbols_and_Naming)
   - [Symbols in Clojure](https://stackoverflow.com/questions/2320348/symbols-in-clojure)
 
-
-[cljdocs]: http://clojure.org/data_structures#Data%20Structures-Keywords
+[cljdocs]: http://clojure.org/data_structures#Data Structures-Keywords
 [wikiID]: https://en.wikipedia.org/wiki/Identifier
