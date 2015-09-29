@@ -5,7 +5,7 @@ date: '2015-09-29 19:54'
 tags: clojure
 ---
 
-Let's have a wee gander at Clojures data structures, shall we?
+Let's have a wee gander at Clojure's data structures, shall we?
 
 <!--more-->
 
