@@ -24,38 +24,38 @@ Lists & Vectors
 To create a list we can use the explicit `list` function:
 
 ```clojure
-> (list "Memphis Slim" "Elmore James" "Bukka White")
+=> (list "Memphis Slim" "Elmore James" "Bukka White")
 ("Memphis Slim" "Elmore James" "Bukka White")
-> (type (list "Memphis Slim" "Elmore James" "Bukka White"))
+=> (type (list "Memphis Slim" "Elmore James" "Bukka White"))
 clojure.lang.PersistentList
 ```
 
 Or more succintly using a quote:
 
 ```clojure
-> '("Memphis Slim" "Elmore James" "Bukka White")
+=> '("Memphis Slim" "Elmore James" "Bukka White")
 ("Memphis Slim" "Elmore James" "Bukka White")
-> (type '("Memphis Slim" "Elmore James" "Bukka White"))
+=> (type '("Memphis Slim" "Elmore James" "Bukka White"))
 clojure.lang.PersistentList
 ```
 
 The list can contain different types of items:
 
 ```clojure
-> '(1 2 :three "four")
+=> '(1 2 :three "four")
 (1 2 :three "four")
 ```
 
 Vectors are similar to lists, but subtly different. We can create them with the explicit `vector` function, or just with square brackets...  
 
 ```clojure
-> (vector "Memphis Slim" "Elmore James" "Bukka White")
+=> (vector "Memphis Slim" "Elmore James" "Bukka White")
 ["Memphis Slim" "Elmore James" "Bukka White"]
-> ["Memphis Slim" "Elmore James" "Bukka White"]
+=> ["Memphis Slim" "Elmore James" "Bukka White"]
 ["Memphis Slim" "Elmore James" "Bukka White"]
-> (type ["Memphis Slim" "Elmore James" "Bukka White"])
+=> (type ["Memphis Slim" "Elmore James" "Bukka White"])
 clojure.lang.PersistentVector
-> [1 2 :three "four"]
+=> [1 2 :three "four"]
 [1 2 :three "four"]
 ```
 
@@ -68,35 +68,35 @@ The pretty much self-explanatory `first`, `last` and `rest` functions enable us 
 So, with a List...
 
 ```clojure
-> (first '("Memphis Slim" "Elmore James" "Bukka White"))
+=> (first '("Memphis Slim" "Elmore James" "Bukka White"))
 "Memphis Slim"
-> (last '("Memphis Slim" "Elmore James" "Bukka White"))
+=> (last '("Memphis Slim" "Elmore James" "Bukka White"))
 "Bukka White"
-> (rest '("Memphis Slim" "Elmore James" "Bukka White"))
+=> (rest '("Memphis Slim" "Elmore James" "Bukka White"))
 ("Elmore James" "Bukka White")
-> (first (rest '("Memphis Slim" "Elmore James" "Bukka White")))
+=> (first (rest '("Memphis Slim" "Elmore James" "Bukka White")))
 "Elmore James"
 ```
 
 And with a Vector...
 
 ```clojure
-> (first ["Memphis Slim" "Elmore James" "Bukka White"])
+=> (first ["Memphis Slim" "Elmore James" "Bukka White"])
 "Memphis Slim"
-> (last ["Memphis Slim" "Elmore James" "Bukka White"])
+=> (last ["Memphis Slim" "Elmore James" "Bukka White"])
 "Bukka White"
-> (rest ["Memphis Slim" "Elmore James" "Bukka White"])
+=> (rest ["Memphis Slim" "Elmore James" "Bukka White"])
 ("Elmore James" "Bukka White")
-> (first (rest ["Memphis Slim" "Elmore James" "Bukka White"]))
+=> (first (rest ["Memphis Slim" "Elmore James" "Bukka White"]))
 "Elmore James"
 ```
 
 We can see how many items are in the collection.
 
 ```Clojure
-> (count '("Memphis Slim" "Elmore James" "Bukka White"))
+=> (count '("Memphis Slim" "Elmore James" "Bukka White"))
 3
-> (count ["Memphis Slim" "Elmore James" "Bukka White"])
+=> (count ["Memphis Slim" "Elmore James" "Bukka White"])
 3
 ```
 
@@ -106,20 +106,20 @@ There are a couple of functions to build up our collections, `cons` and `conj`.
 
 ```clojure
 ; Lists
-> (cons "Memphis Slim" '())
+=> (cons "Memphis Slim" '())
 ("Memphis Slim")
-> (cons "Memphis Slim" "Elmore James" '())
+=> (cons "Memphis Slim" "Elmore James" '())
 clojure.lang.ArityException: Wrong number of args (3) passed to: core$cons
-> (cons "Memphis Slim" (cons "Elmore James" '()))
+=> (cons "Memphis Slim" (cons "Elmore James" '()))
 ("Memphis Slim" "Elmore James")
-> (cons "Memphis Slim" nil)
+=> (cons "Memphis Slim" nil)
 ("Memphis Slim")
 ; Vectors
-> (cons "Memphis Slim" [])
+=> (cons "Memphis Slim" [])
 ("Memphis Slim")
-> (cons "Memphis Slim" "Elmore James" [])
+=> (cons "Memphis Slim" "Elmore James" [])
 clojure.lang.ArityException: Wrong number of args (3) passed to: core$cons
-> (cons "Memphis Slim" (cons "Elmore James" [])))
+=> (cons "Memphis Slim" (cons "Elmore James" [])))
 ("Memphis Slim" "Elmore James")
 ```
 
@@ -127,14 +127,14 @@ Whereas `conj` can take a number of arguments and will add the items differently
 
 ```clojure
 ; Lists
-> (conj '("Memphis Slim" "Elmore James" "Bukka White") "Robert Johnson")
+=> (conj '("Memphis Slim" "Elmore James" "Bukka White") "Robert Johnson")
 ("Robert Johnson" "Memphis Slim" "Elmore James" "Bukka White")
-> (conj '("Memphis Slim" "Elmore James" "Bukka White") "Robert Johnson" "Bessie Smith")
+=> (conj '("Memphis Slim" "Elmore James" "Bukka White") "Robert Johnson" "Bessie Smith")
 ("Bessie Smith" "Robert Johnson" "Memphis Slim" "Elmore James" "Bukka White")
 ; Vectors
-> (conj ["Memphis Slim" "Elmore James" "Bukka White"] "Robert Johnson")
+=> (conj ["Memphis Slim" "Elmore James" "Bukka White"] "Robert Johnson")
 ["Memphis Slim" "Elmore James" "Bukka White" "Robert Johnson"]
-> (conj ["Memphis Slim" "Elmore James" "Bukka White"] "Robert Johnson" "Bessie Smith")
+=> (conj ["Memphis Slim" "Elmore James" "Bukka White"] "Robert Johnson" "Bessie Smith")
 ["Memphis Slim" "Elmore James" "Bukka White" "Robert Johnson" "Bessie Smith"]
 ```
 
@@ -142,22 +142,22 @@ Whereas `conj` can take a number of arguments and will add the items differently
 
 ```clojure
 ; Lists
-> (nth '("Memphis Slim" "Elmore James" "Bukka White") 0)
+=> (nth '("Memphis Slim" "Elmore James" "Bukka White") 0)
 "Memphis Slim"
-> (nth '("Memphis Slim" "Elmore James" "Bukka White") 1)
+=> (nth '("Memphis Slim" "Elmore James" "Bukka White") 1)
 "Elmore James"
-> (nth '("Memphis Slim" "Elmore James" "Bukka White") 4)
+=> (nth '("Memphis Slim" "Elmore James" "Bukka White") 4)
 java.lang.IndexOutOfBoundsException
-> (nth '("Memphis Slim" "Elmore James" "Bukka White") 4 "No Dice!")
+=> (nth '("Memphis Slim" "Elmore James" "Bukka White") 4 "No Dice!")
 "No Dice!"
 ; Vectors
-> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 0)
+=> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 0)
 "Memphis Slim"
-> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 1)
+=> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 1)
 "Elmore James"
-> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 4)
+=> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 4)
 java.lang.IndexOutOfBoundsException
-> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 4 "No Dice!")
+=> (nth ["Memphis Slim" "Elmore James" "Bukka White"] 4 "No Dice!")
 "No Dice!"
 ```
 
@@ -165,14 +165,14 @@ With Vectors we can also use the `get` function to retrieve items by index.
 
 ```clojure
 ; Lists have no index.
-> (get '("Memphis Slim" "Elmore James" "Bukka White") 1)
+=> (get '("Memphis Slim" "Elmore James" "Bukka White") 1)
 nil
 ; Vectors do.
-> (get ["Memphis Slim" "Elmore James" "Bukka White"] 1)
+=> (get ["Memphis Slim" "Elmore James" "Bukka White"] 1)
 "Elmore James"
-> (get ["Memphis Slim" "Elmore James" "Bukka White"] 5)
+=> (get ["Memphis Slim" "Elmore James" "Bukka White"] 5)
 nil
-> (get ["Memphis Slim" "Elmore James" "Bukka White"] 5 "No Dice!")
+=> (get ["Memphis Slim" "Elmore James" "Bukka White"] 5 "No Dice!")
 "No Dice!"
 ```
 
@@ -182,42 +182,42 @@ Maps
 Maps provide us with a key/value store.  They are defined by the curly handlebar braces.
 
 ```clojure
-> (type {})
+=> (type {})
 clojure.lang.PersistentArrayMap
-> {"Memphis Slim" "Miss Ida B" "Otis Spann" "Good Morning Mr. Blues"}
+=> {"Memphis Slim" "Miss Ida B" "Otis Spann" "Good Morning Mr. Blues"}
 {"Memphis Slim" "Miss Ida B", "Otis Spann" "Good Morning Mr. Blues"}
-> {"Memphis Slim" "Miss Ida B" "Otis Spann" "Good Morning Mr. Blues" "Bukka White"}
+=> {"Memphis Slim" "Miss Ida B" "Otis Spann" "Good Morning Mr. Blues" "Bukka White"}
 java.lang.RuntimeException: Map literal must contain an even number of forms
 ```
 
 You don't need to include commas, but they may well help with understanding the code, visually separating the key/value pairs and ensuring you don't add a key without it's corresponding value.  I believe it's more common for keywords to be used for the keys in a map, which also provides an extra method for retrieving items from the map, alongside the `get` function.
 
 ```clojure
-> (get {"Memphis Slim" "Miss Ida B", "Otis Spann" "Good Morning Mr. Blues"} "Memphis Slim")
+=> (get {"Memphis Slim" "Miss Ida B", "Otis Spann" "Good Morning Mr. Blues"} "Memphis Slim")
 "Miss Ida B"
-> (get {:MemphisSlim "Miss Ida B" :OtisSpann "Good Morning Mr. Blues"} :OtisSpann)
+=> (get {:MemphisSlim "Miss Ida B" :OtisSpann "Good Morning Mr. Blues"} :OtisSpann)
 "Good Morning Mr. Blues"
-> (:OtisSpann {:MemphisSlim "Miss Ida B" :OtisSpann "Good Morning Mr. Blues"})
+=> (:OtisSpann {:MemphisSlim "Miss Ida B" :OtisSpann "Good Morning Mr. Blues"})
 "Good Morning Mr. Blues"
 ```
 
 We can access both the keys and the values easily enough...
 
 ```clojure
-> (keys {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"})
+=> (keys {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"})
 (:MemphisSlim :OtisSpann)
-> (vals {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"})
+=> (vals {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"})
 ("Miss Ida B" "Good Morning Mr. Blues")
 ```
 
 And add and remove key/value pairs with `assoc`, `dissoc` and `merge`...
 
 ```clojure
-> (assoc {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"} :SkipJames "Worried Blues")
+=> (assoc {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"} :SkipJames "Worried Blues")
 {:SkipJames "Worried Blues", :MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues"}
-> (dissoc {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues", :SkipJames "Worried Blues"} :OtisSpann)
+=> (dissoc {:MemphisSlim "Miss Ida B", :OtisSpann "Good Morning Mr. Blues", :SkipJames "Worried Blues"} :OtisSpann)
 {:MemphisSlim "Miss Ida B", :SkipJames "Worried Blues"}
-> (merge {:MemphisSlim "Miss Ida B", :SkipJames "Worried Blues"} {:RobertJohnson "I Believe I'll Dust My Broom", :LeroyCarr "Blues Before Sunrise"})
+=> (merge {:MemphisSlim "Miss Ida B", :SkipJames "Worried Blues"} {:RobertJohnson "I Believe I'll Dust My Broom", :LeroyCarr "Blues Before Sunrise"})
 {:LeroyCarr "Blues Before Sunrise", :RobertJohnson "I Believe I'll Dust My Broom", :MemphisSlim "Miss Ida B", :SkipJames "Worried Blues"}
 ```
 
@@ -227,46 +227,46 @@ Sets
 Sets are collections of unique data, defined by `#{}`.  They must be unique at the time of creation, and will not recognise repeated elements if you try to add them.
 
 ```clojure
-> #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson :OtisSpann}
+=> #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson :OtisSpann}
 java.lang.IllegalArgumentException: Duplicate key: :OtisSpann
-> #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson}
+=> #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson}
 #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite}
-> (conj #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson} :OtisSpann)
+=> (conj #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson} :OtisSpann)
 #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite}
 ```
 
 Yep, `conj` can add to a set, and `disj` removes items.
 
 ```clojure
-> (conj #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson} :SamChatmon)
+=> (conj #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson} :SamChatmon)
 #{:RobertJohnson :MemphisSlim :OtisSpann :SamChatmon :BukkaWhite}
-> (disj #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson} :RobertJohnson)
+=> (disj #{:MemphisSlim :OtisSpann :BukkaWhite :RobertJohnson} :RobertJohnson)
 #{:MemphisSlim :OtisSpann :BukkaWhite}
 ```
 
 `contains?` can be used to check membership of the set, and `get` can get the item...
 
 ```clojure
-> (contains? #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :BukkaWhite)
+=> (contains? #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :BukkaWhite)
 true
-> (contains? #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :SamChatmon)
+=> (contains? #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :SamChatmon)
 false
-> (get #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :BukkaWhite)
+=> (get #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :BukkaWhite)
 :BukkaWhite
-> (get #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :SamChatmon)
+=> (get #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :SamChatmon)
 nil
-> (get #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :SamChatmon "No Dice!")
+=> (get #{:RobertJohnson :MemphisSlim :OtisSpann :BukkaWhite} :SamChatmon "No Dice!")
 "No Dice!"
 ```
 
 `clojure.set` offers us some further functions for working with sets. `union` combines sets, `difference` removes items from the first set that exist in subsequent sets, and `intersection` returns items shared by both sets.
 
 ```clojure
-> (clojure.set/union #{:RobertJohnson :MemphisSlim} #{:BukkaWhite :RobertJohnson})
+=> (clojure.set/union #{:RobertJohnson :MemphisSlim} #{:BukkaWhite :RobertJohnson})
 #{:RobertJohnson :MemphisSlim :BukkaWhite}
-> (clojure.set/difference #{:RobertJohnson :MemphisSlim} #{:BukkaWhite :RobertJohnson})
+=> (clojure.set/difference #{:RobertJohnson :MemphisSlim} #{:BukkaWhite :RobertJohnson})
 #{:MemphisSlim}
-> (clojure.set/intersection #{:RobertJohnson :MemphisSlim} #{:BukkaWhite :RobertJohnson})
+=> (clojure.set/intersection #{:RobertJohnson :MemphisSlim} #{:BukkaWhite :RobertJohnson})
 #{:RobertJohnson}
 ```
 
