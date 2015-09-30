@@ -5,8 +5,11 @@ date: "2015-09-28 19:42"
 tags: python
 ---
 
+A dictionary is a key/value store.  A value is bound to a key, stored within a data structure, and referenced by this key.  In the common dictionary we all know the word is the key, and it's meaning is the value.  Dictionaries are indispensable to language, and in Python they are a fundamental data structure.
 
-Let's create a dictionary
+<!--more-->
+
+We can create an empty dictionary object in a couple of ways.
 
 ```python
 >>> blues = {}
@@ -14,8 +17,6 @@ Let's create a dictionary
 {}
 >>> type(blues)
 <type 'dict'>
->>> dir(blues)
-['__class__', '__cmp__', '__contains__', '__delattr__', '__delitem__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setitem__', '__sizeof__', '__str__', '__subclasshook__', 'clear', 'copy', 'fromkeys', 'get', 'has_key', 'items', 'iteritems', 'iterkeys', 'itervalues', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values', 'viewitems', 'viewkeys', 'viewvalues']
 >>> delta_blues = dict()
 >>> print delta_blues
 {}
@@ -29,26 +30,77 @@ Let's create a dictionary with something already in it.
 >>> blues_songs = {'Memphis Slim': 'Miss Ida B', 'Otis Spann': 'Good Morning Mr. Blues'}
 >>> blues_songs
 {'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Miss Ida B'}
->>> blues_songs['J.B. Lenoir'] = 'Down In Mississippi'  # Add a new singer/song
+```
+
+And add to it...
+
+```python
+>>> blues_songs['J.B. Lenoir'] = 'Down In Mississippi'
 >>> blues_songs
 {'J.B. Lenoir': 'Down In Mississippi', 'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Miss Ida B'}
->>> blues_songs['Memphis Slim'] = 'Born With the Blues'  # Add a singer that already exists
+```
+
+Update a pre-existing entry...
+
+```python
+>>> blues_songs['Memphis Slim'] = 'Born With the Blues'
 >>> blues_songs
 {'J.B. Lenoir': 'Down In Mississippi', 'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Born With the Blues'}
->>> len(blues_songs)  # see how many entries we have
+```
+
+Check the number of entries we have in our dictionary...
+
+```python
+>>> len(blues_songs)
 3
->>> blues_songs['Otis Spann']  # Call a singer to see what their song is
+```
+
+Remove entries...
+
+```python
+>>> blues_songs.pop('Memphis Slim')
+'Miss Ida B'
+>>> blues_songs
+{'Otis Spann': 'Good Morning Mr. Blues'}
+>>> del blues_songs['Otis Spann']
+>>> blues_songs
+{'J.B. Lenoir': 'Down In Mississippi'}
+```
+
+And combine two dictionaries...
+
+```python
+>>> blues_songs
+{'Memphis Slim': 'Miss Ida B', 'Otis Spann': 'Good Morning Mr. Blues'}
+>>> more_blues_songs = {'J.B. Lenoir': 'Down In Mississippi', 'Elmore James': 'The Sky Is Crying'}
+>>> blues_songs.update(more_blues_songs)
+>>> blues_songs
+{'J.B. Lenoir': 'Down In Mississippi', 'Elmore James': 'The Sky Is Crying', 'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Miss Ida B'}
+>>> more_blues_songs
+{'J.B. Lenoir': 'Down In Mississippi', 'Elmore James': 'The Sky Is Crying'}
+```
+
+Let's see what we've got in our dictionary....
+
+```python
+>>> blues_songs['Otis Spann']
 'Good Morning Mr. Blues'
->>> blues_songs['Elmore James']  # Call a singer that isn't in our dictionary
+>>> blues_songs['Elmore James']
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 KeyError: 'Elmore James'
-#  So, let's check if an entry is there already
 >>> 'Elmore James' in blues_songs
 False
 >>> 'Memphis Slim' in blues_songs
 True
-# iterate over the entries in the dictionary
+>>> blues_songs.has_key('Elmore James')
+False
+>>> blues_songs.has_key('Memphis Slim')
+True
+>>> blues_songs.get('Memphis Slim')
+'Miss Ida B'
+>>> blues_songs.get('Elmore James', 'No Dice!')
+'No Dice!'
 >>> for singer in blues_songs:
 ...     print singer
 ...
@@ -67,11 +119,28 @@ Born With the Blues
 J.B. Lenoir sings Down In Mississippi
 Otis Spann sings Good Morning Mr. Blues
 Memphis Slim sings Born With the Blues
+```
+
+The dictionary object we've created has some built-in methods we can use to access the items within it...
+
+```python
 >>> blues_songs.items()
 [('J.B. Lenoir', 'Down In Mississippi'), ('Otis Spann', 'Good Morning Mr. Blues'), ('Memphis Slim', 'Born With the Blues')]
->>> blues_songs.keys()                                                                                                                      
+>>> type(blues_songs.items())
+<type 'list'>
+>>> for item in blues_songs.items():
+...     print type(item)
+...
+<type 'tuple'>
+<type 'tuple'>
+>>> for singer, song in blues_songs.items():
+...     print singer + '\t' + song
+...
+Otis Spann      Good Morning Mr. Blues
+Memphis Slim    Miss Ida B
+>>> blues_songs.keys()
 ['J.B. Lenoir', 'Otis Spann', 'Memphis Slim']
->>> blues_songs.values()                                                                                                                    
+>>> blues_songs.values()
 ['Down In Mississippi', 'Good Morning Mr. Blues', 'Born With the Blues']
 >>> for singer in blues_songs.iteritems():
 ...     print singer
@@ -91,3 +160,32 @@ Memphis Slim = Born With the Blues
 The Key: J.B. Lenoir    The Value: Down In Mississippi
 The Key: Otis Spann     The Value: Good Morning Mr. Blues
 The Key: Memphis Slim   The Value: Born With the Blues
+>>> type(blues_songs.iteritems())
+<type 'dictionary-itemiterator'>
+>>> for singer in blues_songs.iteritems():
+...     print type(singer)
+...
+<type 'tuple'>
+<type 'tuple'>
+```
+
+A dictionary can also be nested, enabling the building up of more complicated data structures...
+
+```python
+>>> blues_singers = {'Memphis Slim': {'sings': ['Miss Ida B', 'Born With the Blues'], 'born': '03/09/1915', 'died': '24/02/1988'}, 'Otis Spann': {'sings': ['Good Morning Mr. Blues', 'Must Have Been the Devil'], 'born': '21/03/1930', 'died': '24/04/2970'}}
+>>> blues_singers
+{'Otis Spann': {'sings': ['Good Morning Mr. Blues', 'Must Have Been the Devil'], 'died': '24/04/2970', 'born': '21/03/1930'}, 'Memphis Slim': {'sings': ['Miss Ida B', 'Born With the Blues'], 'died': '24/02/1988', 'born': '03/09/1915'}}
+>>> blues_singers.keys()
+['Otis Spann', 'Memphis Slim']
+>>> blues_singers.values()
+[{'sings': ['Good Morning Mr. Blues', 'Must Have Been the Devil'], 'died': '24/04/2970', 'born': '21/03/1930'}, {'sings': ['Miss Ida B', 'Born With the Blues'], 'died': '24/02/1988', 'born': '03/09/1915'}]
+>>> blues_singers['Memphis Slim']
+{'sings': ['Miss Ida B', 'Born With the Blues'], 'died': '24/02/1988', 'born': '03/09/1915'}
+>>> blues_singers['Memphis Slim']['born']
+'03/09/1915'
+```
+
+There you have the dictionary.  Thanks to books by [Mark Lutz][learnpy] and [Charles Severance][pyinfor] for letting me lean on their knowledge.
+
+[learnpy]: 
+[pyinfor]:
