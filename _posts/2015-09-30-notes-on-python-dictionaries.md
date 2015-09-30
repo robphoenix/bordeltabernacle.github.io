@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Notes on Python: Dictionaries"
-date: "2015-09-28 19:42"
+title: 'Notes on Python: Dictionaries'
+date: '2015-09-30 14:14'
 tags: python
 ---
 
@@ -187,5 +187,5 @@ A dictionary can also be nested, enabling the building up of more complicated da
 
 There you have the dictionary.  Thanks to books by [Mark Lutz][learnpy] and [Charles Severance][pyinfor] for letting me lean on their knowledge.
 
-[learnpy]: 
-[pyinfor]:
+[learnpy]: #
+[pyinfor]: #
