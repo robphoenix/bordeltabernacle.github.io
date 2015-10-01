@@ -187,5 +187,5 @@ A dictionary can also be nested, enabling the building up of more complicated da
 
 There you have the dictionary.  Thanks to books by [Mark Lutz][learnpy] and [Charles Severance][pyinfor] for letting me lean on their knowledge.
 
-[learnpy]: #
-[pyinfor]: #
+[learnpy]: http://www.amazon.co.uk/Learning-Python-Mark-Lutz/dp/1449355730/ref=sr_1_1?ie=UTF8&qid=1443686087&sr=8-1&keywords=learning+python
+[pyinfor]: http://www.py4inf.com/
