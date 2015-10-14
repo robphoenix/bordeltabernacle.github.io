@@ -82,7 +82,11 @@ def sum_mul_three_five(end_num):
     return sum(total)
 ```
 
-*Eeek!* As I have [been told][ttp], while this works, it's probably the [wrong way][sww].  What I didn't realise is that we can be more concise with the modulo statements, and use them as a `True/False` test.  This is because `0` and `1`, the two results we can get from using `%`, equate to `True` and `False`.  This may seem simple but it's perhaps overlooked when learning Python, especially for those without a CS background, such as myself, or perhaps my view of the wood was blocked by the trees.
+*Eeek!* As I have [been told][ttp], while this works, it's probably the [wrong way][sww].  What I didn't realise is that we can be more concise with the modulo statements, and use them as a `True/False` test.  This is because `0` and `1`, the two results we can get from using `%`, equate to `False` and `True` respectively.
+
+> ***EDIT*** See Below...
+
+This may seem simple but it's perhaps overlooked when learning Python, especially for those without a CS background, such as myself, or perhaps my view of the wood was blocked by the trees.
 
 ```python
 >>> 1 == True
@@ -150,6 +154,73 @@ def sum_mul_three_five(end_num):
 [Ahh yes ain't that fresh. Everybody wants to get down like that.][lrd]
 
 I think that makes sense, I hope it does.
+
+> *NOTE:* Ok, so I totally overlooked that the result of `%` isn't restricted to `0` or `1`, so this example is perhaps not as black and white as I first believed.
+
+```python
+>>> for number in range(10):
+...     print number % 2
+...
+0
+1
+0
+1
+0
+1
+0
+1
+0
+1
+>>> for number in range(10):
+...     print number % 3
+...
+0
+1
+2
+0
+1
+2
+0
+1
+2
+0
+>>> for number in range(10):
+...     print number % 5
+...
+0
+1
+2
+3
+4
+0
+1
+2
+3
+4
+```
+
+So, what happens with remainders that aren't `0` or `1`?  Well, they are interpreted as `False` in this case
+
+```python
+>>> for number in range(10):
+...     if number % 3:
+...         print "False: \tNumber: %d \tRemainder: %d" % (number, number % 3)                                                              
+...     else:
+...         print "True: \tNumber: %d \tRemainder: %d" % (number, number % 3)
+...
+True:   Number: 0       Remainder: 0
+False:  Number: 1       Remainder: 1
+False:  Number: 2       Remainder: 2
+True:   Number: 3       Remainder: 0
+False:  Number: 4       Remainder: 1
+False:  Number: 5       Remainder: 2
+True:   Number: 6       Remainder: 0
+False:  Number: 7       Remainder: 1
+False:  Number: 8       Remainder: 2
+True:   Number: 9       Remainder: 0
+```
+
+I have to admit, this hasn't totally clicked in my brain yet. I mean, I get it, but the whole *is it True, is it False?* thing is a little hard to keep track of y'know.
 
 
 [pe]: https://projecteuler.net/problem=1
