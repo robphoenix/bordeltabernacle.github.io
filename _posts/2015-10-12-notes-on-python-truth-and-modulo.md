@@ -84,7 +84,7 @@ def sum_mul_three_five(end_num):
 
 *Eeek!* As I have [been told][ttp], while this works, it's probably the [wrong way][sww].  What I didn't realise is that we can be more concise with the modulo statements, and use them as a `True/False` test.  This is because `0` and `1`, the two results we can get from using `%`, equate to `False` and `True` respectively.
 
-> ***EDIT*** See Below...
+***EDIT*** See Below...
 
 This may seem simple but it's perhaps overlooked when learning Python, especially for those without a CS background, such as myself, or perhaps my view of the wood was blocked by the trees.
 
@@ -155,7 +155,7 @@ def sum_mul_three_five(end_num):
 
 I think that makes sense, I hope it does.
 
-> *NOTE:* Ok, so I totally overlooked that the result of `%` isn't restricted to `0` or `1`, so this example is perhaps not as black and white as I first believed.
+***EDIT*** Ok, so I totally overlooked that the result of `%` isn't restricted to `0` or `1`, so this example is perhaps not as black and white as I first believed.
 
 ```python
 >>> for number in range(10):
