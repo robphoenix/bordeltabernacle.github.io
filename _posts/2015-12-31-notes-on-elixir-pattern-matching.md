@@ -21,34 +21,38 @@ an empty variable name, this expression can be a valid match by binding `a` to
 the literal value `1`.
 
 ```elixir
-iex(1)> a = 1
+iex(1)a = 1
 1
-iex(2)> a
+iex(2)a
 1
-iex(3)> 1 = a
+iex(3)1 = a
 1
-iex(4)> a = 2
+iex(4)a = 2
 2
-iex(5)> 1 = a
+iex(5)1 = a
 ** (MatchError) no match of right hand side value: 2
 
-iex(5)> ^a = 3
+iex(5)^a = 3
 ** (MatchError) no match of right hand side value: 3
 
-iex(5)> 1 = b
+iex(5)1 = b
 ** (CompileError) iex:5: undefined function b/0
 ```
 
 Here, `a` has initially been bound to `1` through pattern-matching, so when we
-write `1 = a`, this expression matches.  We're not assigning here, we're
+write    `1 = a`, this expression matches.  We're not assigning here, we're
 *matching*, and here `a` is `1` so the two values match.  We then re-bind `a` to
 `2`, yep, we can do that, so now `1 = a` doesn't match, because `a` is now `2`,
-and we get a `MatchError`.  If we want to try and match a variable without
-risking it being re-bound to a new value we can use the `^` symbol(the *pin
-operator*), in front of the variable. In the last expression, `b` hasn't been
-initialized yet, so `1 = b` doesn't work, `b` holds no value, it can't be
-matched, nor is it bound to the literal `1` on the left.  This happens because the
-pattern is on the left of the `=` and the match is on the right.
+and we get a `MatchError`.
+
+If we want to try and match a variable without risking it being re-bound to a
+new value we can use the `^` symbol(the *pin operator*), in front of the
+variable.
+
+In the last expression, `b` hasn't been initialized yet, so `1 = b` doesn't
+work, `b` holds no value, it can't be matched, nor is it bound to the
+literal `1` on the left.  This happens because the pattern is on the left of the
+`=` and the match is on the right.
 
 ```
 pattern = match
@@ -57,26 +61,26 @@ pattern = match
 And in this case, as `b` holds no value, it can't be matched against.  But it
 can be used as a pattern to find a match for.
 
-> The match operator can give the impression of working the same way as an
-> assignment operator. But as Erlang creator Joe Armstrong has pointed out, it
-> works more akin to the `=` symbol in algebra. For example:
+The match operator can give the impression of working the same way as an
+assignment operator. But as Erlang creator Joe Armstrong has pointed out, it
+works more akin to the `=` symbol in algebra. For example:
 
-> ```
-> x + 5 = 10
->     x = 10 - 5
->     x = 5
-> ```
+```
+x + 5 = 10
+    x = 10 - 5
+    x = 5
+```
 
-> On every line of this simple algebraic formula each side of the `=` matches,
-> leading us to the conclusion that `x` is the same as `5`.  `x` could then go on
-> to be further used, as the literal value `5`, in the wider context of the formula:
+On every line of this simple algebraic formula each side of the `=` matches,
+leading us to the conclusion that `x` is the same as `5`.  `x` could then go on
+to be further used, as the literal value `5`, in the wider context of the formula:
 
-> ```
-> x + y = 20
->     y = 20 - x
->     y = 20 - 5
->     y = 15
-> ```
+```
+x + y = 20
+    y = 20 - x
+    y = 20 - 5
+    y = 15
+```
 
 Pattern-matching really starts to come into it's own when used for
 destructuring, a way to extract and bind values from a data structure.
@@ -84,31 +88,31 @@ destructuring, a way to extract and bind values from a data structure.
 Let's start with a list;
 
 ```elixir
-iex(1)> a = [1, 2, 3]
+iex(1)a = [1, 2, 3]
 [1, 2, 3]
-iex(2)> a
+iex(2)a
 [1, 2, 3]
-iex(3)> [x, y, z] = a
+iex(3)[x, y, z] = a
 [1, 2, 3]
-iex(4)> x
+iex(4)x
 1
-iex(5)> y
+iex(5)y
 2
-iex(6)> z
+iex(6)z
 3
-iex(7)> [a, b, c] = [1, 2, 3]
+iex(7)[a, b, c] = [1, 2, 3]
 [1, 2, 3]
-iex(8)> a
+iex(8)a
 1
-iex(9)> b
+iex(9)b
 2
-iex(10)> c
+iex(10)c
 3
-iex(11)> x
+iex(11)x
 1
-iex(12)> y
+iex(12)y
 2
-iex(13)> z
+iex(13)z
 3
 ```
 
@@ -116,7 +120,7 @@ This looks a lot like the kind of multiple variable assignment you see in
 Python.  Let's run through it.  `a` is easily matched to a list.  The pattern
 `[x, y, z]` is then able to match `a` as both represent the same data structure,
 a list of 3 values.  In the process of the match, `x`, `y` & `z` are bound to
-the respective literal values.  This process is more obvious in the next
+their respective literal values.  This process is more obvious in the next
 pattern-match.  Also notice that, due to the immutable nature of data in Elixir,
 the values of `x`, `y` & `z` have not changed even though `a` has been re-bound.
 
@@ -124,24 +128,24 @@ A match won't happen if the pattern and match are different sizes, or different
 types, such as a list and a tuple.  But the values can be of different types:
 
 ```elixir
-iex(18)> [a, b, c] = [1, 2]
+iex(18)[a, b, c] = [1, 2]
 ** (MatchError) no match of right hand side value: [1, 2]
 
-iex(18)> [a, b] = [1, 2, 3]
+iex(18)[a, b] = [1, 2, 3]
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
-iex(18)> [a, b, c] = [:hello, "World", 42]
+iex(18)[a, b, c] = [:hello, "World", 42]
 [:hello, "World", 42]
-iex(19)> a
+iex(19)a
 :hello
-iex(20)> b
+iex(20)b
 "World"
-iex(21)> c
+iex(21)c
 42
-iex(22)> [a, b, c] = {1, 2, 3}
+iex(22)[a, b, c] = {1, 2, 3}
 ** (MatchError) no match of right hand side value: {1, 2, 3}
 
-iex(22)> {a, b, c} = [1, 2, 3]
+iex(22){a, b, c} = [1, 2, 3]
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 ```
 
@@ -149,11 +153,11 @@ Pattern-matching is widely used in Elixir, as a means of matching on one or more
 specific values, and extracting other values from the matched data structure.
 
 ```elixir
-iex(24)> {:success, data} = {:success, "Today is a good day"}
+iex(24){:success, data} = {:success, "Today is a good day"}
 {:success, "Today is a good day"}
-iex(25)> data
+iex(25)data
 "Today is a good day"
-iex(26)> {:success, data} = {:failure, "Oh, dear"}
+iex(26){:success, data} = {:failure, "Oh, dear"}
 ** (MatchError) no match of right hand side value: {:failure, "Oh, dear"}
 ```
 
@@ -162,21 +166,23 @@ a variable but don't use it, Elixir will complain.  It will still work, but
 it'll just highlight your sloppiness to you. It's okay though, we can deal with
 this, using the underscore symbol.
 
-```
-iex(27)> {:success, data, _} = {:success, "Today is a good day", "Whatever"}
+```elixir
+iex(27){:success, data, _} = {:success, "Today is a good day", "Whatever"}
 {:success, "Today is a good day", "Whatever"}
-iex(28)> data
+iex(28)data
 "Today is a good day"
-iex(29)> _
+iex(29)_
 ** (CompileError) iex:29: unbound variable _
 
-iex(29)> {:success, data, _blah} = {:success, "Today is a good day", "Whatever"}
+iex(29){:success, data, _blah} = {:success, "Today is a good day", "Whatever"}
 {:success, "Today is a good day", "Whatever"}
-iex(30)> data
+iex(30)data
 "Today is a good day"
-iex(31)> _blah
+iex(31)_blah
 "Whatever"
-iex:31: warning: the underscored variable "_blah" is used after being set. A leading underscore indicates that the value of the variable should be ignored. If this is intended please rename the variable to remove the underscore
+iex:31: warning: the underscored variable "_blah" is used after being set.
+A leading underscore indicates that the value of the variable should be ignored.
+If this is intended please rename the variable to remove the underscore
 ```
 
 The underscore by itself lets the Elixir compiler know to just ignore that
@@ -190,38 +196,38 @@ Another much used pattern-matching technique, especially in recursion, is
 matching the head and tail of a list, where the head is the first element, and
 the tail is the rest of the list.
 
-```
-iex(32)> [head|tail] = [1, 2, 3, 4, 5]
+```elixir
+iex(32)[head|tail] = [1, 2, 3, 4, 5]
 [1, 2, 3, 4, 5]
-iex(33)> head
+iex(33)head
 1
-iex(34)> tail
+iex(34)tail
 [2, 3, 4, 5]
-iex(35)> [new_head|new_tail] = tail
+iex(35)[new_head|new_tail] = tail
 [2, 3, 4, 5]
-iex(36)> new_head
+iex(36)new_head
 2
-iex(37)> new_tail
+iex(37)new_tail
 [3, 4, 5]
-iex(38)> [h|t] = new_tail
+iex(38)[h|t] = new_tail
 [3, 4, 5]
-iex(39)> h
+iex(39)h
 3
-iex(40)> t
+iex(40)t
 [4, 5]
-iex(41)> [first|rest] = [1, 2, 3, 4, 5]
+iex(41)[first|rest] = [1, 2, 3, 4, 5]
 [1, 2, 3, 4, 5]
-iex(42)> first
+iex(42)first
 1
-iex(43)> rest
+iex(43)rest
 [2, 3, 4, 5]
-iex(44)> [head|tail] = [1]
+iex(44)[head|tail] = [1]
 [1]
-iex(45)> head
+iex(45)head
 1
-iex(46)> tail
+iex(46)tail
 []
-iex(47)> [head|tail] = []
+iex(47)[head|tail] = []
 ** (MatchError) no match of right hand side value: []
 ```
 
@@ -234,29 +240,29 @@ It's incredibly useful.
 
 Here's a basic example:
 
-```
-iex(52)> defmodule Increment do
+```elixir
+iex(52)defmodule Increment do
 ...(52)>
-...(52)>   def by_one([head|tail]) do
-...(52)>     [head + 1|by_one(tail)]
-...(52)>   end
+...(52)  def by_one([head|tail]) do
+...(52)    [head + 1|by_one(tail)]
+...(52)  end
 ...(52)>
-...(52)>   def by_one([]) do
-...(52)>     []
-...(52)>   end
+...(52)  def by_one([]) do
+...(52)    []
+...(52)  end
 ...(52)>
-...(52)> end
+...(52)end
 {:module, Increment,
  <<70, 79, 82, 49, 0, 0, 4, 216, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 153, 131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115, 95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>,
  {:by_one, 1}}
-iex(53)> Increment.by_one([1, 2, 3, 4, 5])
+iex(53)Increment.by_one([1, 2, 3, 4, 5])
 [2, 3, 4, 5, 6]
 ```
 
 Don't worry too much about the recursion if it doesn't make sense, just notice
-that we are essentially creating a new list by taking the `head` of the initial list
-by pattern-matching, adding `1` to it, and then taking the pattern-matched
-`tail` of the list and passing it back into the function as a separate list. in
+that we are essentially creating a new list by pattern-matching the `head` of
+the initial list, adding `1` to it, and then pattern-matching the
+`tail` of the list and passing it back into the function as a separate list. In
 this way we essentially loop through the list.
 
 This example also highlights the other significant use of pattern-matching. In
@@ -265,25 +271,25 @@ different arguments.  One takes a list that has something in it, the other takes
 an empty list.  This works because of pattern-matching.  Which function is used
 depends on what the given argument is pattern matched against.
 
-```
-iex(57)> defmodule Math do
+```elixir
+iex(57)defmodule Math do
 ...(57)>
-...(57)>   def two_become_one(:add, x, y),      do: x + y
-...(57)>   def two_become_one(:subtract, x, y), do: x - y
-...(57)>   def two_become_one(:divide, x, y),   do: x / y
-...(57)>   def two_become_one(:multiply, x, y), do: x * y
+...(57)  def two_become_one(:add, x, y),      do: x + y
+...(57)  def two_become_one(:subtract, x, y), do: x - y
+...(57)  def two_become_one(:divide, x, y),   do: x / y
+...(57)  def two_become_one(:multiply, x, y), do: x * y
 ...(57)>
-...(57)> end
+...(57)end
 {:module, Math,
  <<70, 79, 82, 49, 0, 0, 5, 156, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 187, 131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115, 95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>,
  {:two_become_one, 3}}
-iex(58)> Math.two_become_one(:add, 2, 3)
+iex(58)Math.two_become_one(:add, 2, 3)
 5
-iex(59)> Math.two_become_one(:subtract, 2, 3)
+iex(59)Math.two_become_one(:subtract, 2, 3)
 -1
-iex(60)> Math.two_become_one(:divide, 2, 3)
+iex(60)Math.two_become_one(:divide, 2, 3)
 0.6666666666666666
-iex(61)> Math.two_become_one(:multiply, 2, 3)
+iex(61)Math.two_become_one(:multiply, 2, 3)
 6
 ```
 
@@ -297,14 +303,21 @@ extensively.  Once it makes sense, it's a wonderful thing.
 ### Further Reading
 
 - [Elixir docs](http://elixir-lang.org/getting-started/pattern-matching.html)
+
 -
 [Pattern Matching In Elixir - Quick Left](https://quickleft.com/blog/pattern-matching-elixir/)
+
 -
 [Assignments and Pattern-Matching in Elixir](https://asymmetric.github.io/2015/11/25/assignments-and-pattern-matching-in-elixir/)
+
 -
 [On Elixir and Static Typing](http://blog.johanwarlander.com/2015/07/19/on-elixir-and-static-typing.html)
+
 -
 [Introducing Elixir](http://shop.oreilly.com/product/0636920030584.do)
+
 - [Programming Elixir](https://pragprog.com/book/elixir/programming-elixir)
+
 - [LearnElixir.tv](https://www.learnelixir.tv/)
+
 - [red:4](http://www.redfour.io/)
