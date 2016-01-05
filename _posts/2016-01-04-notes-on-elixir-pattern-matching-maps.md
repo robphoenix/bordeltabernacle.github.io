@@ -5,7 +5,7 @@ tags: elixir
 
 ---
 
-Following on from my [last post](nopm) about pattern-matching, `maps`, the main
+Following on from my [last post][nopm] about pattern-matching, `maps`, the main
 key-value store in Elixir, have an interesting capability that sets them apart
 from other data structures with regards to pattern-matching.
 
@@ -53,7 +53,7 @@ However the match will not be successful if the key in the pattern is not in the
 match. This is also the case even if there are matching keys. So any key used in
 the pattern has to be present in the match.
 
-You'll see this used extensively in the [Phoenix Framework](pf) when dealing
+You'll see this used extensively in the [Phoenix Framework][pf] when dealing
 with the parameters passed to a function.  The function is able to pick out
 of the parameters only those pieces of data it needs.
 
@@ -125,8 +125,8 @@ Pattern-matching provides a really nice way to reach in and grab data out of a
 
 ## Further Reading
 
-- [Elixir: pattern matching works differently for tuples and maps](so)
-- [Phoenix Framework Getting Started Guide](pfgsg)
+- [Elixir: pattern matching works differently for tuples and maps][so]
+- [Phoenix Framework Getting Started Guide][pfgsg]
 
 [nopm]: https://bordeltabernacle.github.io/2015/12/31/notes-on-elixir-pattern-matching.html
 [pf]: http://www.phoenixframework.org/
