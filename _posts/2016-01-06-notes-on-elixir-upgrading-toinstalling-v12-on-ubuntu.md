@@ -5,8 +5,14 @@ tags: elixir
 
 ---
 
+**EDIT:** Erlang solutions has
+[now updated](https://twitter.com/ErlangSolutions/status/685138290635333632)
+their Elixir package so you should be able to install/upgrade to v1.2 with
+`apt-get` now.  Thankyou [Erlang Solutions][es].
+
+
 Elixir recently got bumped up to [version 1.2][v1.2].  Installing Elixir on
-Ubuntu requires a package from [Erlang solutions][es] which hasn't yet been
+Ubuntu requires a package from [Erlang Solutions][es] which hasn't yet been
 updated. Therefore upgrading to v1.2 doesn't yet work with `apt-get`.  Instead
 you have to compile from source, which I just learnt how to do with some help
 from the elixir-lang IRC channel.  Here's how.
