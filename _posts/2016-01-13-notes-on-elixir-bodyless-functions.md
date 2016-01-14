@@ -18,6 +18,8 @@ register until I [submitted a pull request][pr]. I've not been able to find out
 much about them, but here's a quick rundown of when you might see a bodyless
 function clause.
 
+EDIT(14/01/16): I've added *Protocols*.
+
 <!--more-->
 
 As far as I know, the bodyless function clause is only something used within
@@ -38,8 +40,9 @@ that the function body is then evaluated.  This gives the impression of the head
 and body being separate entities, the head being a kind of control mechanism
 that doesn't necessarily require a body.
 
-So, what is this useful for?  The two reasons I know of for using a bodyless
-function clause in Elixir are [documentation][doc] and [default arguments][defargs].
+So, what is this useful for?  The three reasons I know of for using a bodyless
+function clause in Elixir are [documentation][doc], [default arguments][defargs]
+and [protocols][protocols].
 
 The Elixir compiler infers function argument names from the code. If the
 argument name is not explicit, for instance in the case of a pattern match on a
@@ -79,8 +82,23 @@ end
 ```
 
 In this very basic example there are 3 function clauses that have a body, and
- one bodyless function that defines the defult arguments for these function
- clauses.
+one bodyless function that defines the defult arguments for these function
+clauses.
+ 
+My knowledge of protocols is very limited, so I'm going to leave a deeper
+explanation of them to a later post. What I do know is that a protocol is
+defined with a bodyless function, like so:
+
+```elixir
+defprotocol Valid do
+  @doc "Returns true if data is considered nominally valid"
+  def valid?(data)
+end
+```
+
+A complete complete function with the same name is then expected, by the
+protocol, for each data type you want to implement it for.  In this case, for
+each data type you want to test for validity.
 
 So, there you go, the function head, a mechanism in it's own right, separate from
 the main function body.  If you know of any other uses of the bodyless function
@@ -93,3 +111,4 @@ please do let me know.
 [defargs]: http://elixir-lang.org/getting-started/modules.html#default-arguments
 [hd]: http://elixir-lang.org/docs/stable/elixir/HashDict.html#size/1
 [exdoc]: https://github.com/elixir-lang/ex_doc
+[protocols]: http://elixir-lang.org/getting-started/protocols.html
