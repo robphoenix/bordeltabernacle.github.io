@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: about/
+
 ---
 
 My name is Rob Phoenix. I was born just before the 1980's. I used to be an
@@ -16,12 +17,32 @@ wanted to arm myself with as many skills as possible.  Luckily, through some
 perseverance, luck and kindness from others, straight outta college I started
 working for a large UK VAR as an Alpha/Beta Testing Lab Engineer. Very quickly I
 became the *'Scripting Guy'*, something that unnerved me at first, but that I
-have now taken and am trying to run with.  My time these days is spent mostly
-exploring and learning Elixir, Erlang, Python, JavaScript, Elm, and functional programming, fiddling about with VMware and Cisco virtual and physical machines, attempting to understand SQL & NoSQL Databases, vagrant up-ing, git commit-ing, docker run-ing, gazing into my Linux laptop, avoiding my Windows laptop, asking my son to say 'Please', blowing raspberries on my daughter's chubby legs, and having a glass of wine with the greatest woman in the world. I *frickin'* love it, all of it.
+have now taken and am trying to run with.
 
-This blog is an open space for me to keep notes on what I'm doing, explore and share knowledge and experience, and will hopefully make me document more. I have a huge knowledge gap, don't judge me because I don't get it yet, I will, but I'm probably going to be running around in the dark for a while before I find the light switch. I'm all about constructive criticism and learning from others so please feel free to tear into what I write here and tell me what I'm doing wrong. I want to be better.
+In late 2015 my boss agreed that my job title should be changed to
+Developer.  I'm smitten with functional programming and my time these days is
+spent building stuff with Elixir, Phoenix Framework, Python & JavaScript
+continually exploring and learning, fiddling about with VMware and Cisco virtual
+and physical machines, vagrant up-ing, git commit-ing, docker run-ing, gazing
+into my Linux laptop, avoiding my Windows laptop, attempting to understand
+databases, asking my son to say 'Please', blowing raspberries on my daughter's
+chubby legs, and having a glass of wine with the greatest woman in the world.
+I *frickin'* love it, all of it.
 
-And, the name, Bordeltabernacle? When I met my girlfriend we started living together in a small caravan.  Due to it's temporary and shabby nature we took to referring to it as the *Bordel/Tabernacle*.  We still have the caravan but no longer live in it.  I've always quite liked the contrasting nature of the name, each part a counterpoint to the other, describing a place where the contradictions of life happen.
+This blog is an open space for me to keep notes on what I'm doing, explore and
+share knowledge and experience, and will hopefully make me document more. I have
+a huge knowledge gap, don't judge me because I don't get it yet, I will, but I'm
+probably going to be running around in the dark for a while before I find the
+light switch. I'm all about constructive criticism and learning from others so
+please feel free to tear into what I write here and tell me what I'm doing
+wrong. I want to be better.
+
+And, the name, `Bordeltabernacle`? When I met my girlfriend we started living
+together in a small caravan.  Due to it's temporary and shabby nature we took to
+referring to it as the *Bordel/Tabernacle*.  We still have the caravan but no
+longer live in it. I've always quite liked the contrasting nature of the name,
+each part a counterpoint to the other, describing a place where the
+contradictions of life happen.
 
 <p class="post-meta">
 <a href="mailto:{{ site.email }}">{{ site.email }}</a>
