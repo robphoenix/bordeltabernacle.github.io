@@ -21,7 +21,7 @@ have now taken and am trying to run with.
 
 In late 2015 my boss agreed that my job title should be changed to
 Developer.  I'm smitten with functional programming and my time these days is
-spent building stuff with Elixir, Phoenix Framework, Python & JavaScript
+spent building stuff with Elixir, Phoenix Framework, Python & JavaScript,
 continually exploring and learning, fiddling about with VMware and Cisco virtual
 and physical machines, vagrant up-ing, git commit-ing, docker run-ing, gazing
 into my Linux laptop, avoiding my Windows laptop, attempting to understand
