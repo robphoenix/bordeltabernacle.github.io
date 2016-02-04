@@ -13,14 +13,16 @@ $base-line-height: 1.5;
 
 $spacing-unit:     30px;
 
-$text-color:       rgb(210, 210, 210);
-$background-color: rgb(60, 60, 60);
+$text-color:       black;
+$background-color: #FFFFFF;
 $background-color-light: lighten($background-color, 10%);
 $background-color-lighter: lighten($background-color-light, 10%);
-$brand-color:      #03947c;
+$brand-color:      #4C8577;
 $brand-color-light:lighten($brand-color, 10%);
-$code-background:  #202020;
-
+$link-color:       #4F772D;
+$link-color-light: #A4C3B2;
+$code-background:  #EBEBEB;
+$code-font:        'Source Code Pro', sans-serif;
 $grey-color:       rgb(60, 60, 60);
 $grey-color-light: lighten($grey-color, 60%);
 $grey-color-dark:  darken($grey-color, 10%);

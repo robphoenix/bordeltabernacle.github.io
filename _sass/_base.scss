@@ -97,7 +97,7 @@ a {
     }
 
     &:hover {
-        color: $brand-color-light;
+        color: $link-color-light;
     }
 }
 
@@ -125,23 +125,30 @@ blockquote {
  */
 pre,
 code {
-    font-size: 15px;
-    background: $code-background;
-}
-
-code {
-    padding: 1px 5px;
-}
-
-pre {
-    padding: 8px 12px;
-    overflow-x: auto;
+  counter-reset: line-numbering;
+  font-size: 15px;
+  background: $code-background;
+  color: $text-color;
+  font-family: $code-font;
+  border: solid 1px #d9d9d9;
+  border-radius: 0;
+  padding: 8px 12px;
+  overflow-x: auto;
+  line-height: 23px;
+  margin-bottom: 30px;
+  white-space: pre;
+  word-break: inherit;
+  word-wrap: inherit;
 
     > code {
         border: 0;
         padding-right: 0;
         padding-left: 0;
     }
+}
+
+code {
+    padding: 1px 5px;
 }
 
 

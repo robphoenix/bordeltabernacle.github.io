@@ -42,7 +42,7 @@
     width: 100%;
     font-family: $base-font-family;
     font-size: 20px;
-    color: $brand-color;
+    color: $link-color;
     text-align: center;
     margin-top: 15px;
 
@@ -51,14 +51,15 @@
     }
 
     .page-links {
-        margin: 5px 10px;
-        display: inline;
+      margin: 5px 10px;
+      color: $link-color;
+      display: inline;
     }
 }
 
 .links {
     font-family: 'Work Sans', sans-serif;
-    color: $brand-color;
+    color: $link-color;
     line-height: $base-line-height;
     margin: auto;
     text-align: left;
@@ -150,7 +151,7 @@
 
     h1 {
         display: inline;
-        color: $brand-color-light;
+        color: $brand-color;
         border-bottom: 3px solid $brand-color;
         padding-bottom: 5px;
         margin-bottom: 20px;
