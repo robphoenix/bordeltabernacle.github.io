@@ -5,10 +5,10 @@ tags: elixir
 
 ---
 
-```elixir
+{% highlight elixir linenos %}
 def func(argument)
 # NOTHING TO SEE HERE
-```
+{% endhighlight %}
 
 A function head without a body clause? What's the point in that, huh?
 
@@ -52,26 +52,26 @@ the name that would be used in the function's documentation, using [ExDocs][exdo
 
 The compiler will infer the argument name for [this function][hd] as `hash_dict`;
 
-```elixir
+{% highlight elixir linenos %}
 def size(%HashDict{size: size}) do
   size
 end
-```
+{% endhighlight %}
 
 If we would rather it was `dict` we could add in an extra function head:
 
-```elixir
+{% highlight elixir linenos %}
 def size(dict)
 
 def size(%HashDict{size: size}) do
   size
 end
-```
+{% endhighlight %}
 
 If you are including default arguments for a function with multiple clauses you
 have to declare them in a separate function head:
 
-```elixir
+{% highlight elixir linenos %}
 defmodule Lorem do
   def ipsum(size, type \\ :paragraph, style \\ :lorem_ipsum)
 
@@ -79,7 +79,7 @@ defmodule Lorem do
   def ipsum(size, :sentence, style), do: ...
   def ipsum(size, :word, style), do: ...
 end
-```
+{% endhighlight %}
 
 In this very basic example there are 3 function clauses that have a body, and
 one bodyless function that defines the defult arguments for these function
@@ -89,12 +89,12 @@ My knowledge of protocols is very limited, so I'm going to leave a deeper
 explanation of them to a later post. What I do know is that a protocol is
 defined with a bodyless function, like so:
 
-```elixir
+{% highlight elixir linenos %}
 defprotocol Valid do
   @doc "Returns true if data is considered nominally valid"
   def valid?(data)
 end
-```
+{% endhighlight %}
 
 A complete complete function with the same name is then expected, by the
 protocol, for each data type you want to implement it for.  In this case, for

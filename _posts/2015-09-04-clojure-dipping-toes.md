@@ -3,6 +3,7 @@ layout: post
 title: "Notes on Clojure: Dipping My Toes In"
 date: "2015-09-04"
 tags: clojure
+
 ---
 
 Maybe because I'm such a late arrival to this programming pastime, I feel a certain inadequacy, a need to over compensate.  Or maybe I just find it exciting learning new things, and I just want to get deeper and consume everything.  Anyway, I've been getting more interested in functional programming, I don't know why.  I'm not so embedded in object-oriented, and I've been trying to understand JavaScript's prototype-based programming, and if I'm honest, these concepts aren't yet meaningful enough to me to matter so much outside of syntax and the practicalities of how to write code, yet functional programming seems to make a certain amount of sense. Perhaps this will become an endeavour in proving myself wrong. So, I listened to [Carin Meier][cm] on [The Changelog][cl] and bought [her book][lc], and am going to start learning Clojure.
@@ -12,25 +13,25 @@ Maybe because I'm such a late arrival to this programming pastime, I feel a cert
 [Leiningen][lngen] is the tool Carin recommends for getting started with Clojure, so let's install that.
 Check Java is installed first:
 
-```bash
+{% highlight bash linenos %}
 $ java -version
 java version "1.7.0_80"
 Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
 Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
-```
+{% endhighlight %}
 
 Initially I used my package manager to install Leiningen, but this installed an old version.
 
-```bash
+{% highlight bash linenos %}
 $ sudo apt-get update
 $ sudo apt-get leiningen
 $ lein -v
 Leiningen 1.7.1 on Java 1.7.0_80 Java HotSpot(TM) 64-Bit Server VM
-```
+{% endhighlight %}
 
 So, I uninstalled that, and followed the instructions on the Leiningen site.  Copy and Paste the contents of the [lein][lein] file, into a file called `lein`.  Move the file into my `$PATH`, and make it executable.
 
-```
+{% endhighlight %}
 $ sudo apt-get remove leiningen # remove apt-get installed lein
 $ vim ~/lein # copy and paste the contents of the lein file
 $ echo $PATH # check path
@@ -119,11 +120,11 @@ user=>
 user=> quit
 Bye for now!
 $
-```
+{% endhighlight %}
 
 So the following is basically just me following along with Carin's book, where she starts to introduce Clojure.  So all credit goes to her, I'm just a messenger.
 
-```bash
+{% highlight bash linenos %}
 $ lein new wonderland # start a new Clojure project
 Generating a project called wonderland based on the 'default' template.
 The default template is intended for library projects, not applications.
@@ -142,9 +143,9 @@ Java HotSpot(TM) 64-Bit Server VM 1.7.0_80-b15
  Results: Stored in vars *1, *2, *3, an exception in *e
 
 user=>
-```
+{% endhighlight %}
 
-```clojure
+{% highlight clojure linenos %}
 ; Some basic number stuff. Clojure is littered with parenthesis, you get used to
 ; it.  Clojure structures things differently to what I'm used to.  The operator
 ; goes first, then the parameters it takes.  I really quite like this, it's a
@@ -199,7 +200,7 @@ user=> (cons "down" '(5, "blues", :music)) ; and use cons to add to our list
 ("down" 5 "blues" :music)
 user=> (cons "down" (cons 7 '(5, "blues", :music))) ; and nest our cons
 ("down" 7 5 "blues" :music)
-```
+{% endhighlight %}
 
 That's as far as I got last night. I know it's not far, but having kids makes me tired.  And I just want to reiterate again, this is basically just regurgitating Carin's work, go [buy her book][lc].
 

@@ -15,7 +15,7 @@ A `map` can actually pattern-match on just a subset of a value. The key(s) in
 the pattern have to exist in the match, but the two structures don't have to
 mirror each other in the same way a `list` or a `tuple` has to.  For example:
 
-```elixir
+{% highlight elixir linenos %}
 iex(1)> [a, b] = [1, 2, 3]
 ** (MatchError) no match of right hand side value: [1, 2, 3]
 
@@ -40,7 +40,7 @@ iex(7)> %{:d => four} = %{:a => 1, :b => 2, :c =>3}
 iex(8)> %{:a => one, :d => four} = %{:a => 1, :b => 2, :c =>3}
 ** (MatchError) no match of right hand side value: %{a: 1, b: 2, c: 3}
 
-```
+{% endhighlight %}
 
 We can see that neither the `list` nor the `tuple` matches if the data
 structure of the pattern is different to the data structure of the match, namely
@@ -59,22 +59,22 @@ of the parameters only those pieces of data it needs.
 
 Here we have a function that creates a new user:
 
-```elixir
+{% highlight elixir linenos %}
 def create(conn, %{"user" => user_params}) do
   # do stuff with user_params
 end
-```
+{% endhighlight %}
 
 The map that is actually passed in as the second argument to this function is
 this:
 
-```elixir
+{% highlight elixir linenos %}
 Parameters: %{"_csrf_token" => "UR99GwILHTtzbSBUYRwmBVpdeDY/AAAA3K70jEiO9UhgPVwh+d3WYw==",
               "_utf8" => "✓",
               "user" => %{"name" => "Memphis Minnie",
                           "password" => "[FILTERED]",
                           "username" => "minnie"}}
-```
+{% endhighlight %}
 
 The `create` function pattern-matches against only the `"user"` key, binding the associated
 value, in this case another map, to the `user_params` variable for use within
@@ -85,33 +85,33 @@ needs.
 It is also possible to match against the whole map at the same time as pattern-matching
 part of the map.  Let's change the `create` function to look like this:
 
-```elixir
+{% highlight elixir linenos %}
 def create(conn, parameters = %{"user" => user_params}) do
   IO.inspect user_params["name"]
   IO.inspect parameters["_utf8"]
   # do stuff with user_params
 end
-```
+{% endhighlight %}
 
 And we can see below when we use this function that we've matched `parameters`
 to the Parameters map that is passed in, and `user_params` to the the value of
 the `"user"` key in the Parameters map:
 
-```elixir
+{% highlight elixir linenos %}
 [info] POST /users
 "Skip James"
 "✓"
-```
+{% endhighlight %}
 
 Interestingly, the `parameters` pattern-match can also be written the other way around:
 
-```elixir
+{% highlight elixir linenos %}
 def create(conn, %{"user" => user_params} = parameters) do
   IO.inspect user_params["name"]
   IO.inspect parameters["_utf8"]
   # do stuff with user_params
 end
-```
+{% endhighlight %}
 
 This is because the pattern here is actually `%{"user" => user_params} =
 parameters` and the match is the Parameters map being passed in.  And when

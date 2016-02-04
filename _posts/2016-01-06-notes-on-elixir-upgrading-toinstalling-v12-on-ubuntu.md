@@ -21,22 +21,22 @@ from the elixir-lang IRC channel.  Here's how.
 
 Open up your terminal, `git clone` the Elixir repo, checkout v1.2, test & make:
 
-```bash
+{% highlight bash linenos %}
 git clone https://github.com/elixir-lang/elixir.git
 cd elixir/
 git checkout v1.2
 make clean test
 sudo make install
-```
+{% endhighlight %}
 
 check the version:
 
-```
+{% highlight elixir linenos %}
 elixir -v
 Erlang/OTP 18 [erts-7.2] [source] [64-bit] [smp:2:2] [async-threads:10] [kernel-poll:false]
 
 Elixir 1.2.0
-```
+{% endhighlight %}
 
 And there you go.  This is on 14.04.1 btw.
 

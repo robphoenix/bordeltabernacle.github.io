@@ -3,6 +3,7 @@ layout: post
 title: "Notes on Clojure: Keywords & Symbols Confusion"
 date: "2015-09-25"
 tags: clojure
+
 ---
 
 Having not used Clojure extensively yet, or really much at all, I'm still unsure as to when to use Keywords.  So I just spent a bit of time exploring them, and subsequently touched on Symbols too.  And in writing this post confused myself further in the process.  What you have here then is not a formed explanation of either Keywords or Symbols, but observations on their behaviour. While reading this, imagine me saying 'huh?' and scratching my head like Stan Laurel.
@@ -16,18 +17,18 @@ Keywords implement IFn for invoke() of one argument (a map) with an optional sec
 
 And within the lein repl:
 
-```clojure
+{% highlight clojure linenos %}
 user=> (doc keyword)
 -------------------------
 clojure.core/keyword
 ([name] [ns name])
   Returns a Keyword with the given namespace and name.  Do not use :
   in the keyword strings, it will be added automatically.
-```
+{% endhighlight %}
 
 Interestingly, on [Wikipedia][wikiID] identifiers are described as *"a name that identifies either a unique object or a unique class of objects"*, which immediately makes me think of Python variables or similar.  But that's not what these are, they don't hold another value, they evaluate to themselves, which kinda confuses me.  Anyway, let's get back in the lein repl and see what they're all about.
 
-```clojure
+{% highlight clojure linenos %}
 ; create a keyword from a string using the keyword method
 user=> (keyword "blues")
 :blues
@@ -120,14 +121,14 @@ user=> :a
 :a
 ; so many moments of stupidity along the path to enlightenment!
 ; Anyway just to reiterate, I don't quite get the why of all this yet
-```
+{% endhighlight %}
 
 Symbols appear to be easily confused with Keywords in Clojure.
 
 *"Symbols are identifiers that are normally used to refer to something else. They can be used in program forms to refer to function parameters, let bindings, class names and global vars. They have names and optional namespaces, both of which are strings. Symbols can have metadata (see with-meta).
 Symbols, just like Keywords, implement IFn for invoke() of one argument (a map) with an optional second argument (a default value). For example ('mysym my-hash-map :none) means the same as (get my-hash-map 'mysym :none)."*
 
-```clojure
+{% highlight clojure linenos %}
 user=> (doc symbol)
 -------------------------
 clojure.core/symbol
@@ -148,11 +149,11 @@ user=> (symbol :foo)
 
 ClassCastException clojure.lang.Keyword cannot be cast to java.lang.String  clojure.core/symbol (core.clj:552)
 
-```
+{% endhighlight %}
 
 We can do some similar things with Symbols as we can with Keywords.
 
-```clojure
+{% highlight clojure linenos %}
 user=> {'a 1 'b 2 'c 3}
 {a 1, b 2, c 3}
 user=> (type {'a 1 'b 2 'c 3})
@@ -208,11 +209,11 @@ user=> (symbol? 'blues)
 true
 ; Here blues is false as it refers to the string "Muddy Waters", whereas
 ; 'blues is the symbol
-```
+{% endhighlight %}
 
 Keywords and Symbols are not the same thing.
 
-```clojure
+{% highlight clojure linenos %}
 user=> (keyword? 'blues)
 false
 user=> (keyword? :blues)
@@ -260,11 +261,11 @@ user=> (type '["Blind Willie Johnson" "Muddy Waters" "Sister Gertrude Morgan"])
 clojure.lang.PersistentVector
 user=> (type blues)
 clojure.lang.PersistentVector
-```
+{% endhighlight %}
 
 Keywords and Symbols can also be used within Vectors
 
-```clojure
+{% highlight clojure linenos %}
 user=> [1 2 3]
 [1 2 3]
 user=> (type [1 2 3])
@@ -281,11 +282,11 @@ user=> ['one 1 :one :two 'three 3]
 [one 1 :one :two three 3]
 user=> (first ['one 1 :one :two 'three 3])
 one
-```
+{% endhighlight %}
 
 I also discovered that `'` & `"` are not interchangeable as they are in other languages, due to the use of `'` to define Symbols and Lists.
 
-```clojure
+{% highlight clojure linenos %}
 user=> "blues"
 "blues"
 user=> (type "blues")
@@ -306,7 +307,7 @@ user=> (type ':blues')
 clojure.lang.Keyword
 user=> ':blues'
 :blues'
-```
+{% endhighlight %}
 
 The confusion is all mine, any insight is borrowed heavily from the following articles.
 

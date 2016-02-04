@@ -3,6 +3,7 @@ layout: post
 title: 'Notes on JavaScript: The for loop'
 date: '2015-10-05 11:16'
 tags: javascript
+
 ---
 
 Being used to the simplicity of the Python `for` loop, it took me a little while to get used to the JavaScript `for` loop syntax.
@@ -13,7 +14,7 @@ The `for` loop in Python is basically just the statement `for x in y do z`, wher
 
 Here is a simple example:
 
-```javascript
+{% highlight javascript linenos %}
 > for (var i = 0; i < 10; i++) {
 ...     console.log(i);
 ... }
@@ -28,15 +29,15 @@ Here is a simple example:
 8
 9
 >
-```
+{% endhighlight %}
 
 The `for` loop is made up of 4 statements:
 
-```javascript
+{% highlight javascript linenos %}
 for ([initiating statement]; [conditional statement]; [end of loop statement]) {
     [execution statement];
 }
-```
+{% endhighlight %}
 
 - `[initiating statement]` : This is executed before the loop starts, usually initiating a counter variable that is used as a kind of measure for how long the loop has been running.
 - `[conditional statement]` : This describes the condition that controls the loop, stating under what circumstances it should continue to execute.
@@ -45,7 +46,7 @@ for ([initiating statement]; [conditional statement]; [end of loop statement]) {
 
 All these statements are optional.  For example the `[initiating statement]` may be previously set outside of the loop, or it can even be used to set multiple initiating variables. The other statements can also take into consideration multiple values.
 
-```javascript
+{% highlight javascript linenos %}
 > for (i = 0, j = 1, k = 2; i + j + k < 30; i++, j++, k++) {
 ...     console.log('i: ' + i + ' j: ' + j + ' k: ' +k)
 ... }
@@ -59,11 +60,11 @@ i: 6 j: 7 k: 8
 i: 7 j: 8 k: 9
 i: 8 j: 9 k: 10
 >
-```
+{% endhighlight %}
 
 Funnily enough it was only later that I found out there is actually a `for ... in` loop in JavaScript similar to that in Python.  Though it doesn't behave exactly the same.
 
-```javascript
+{% highlight javascript linenos %}
 > var blues = ["Son House", "Blind Willie Johnson", "Elizabeth Cotten"]
 undefined
 > blues
@@ -74,29 +75,29 @@ undefined
 0
 1
 2
-```
+{% endhighlight %}
 
 This `for ... in` loop iterates over the properties of an object, iterating over the index if a property is not explicitly called.  So in this case we have to iterate over them like so...
 
-```javascript
+{% highlight javascript linenos %}
 > for (var singer in blues) {
 ... console.log(blues[singer]);
 ... }
 Son House
 Blind Willie Johnson
 Elizabeth Cotten
-```
+{% endhighlight %}
 
 Although [ECMAScript 2015 introduces][ecma6] a new type of `for` loop, the `for ... of` loop...
 
-```javascript
+{% highlight javascript linenos %}
 > for (var singer of blues) {
 ... console.log(singer);
 ... }
 Son House
 Blind Willie Johnson
 Elizabeth Cotten
-```
+{% endhighlight %}
 
 My understanding is that the first `for` method described here is the most reliable for working in all versions of JavaScript.  [W3Schools][w3s] & [MDN][mdn] are both useful resources for understanding the `for` loop beyond this basic overview.
 

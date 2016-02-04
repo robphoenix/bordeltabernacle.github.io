@@ -2,6 +2,7 @@
 layout: post
 title: "Notes on Elixir: Pattern Matching"
 tags: elixir
+
 ---
 
 One of the first things you'll learn about in Elixir is Pattern-Matching, a
@@ -20,7 +21,7 @@ So, `a = 1` is still valid Elixir code, but what's actually going on is that the
 an empty variable name, this expression can be a valid match by binding `a` to
 the literal value `1`.
 
-```elixir
+{% highlight elixir linenos %}
 iex(1)a = 1
 1
 iex(2)a
@@ -37,7 +38,7 @@ iex(5)^a = 3
 
 iex(5)1 = b
 ** (CompileError) iex:5: undefined function b/0
-```
+{% endhighlight %}
 
 Here, `a` has initially been bound to `1` through pattern-matching, so when we
 write    `1 = a`, this expression matches.  We're not assigning here, we're
@@ -54,9 +55,9 @@ work, `b` holds no value, it can't be matched, nor is it bound to the
 literal `1` on the left.  This happens because the pattern is on the left of the
 `=` and the match is on the right.
 
-```
+{% highlight text %}
 pattern = match
-```
+{% endhighlight %}
 
 And in this case, as `b` holds no value, it can't be matched against.  But it
 can be used as a pattern to find a match for.
@@ -65,29 +66,29 @@ The match operator can give the impression of working the same way as an
 assignment operator. But as Erlang creator Joe Armstrong has pointed out, it
 works more akin to the `=` symbol in algebra. For example:
 
-```
+{% highlight text linenos %}
 x + 5 = 10
     x = 10 - 5
     x = 5
-```
+{% endhighlight %}
 
 On every line of this simple algebraic formula each side of the `=` matches,
 leading us to the conclusion that `x` is the same as `5`.  `x` could then go on
 to be further used, as the literal value `5`, in the wider context of the formula:
 
-```
+{% highlight text linenos %}
 x + y = 20
     y = 20 - x
     y = 20 - 5
     y = 15
-```
+{% endhighlight %}
 
 Pattern-matching really starts to come into it's own when used for
 destructuring, a way to extract and bind values from a data structure.
 
 Let's start with a list;
 
-```elixir
+{% highlight elixir linenos %}
 iex(1)a = [1, 2, 3]
 [1, 2, 3]
 iex(2)a
@@ -114,7 +115,7 @@ iex(12)y
 2
 iex(13)z
 3
-```
+{% endhighlight %}
 
 This looks a lot like the kind of multiple variable assignment you see in
 Python.  Let's run through it.  `a` is easily matched to a list.  The pattern
@@ -127,7 +128,7 @@ the values of `x`, `y` & `z` have not changed even though `a` has been re-bound.
 A match won't happen if the pattern and match are different sizes, or different
 types, such as a list and a tuple.  But the values can be of different types:
 
-```elixir
+{% highlight elixir linenos %}
 iex(18)[a, b, c] = [1, 2]
 ** (MatchError) no match of right hand side value: [1, 2]
 
@@ -147,26 +148,26 @@ iex(22)[a, b, c] = {1, 2, 3}
 
 iex(22){a, b, c} = [1, 2, 3]
 ** (MatchError) no match of right hand side value: [1, 2, 3]
-```
+{% endhighlight %}
 
 Pattern-matching is widely used in Elixir, as a means of matching on one or more
 specific values, and extracting other values from the matched data structure.
 
-```elixir
+{% highlight elixir linenos %}
 iex(24){:success, data} = {:success, "Today is a good day"}
 {:success, "Today is a good day"}
 iex(25)data
 "Today is a good day"
 iex(26){:success, data} = {:failure, "Oh, dear"}
 ** (MatchError) no match of right hand side value: {:failure, "Oh, dear"}
-```
+{% endhighlight %}
 
 Sometimes we don't want everything, some values just don't matter.  If we create
 a variable but don't use it, Elixir will complain.  It will still work, but
 it'll just highlight your sloppiness to you. It's okay though, we can deal with
 this, using the underscore symbol.
 
-```elixir
+{% highlight elixir linenos %}
 iex(27){:success, data, _} = {:success, "Today is a good day", "Whatever"}
 {:success, "Today is a good day", "Whatever"}
 iex(28)data
@@ -183,7 +184,7 @@ iex(31)_blah
 iex:31: warning: the underscored variable "_blah" is used after being set.
 A leading underscore indicates that the value of the variable should be ignored.
 If this is intended please rename the variable to remove the underscore
-```
+{% endhighlight %}
 
 The underscore by itself lets the Elixir compiler know to just ignore that
 variable, that it doesn't have to do anything.  You can also put an underscore
@@ -196,7 +197,7 @@ Another much used pattern-matching technique, especially in recursion, is
 matching the head and tail of a list, where the head is the first element, and
 the tail is the rest of the list.
 
-```elixir
+{% highlight elixir linenos %}
 iex(32)[head|tail] = [1, 2, 3, 4, 5]
 [1, 2, 3, 4, 5]
 iex(33)head
@@ -229,7 +230,7 @@ iex(46)tail
 []
 iex(47)[head|tail] = []
 ** (MatchError) no match of right hand side value: []
-```
+{% endhighlight %}
 
 As you can see `head` and `tail` are naming conventions rather than required for
 this to work. You can match against a single element list, the `tail` is just an
@@ -240,7 +241,7 @@ It's incredibly useful.
 
 Here's a basic example:
 
-```elixir
+{% highlight elixir linenos %}
 iex(52)defmodule Increment do
 ...(52)>
 ...(52)  def by_one([head|tail]) do
@@ -257,7 +258,7 @@ iex(52)defmodule Increment do
  {:by_one, 1}}
 iex(53)Increment.by_one([1, 2, 3, 4, 5])
 [2, 3, 4, 5, 6]
-```
+{% endhighlight %}
 
 Don't worry too much about the recursion if it doesn't make sense, just notice
 that we are essentially creating a new list by pattern-matching the `head` of
@@ -271,7 +272,7 @@ different arguments.  One takes a list that has something in it, the other takes
 an empty list.  This works because of pattern-matching.  Which function is used
 depends on what the given argument is pattern matched against.
 
-```elixir
+{% highlight elixir linenos %}
 iex(57)defmodule Math do
 ...(57)>
 ...(57)  def two_become_one(:add, x, y),      do: x + y
@@ -291,7 +292,7 @@ iex(60)Math.two_become_one(:divide, 2, 3)
 0.6666666666666666
 iex(61)Math.two_become_one(:multiply, 2, 3)
 6
-```
+{% endhighlight %}
 
 Here we're defining a module with four functions.  Each with the same name, yet
 each one does something different depending on what the first argument matches

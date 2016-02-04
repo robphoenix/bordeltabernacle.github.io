@@ -2,10 +2,11 @@
  * Syntax highlighting styles
  */
 .highlight {
-  font-family: $code-font;
+  font-family: 'Source Code Pro', sans-serif;
   @extend %vertical-rhythm;
-  margin: $spacing-unit 0;
+  margin: 30px 0;
 
+    .lineno { color: #778899; display:inline-block; padding: 0 5px; border-right:1px solid #778899; }
     .highlight { background-color: #ffffcc }
     .c { color: #999988; font-style: italic } /* Comment */
     .err { color: #a61717; background-color: #e3d2d2 } /* Error */
