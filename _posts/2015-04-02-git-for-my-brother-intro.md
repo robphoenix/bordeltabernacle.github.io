@@ -50,7 +50,7 @@ Well, kinda, but it's more of a system than a program. Once *Git* is installed y
 
 Here, let me show you.  In the *Git* command line on Windows I'm going to start a new project, in a folder called `git-formybrother`, that contains a single file called `test-file.txt`.  Here, the `$` is a command prompt, where the instructions to the computer are typed.
 
-```bash
+{% highlight bash linenos %}
 Welcome to Git (version 1.9.5-preview20141217)
 
 Run 'git help git' to display the help index.
@@ -84,7 +84,7 @@ $ git commit -am "started new project"  #  Commit the current state of the files
 $ git status  # Check again the status of the Git repository
 On branch master
 nothing to commit, working directory clean
-```
+{% endhighlight %}
 
 So basically, we've just started a new project to be tracked by *Git*, added a file to it and commited/saved the state of the project to the *Git* log.
 

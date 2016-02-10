@@ -148,7 +148,6 @@ foo
 user=> (symbol :foo)
 
 ClassCastException clojure.lang.Keyword cannot be cast to java.lang.String  clojure.core/symbol (core.clj:552)
-
 {% endhighlight %}
 
 We can do some similar things with Symbols as we can with Keywords.

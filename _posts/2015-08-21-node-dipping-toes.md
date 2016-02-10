@@ -8,12 +8,12 @@ I started using [exercism.io][exercism] this morning after hearing about it on [
 
 <!--more-->
 
-As far as my understanding goes node.js is basically JavaScript, the programming language of the web, on a computer, desktop/laptop/server etc., rather than in a browser. It's easy enough to work out how to install node.js so I won't go into that here.  
+As far as my understanding goes node.js is basically JavaScript, the programming language of the web, on a computer, desktop/laptop/server etc., rather than in a browser. It's easy enough to work out how to install node.js so I won't go into that here.
 I started out with a `Hello World` exercise, as you do.  I gotta say, it looked strange, no `$(document).ready()` here, and I did end up sneaking a peek [here][js-hello].  I really didn't know where to start with fixing the given code to make the tests pass, my mind was going down overly complicated unorganised paths, and I figured I'd be better off working backwards.  Which is what this will be a part of, break apart the code, understand the parts.
 
 So, anyway, this is the code.
 
-```javascript
+{% highlight javascript linenos %}
 'use strict';
 
 var HelloWorld = function() {};
@@ -26,26 +26,26 @@ HelloWorld.prototype.hello = function(name) {
 module.exports = HelloWorld;
 
 var helloWorld = new HelloWorld();
-```
+{% endhighlight %}
 
 The `var` & `function` stuff I understand, but `strict`? `prototypes`? `module.exports`? Wha'fu'?
 
 What was interesting was running it.  Just like Python really; `node .\hello-world.js` in the CLI.  Let's stick a `console.log('Hello node, whaddya know?')` in there:
 
-```javascript
+{% highlight javascript linenos %}
  > node .\hello-world.js
 Hello node, whaddya know?
-```
+{% endhighlight %}
 
 Cool, huh? And to run the tests:
 
-```javascript
+{% highlight javascript linenos %}
  > jasmine-node .\hello-world.js
 
 
 Finished in 0 seconds
 0 tests, 0 assertions, 0 failures, 0 skipped
-```
+{% endhighlight %}
 
 So, it's basic, it's obvious, but it's blowin' my mind just a bit.  I'm well excited to get started with this and explore it further.  I'm gonna go over this little code snippet and work it out as best I can, and then who knows, maybe I'll get a MEAN stack up and running for my *new awesome web app idea*.
 

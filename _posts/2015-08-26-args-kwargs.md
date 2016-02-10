@@ -7,7 +7,7 @@ tags: python
 
 Python's `*args` & `**kwargs` have always intimidated me for some reason.  Since I've been working with Django they've turned up more frequently, for instance, when overriding a model's `save` function:
 
-```Python
+{% highlight python linenos %}
 class myModel(models.Model):
     name = models.CharField()
 
@@ -17,7 +17,7 @@ class myModel(models.Model):
             self.slug = slugify(self.name)
 
         super(myModel, self).save(*args, **kwargs)
-```
+{% endhighlight %}
 
 And so I thought I'd get to the bottom of what they are.
 
@@ -27,7 +27,7 @@ Basically, they allow a function to accept an indeterminate, variable number of 
 
 For instance:
 
-```Python
+{% highlight python linenos %}
 >>> def print_singers(*args):
 ...     # Notice when we do something with `args` we lose the asterisk
 ...     for arg in args:
@@ -41,11 +41,11 @@ R.L. Burnside
 Bessie Smith
 Skip James
 Memphis Minnie
-```
+{% endhighlight %}
 
 We can also include a formal parameter alongside our `*args`.  A formal parameter just means it is mandatory, that an argument must be passed to it.
 
-```Python
+{% highlight python linenos %}
 >>> def print_singers(genre, *args):
 ...     print 'Genre: ' + genre
 ...     for arg in args:
@@ -57,32 +57,32 @@ R.L. Burnside
 Bessie Smith
 Skip James
 Memphis Minnie
-```
+{% endhighlight %}
 
 This formal parameter is positional, so we have to make sure we pass our arguments to the function in order:
 
-```Python
+{% highlight python linenos %}
 >>> print_singers('R.L. Burnside', 'Blues', 'Bessie Smith', 'Skip James', 'Memphis Minnie')
 Genre: R.L. Burnside
 Blues
 Bessie Smith
 Skip James
 Memphis Minnie
-```
+{% endhighlight %}
 
 This doesn't, however, work the other way around:
 
-```Python
+{% highlight python linenos %}
 >>> def print_singers(*args, genre):
   File "<stdin>", line 1
     def print_singers(*args, genre):
                                  ^
 SyntaxError: invalid syntax
-```
+{% endhighlight %}
 
 `**kwargs` is much the same, but with named, `key/value`, arguments:
 
-```Python
+{% highlight python linenos %}
 >>> def blues_singer(**kwargs):
 ...    # Notice we use `.items`, as `kwargs` returns a dictionary
 ...    for key, value in kwargs.items():
@@ -95,11 +95,11 @@ name = Memphis Minnie
 born = 3rd June 1897
 name = Memphis Minnie
 died = 6th August 1973
-```
+{% endhighlight %}
 
 `**kwargs` also works alongside formal parameters:
 
-```Python
+{% highlight python linenos %}
 >>> def blues_singer(name, **kwargs):
 ...     print name
 ...     for key, value in kwargs.items():
@@ -116,11 +116,11 @@ born = 3rd June 1897
 died = 6th August 1973
 popular_songs = Me and My Chauffeur, Evil Devil Woman Blues
 >>>
-```
+{% endhighlight %}
 
 As well as being used in defining functions `*args` & `**kwargs` can also be used when calling functions:
 
-```Python
+{% highlight python linenos %}
 >>> def blues_singer(name, born, died):
 ...     print name + ' was born on ' + born + ' and died on ' + died
 ...
@@ -148,12 +148,12 @@ Bessie Smith was born on 15th April 1894 and died on 26th September 1937
 >>> blues_singer('Memphis Minnie', *args)
 Memphis Minnie was born on 3rd June 1897 and died on 6th August 1973
 >>>
-```
+{% endhighlight %}
 
 Using `*args` when calling our function unpacks the values in the `args` variable and passes them as positional arguments to the function.
 And if we try and ask it to unpack and pass a different number of values than is asked for by the function?
 
-```Python
+{% highlight python linenos %}
 >>> args = ('Bessie Smith', '15th April 1894')
 >>>
 >>> blues_singer(*args)
@@ -167,12 +167,12 @@ TypeError: blues_singer() takes exactly 3 arguments (2 given)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: blues_singer() takes exactly 3 arguments (4 given)
-```
+{% endhighlight %}
 
 Just the same as if `*args` wasn't being used.
 As before, using `**kwargs` is the same, except we pass a dictionary to the function:
 
-```Python
+{% highlight python linenos %}
 >>> def blues_singer(name, born, died):
 ...      print name + ' was born on ' + born + ' and died on ' + died
 ...
@@ -187,7 +187,7 @@ Memphis Minnie was born on 3rd June 1897 and died on 6th August 1973
 >>>
 >>> blues_singer(name='Memphis Minnie', **kwargs)
 Memphis Minnie was born on 3rd June 1897 and died on 6th August 1973
-```
+{% endhighlight %}
 
 So, that's that, then.
 

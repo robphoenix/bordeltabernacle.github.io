@@ -31,7 +31,7 @@ Leiningen 1.7.1 on Java 1.7.0_80 Java HotSpot(TM) 64-Bit Server VM
 
 So, I uninstalled that, and followed the instructions on the Leiningen site.  Copy and Paste the contents of the [lein][lein] file, into a file called `lein`.  Move the file into my `$PATH`, and make it executable.
 
-{% endhighlight %}
+{% highlight bash linenos %}
 $ sudo apt-get remove leiningen # remove apt-get installed lein
 $ vim ~/lein # copy and paste the contents of the lein file
 $ echo $PATH # check path
