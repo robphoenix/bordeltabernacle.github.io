@@ -113,8 +113,8 @@ def create(conn, %{"user" => user_params} = parameters) do
 end
 {% endhighlight %}
 
-This is because the pattern here is actually `%{"user" => user_params} =
-parameters` and the match is the Parameters map being passed in.  And when
+This is because the pattern here is actually `%{"user" => user_params} = parameters`
+and the match is the Parameters map being passed in.  And when
 you're *inside a pattern* you can also match different parts of the pattern,
 binding them to different variables.  As far as I can tell, this is the more
 idiomatic approach, and what you will see most often.

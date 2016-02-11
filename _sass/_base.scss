@@ -29,7 +29,7 @@ body {
  * Set `margin-bottom` to maintain vertical rhythm
  */
 h1, h2, h3, h4, h5, h6,
-p, blockquote, pre,
+p, blockquote,
 ul, ol, dl, figure,
 %vertical-rhythm {
     margin-bottom: $spacing-unit / 2;
@@ -123,22 +123,10 @@ blockquote {
 /**
  * Code formatting
  */
-pre,
-code {
-  counter-reset: line-numbering;
-  font-size: 15px;
-  background: $code-background;
-  color: $text-color;
-  font-family: $code-font;
-  border: solid 1px #d9d9d9;
-  border-radius: 0;
-  padding: 8px 12px;
-  overflow-x: auto;
+pre {
+  padding: 4px 8px;
   line-height: 23px;
-  margin-bottom: 30px;
   white-space: pre;
-  word-break: inherit;
-  word-wrap: inherit;
 
     > code {
         border: 0;
@@ -148,7 +136,13 @@ code {
 }
 
 code {
-    padding: 1px 5px;
+  font-size: 14px;
+  padding: 3px 3px;
+  background: #e6e6e6;
+  border-radius: 2px;
+  overflow-x: auto;
+  line-height: 23px;
+  white-space: pre;
 }
 
 
