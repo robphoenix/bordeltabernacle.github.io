@@ -15,28 +15,28 @@ Cisco config files.
 Like most templating engines EEx has various tags it uses for marking up your
 template:
 
-- `<% content %>` Contains Elixir code, but won't output anything to the template
-- `<%= content %>` That extra `=` in there means the result of any elixir inside the tag
+- `<% content %>` - Contains Elixir code, but won't output anything to the template
+- `<%= content %>` - That extra `=` in there means the result of any Elixir inside the tag
   will appear in the template.
-- `<%% content %>` & `<%%= content %>` This is a quotation, returning, rather
+- `<%% content %>` & `<%%= content %>` - These are quotations, returning, rather
   than evaluating the contents.
-- `<%# content %>` Comments, discarded in evaluation.
+- `<%# content %>` - Comments, discarded in evaluation.
 
 These tags, in the context of a template are evaluated by one of 4 functions, or
 2 macros:
 
-- `compile_file/2` & `compile_string/2` These generate a *quoted expression* from
+- `compile_file/2` & `compile_string/2` - These generate a *quoted expression* from
   a file or a string respectively, essentially creating an Abstract Syntax Tree
   representation of the input.
-- `eval_file/3` & `eval_string` Evaluate the given file or string respectively,
+- `eval_file/3` & `eval_string` - Evaluate the given file or string respectively,
   generating output based on the given template and variable bindings.
-- `function_from_file/5` & `function_from_string/5` These macros generate
+- `function_from_file/5` & `function_from_string/5` - These macros generate
   functions from the given file or string respectively, along with any arguments. These
   functions can then be used in other code to generate output from the given
   template and arguments.
-  
+
 So, examples;
-  
+
 {% highlight elixir linenos %}
 iex> string = "Hello, <%= name %>!"
 "Hello, <%= name %>!"
@@ -129,23 +129,8 @@ it's outputting'*, and helps with syntax highlighting too. (thanks asonge &
 ciastek)
 
 The `compile_string/2` & `compile_file/2` functions are fairly straightforward,
-generating AST;
-
-{% highlight elixir linenos %}
-iex> string = "Hello, <%= 2 + 2 %>!"
-"Hello, <%= 2 + 2 %>!"
-iex(55)> EEx.compile_string string
-{:<>, [context: EEx.Engine, import: Kernel],
- [{:__block__, [],
-   [{:=, [],
-     [{:tmp1, [], EEx.Engine},
-      {:<>, [context: EEx.Engine, import: Kernel], ["", "Hello, "]}]},
-    {:<>, [context: EEx.Engine, import: Kernel],
-     [{:tmp1, [], EEx.Engine},
-      {{:., [],
-        [{:__aliases__, [alias: false], [:String, :Chars]}, :to_string]}, [],
-       [{:+, [line: 1], [2, 2]}]}]}]}, "!"]}
-{% endhighlight %}
+generating AST. I've had to put this in a gist, [here][gist], as it screws with
+Jekyll's liquid tags, jeez!
 
 Alhough I've had no use for them myself, they are actually used within the
 `eval_string/3` & `eval_file/3` functions.
@@ -187,8 +172,8 @@ This is a very basic template, with some tags expecting variables. There is also
 a list comprehension towards the end, this expects `vlans` to be a list of 2
 element lists, that it will then map over, creating as many vlan/name pairs as
 necessary.  This is really useful for situations where you might have a variable
-amount of input data, saving you from having to adjust the template each time 
-according to, in this case, the number of vlans. 
+amount of input data, saving you from having to adjust the template each time
+according to, in this case, the number of vlans.
 
 So, I've saved this template in a *templates* directory. Let's dip into iex and
 see what we can do:
@@ -222,7 +207,37 @@ iex> Render.base(
 ...>   "password",
 ...>   [["999", "NATIVE"], ["100", "VOICE"], ["101", "DATA 1"], ["102", "DATA 2"], ["103", "DATA 3"]]
 ...> )
-"hostname ABC20\nno logging console\nusername admin secret password\naaa new-model\naaa authentication login default local\nclock timezone GMT 0 0\nclock summer-time BST recurring last Sun Mar 1:00 last Sun Oct 1:00\nip name-server 8.8.8.8\nno ip http server\nno ip http secure-server\nntp server uk.pool.ntp.org\nntp update-calendar\n!\n\nvlan 999\n  name NATIVE\n\nvlan 100\n  name VOICE\n\nvlan 101\n  name DATA 1\n\nvlan 102\n  name DATA 2\n\nvlan 103\n  name DATA 3\n\n!\ninterface 0\nip address 192.168.1.20\nno shutdown\n"
+"hostname ABC20
+no logging console
+username admin secret password
+aaa new-model
+aaa authentication login default local
+clock timezone GMT 0 0
+clock summer-time BST recurring last Sun Mar 1:00 last Sun Oct 1:00
+ip name-server 8.8.8.8
+no ip http server
+no ip http secure-server
+ntp server uk.pool.ntp.org
+ntp update-calendar
+!
+vlan 999
+  name NATIVE
+
+vlan 100
+  name VOICE
+
+vlan 101
+  name DATA 1
+
+vlan 102
+  name DATA 2
+
+vlan 103
+  name DATA 3
+!
+interface 0
+ip address 192.168.1.20
+no shutdown"
 {% endhighlight %}
 
 We pass our device variables in to our new function, notice the list of lists
@@ -301,7 +316,37 @@ Now, let's see if it works...
 
 {% highlight elixir linenos %}
 iex> Render.base(device)
-"hostname ABC20\nno logging console\nusername admin secret password\naaa new-model\naaa authentication login default local\nclock timezone GMT 0 0\nclock summer-time BST recurring last Sun Mar 1:00 last Sun Oct 1:00\nip name-server 8.8.8.8\nno ip http server\nno ip http secure-server\nntp server uk.pool.ntp.org\nntp update-calendar\n!\n\nvlan 999\n  name NATIVE\n\nvlan 100\n  name VOICE\n\nvlan 101\n  name DATA 1\n\nvlan 102\n  name DATA 2\n\nvlan 103\n  name DATA 3\n\n!\ninterface 0\nip address 192.168.1.20\nno shutdown\n"
+"hostname ABC20
+no logging console
+username admin secret password
+aaa new-model
+aaa authentication login default local
+clock timezone GMT 0 0
+clock summer-time BST recurring last Sun Mar 1:00 last Sun Oct 1:00
+ip name-server 8.8.8.8
+no ip http server
+no ip http secure-server
+ntp server uk.pool.ntp.org
+ntp update-calendar
+!
+vlan 999
+  name NATIVE
+
+vlan 100
+  name VOICE
+
+vlan 101
+  name DATA 1
+
+vlan 102
+  name DATA 2
+
+vlan 103
+  name DATA 3
+  !
+interface 0
+ip address 192.168.1.20
+no shutdown"
 {% endhighlight %}
 
 Ahh, that's much easier, and cleaner, super. One more thing before I go, I
@@ -329,11 +374,11 @@ Let's have a look at this in action:
 {% highlight elixir linenos %}
 iex> defmodule Render do
 ...>   require EEx
-...> 
+...>
 ...>   EEx.function_from_file(:def, :base,
 ...>                          Path.expand("./templates/base_example.conf.eex"),
 ...>                          [:assigns])
-...> 
+...>
 ...>   EEx.function_from_file(:def, :vlans,
 ...>                          Path.expand("./templates/vlans.conf.eex"),
 ...>                          [:vlans])
@@ -347,8 +392,39 @@ iex:15: warning: redefining module Render
 We redefine our `Render` module, and call our `Render.base` function again:
 
 {% highlight elixir linenos %}
-iex(16)> Render.base(device)                                                       
-"hostname ABC20\nno logging console\nusername admin secret password\naaa new-model\naaa authentication login default local\nclock timezone GMT 0 0\nclock summer-time BST recurring last Sun Mar 1:00 last Sun Oct 1:00\nip name-server 8.8.8.8\nno ip http server\nno ip http secure-server\nntp server uk.pool.ntp.org\nntp update-calendar\n!\n\n  \nvlan 999\n  name NATIVE\n\nvlan 100\n  name VOICE\n\nvlan 101\n  name DATA 1\n\nvlan 102\n  name DATA 2\n\nvlan 103\n  name DATA 3\n\n\n\n!\ninterface 0\nip address 192.168.1.20\nno shutdown\n"
+iex(16)> Render.base(device)
+"hostname ABC20
+no logging console
+username admin secret password
+aaa new-model
+aaa authentication login default local
+clock timezone GMT 0 0
+clock summer-time BST recurring last Sun Mar 1:00 last Sun Oct 1:00
+ip name-server 8.8.8.8
+no ip http server
+no ip http secure-server
+ntp server uk.pool.ntp.org
+ntp update-calendar
+!
+
+vlan 999
+  name NATIVE
+
+vlan 100
+  name VOICE
+
+vlan 101
+  name DATA 1
+
+vlan 102
+  name DATA 2
+
+vlan 103
+  name DATA 3
+  !
+interface 0
+ip address 192.168.1.20
+no shutdown"
 {% endhighlight %}
 
 And, once again, we easily render our template. So, this enables us to build out
@@ -358,4 +434,4 @@ Which is pretty cool if you ask me. It's certainly going to make my job easier.
 [j]: http://jinja.pocoo.org/
 [ma]: https://www.youtube.com/watch?v=y9lNbNGbo24
 [csv]: https://github.com/CargoSense/ex_csv
-
+[gist]: https://gist.github.com/bordeltabernacle/24fec2e0d55b7937a0d5
