@@ -10,6 +10,7 @@ I'm following this idea from [Rob Conery][rc], who got it from
 
 So, currently I am...
 
+
 - writing & learning [Elixir][ex], which is becoming my language of choice, replacing
   Python. I am using it at work for a variety of different applications.
 - writing an IP address library in Elixir, which is basically a simple
