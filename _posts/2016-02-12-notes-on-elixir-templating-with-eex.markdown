@@ -359,7 +359,7 @@ We'll start by pulling out the vlans section into it's own template,
 
 {% highlight elixir linenos %}
 <%= if Map.has_key?(assigns, :vlans) do %>
-  <%= Render.vlans(@vlans) %>
+  <%= vlans(@vlans) %>
 <% end %>
 {% endhighlight %}
 
@@ -367,9 +367,9 @@ There's a couple of things going on here. First, we're going to check the map of
 data to see if it has a `vlans` key. We do this, so that if we have a device
 that doesn't have any vlans it'll just skip this, rather than break the program.
 If we do have a `vlans` key, we're going to pass it to a new function called
-`Render.vlans`.
+`vlans`, that will be in the Render module.
 
-Let's have a look at this in action:
+Let's have a look at it:
 
 {% highlight elixir linenos %}
 iex> defmodule Render do
