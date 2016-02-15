@@ -5,11 +5,7 @@ permalink: now/
 
 ---
 
-I'm following this idea from [Rob Conery][rc], who got it from
-[Derek Sivers][ds].
-
 So, currently I am...
-
 
 - writing & learning [Elixir][ex], which is becoming my language of choice, replacing
   Python. I am using it at work for a variety of different applications.
@@ -21,9 +17,8 @@ So, currently I am...
 - Getting my head around database design.
 - Chipping away at learning JavaScript.
 - Learning [Welsh][w], my kids will start going to a local Welsh medium primary
-  school in the next year or so, and my eldest could count to 10 in Welsh before
-  he could in English, and I want to be able to talk with them in Welsh.
-- Reading about the [Blues][b] & [Stoicism][s]
+  school in the next year or so, and I want to be able to talk with them in Welsh.
+- Reading about [Blues][b] & [Stoicism][s]
 - Going to the gym ~3 times a week, getting myself fitter now that I mostly sit
   and code.
   
