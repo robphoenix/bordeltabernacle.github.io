@@ -124,7 +124,7 @@ As far as I know, in the `blinky.ex` file you can comment out the `Logger.debug 
 
 Big big thanks to [Frank Hunleth][fh] and [Greg Mefford][gm].
 
-I've started building a Vagrant environment for this if you're interested, but it still has teething problems.  It started out as a way to check the steps I'd taken in a clean Ubuntu VM, and the process clarified a few things, though what use it may actually be, I don't know. It almost works, installing everything, and burning the blinky firmware for you, but not quite. One day soon, maybe.
+I've started building a [Vagrant environment][vagrant] for this if you're interested, but it still has teething problems.  It started out as a way to check the steps I'd taken in a clean Ubuntu VM, and the process clarified a few things, though what use it may actually be, I don't know. It almost works, installing everything, and burning the blinky firmware for you, but not quite. One day soon, maybe.
 
 Anyway, I'm super excited about Nerves, dust off that old raspberry pi that you had big dreams for, enlist your kids, and check it out.
 
@@ -136,3 +136,4 @@ Anyway, I'm super excited about Nerves, dust off that old raspberry pi that you 
 [ws]: http://wsmoak.net/2016/01/11/embedded-elixir-nerves-bake.html
 [fh]: https://twitter.com/fhunleth
 [gm]: http://www.gregmefford.com/
+[vagrant]: https://github.com/bordeltabernacle/vagrant-nerves
