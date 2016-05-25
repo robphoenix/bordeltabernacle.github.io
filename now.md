@@ -7,22 +7,19 @@ permalink: now/
 
 So, currently I am...
 
-- writing & learning [Elixir][ex], which is becoming my language of choice, replacing
-  Python. I am using it at work for a variety of different applications.
-- writing an IP address library in Elixir, which is basically a simple
-  re-imagining of Python's [netaddr][na] library.
-- practising daily exercises in [touch typing][tt], & [Spacemacs keybindings][sk].
-- Starting to [contribute][c] to Open Source, mostly in documentation, but it still
-  feels excellent.
-- Getting my head around database design.
-- Chipping away at learning JavaScript.
+- Using [Elixir][ex] at work to script Cisco configuration templates.
+- Getting deeper into the JS stack, learning Node, Electron & MongoDB.
+- Determined to better understand Linux, and use it more, more, more.
+- Studying network automation and programmability.
 - Learning [Welsh][w], my kids will start going to a local Welsh medium primary
   school in the next year or so, and I want to be able to talk with them in Welsh.
-- Reading about [Blues][b] & [Stoicism][s]
 - Going to the gym ~3 times a week, getting myself fitter now that I mostly sit
   and code.
+- Reading about Islamic militancy.
+- Slowly improving my bird & tree identification skills, which are currently pretty laughable.
+- Building a wood-fired wooden hot tub in the back garden for drinking prosecco in.
   
-February 2016
+May 2016
 
 
 [rc]: http://rob.conery.io/now/
