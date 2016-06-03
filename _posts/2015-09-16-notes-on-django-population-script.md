@@ -62,7 +62,7 @@ def populate():
                 later, when Elvis Presley recorded his more popular rendition \
                 of 'Hound Dog'. Similarly, Thornton's 'Ball 'n' Chain' had a \
                 bigger impact when performed and recorded by Janis Joplin in \
-                the late 1960s."",
+                the late 1960s.",
                 False,
                 blues)
 
