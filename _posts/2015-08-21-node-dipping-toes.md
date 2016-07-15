@@ -13,7 +13,7 @@ I started out with a `Hello World` exercise, as you do.  I gotta say, it looked 
 
 So, anyway, this is the code.
 
-{% highlight javascript linenos %}
+```javascript
 'use strict';
 
 var HelloWorld = function() {};
@@ -26,26 +26,26 @@ HelloWorld.prototype.hello = function(name) {
 module.exports = HelloWorld;
 
 var helloWorld = new HelloWorld();
-{% endhighlight %}
+```
 
 The `var` & `function` stuff I understand, but `strict`? `prototypes`? `module.exports`? Wha'fu'?
 
 What was interesting was running it.  Just like Python really; `node .\hello-world.js` in the CLI.  Let's stick a `console.log('Hello node, whaddya know?')` in there:
 
-{% highlight javascript linenos %}
+```javascript
  > node .\hello-world.js
 Hello node, whaddya know?
-{% endhighlight %}
+```
 
 Cool, huh? And to run the tests:
 
-{% highlight javascript linenos %}
+```javascript
  > jasmine-node .\hello-world.js
 
 
 Finished in 0 seconds
 0 tests, 0 assertions, 0 failures, 0 skipped
-{% endhighlight %}
+```
 
 So, it's basic, it's obvious, but it's blowin' my mind just a bit.  I'm well excited to get started with this and explore it further.  I'm gonna go over this little code snippet and work it out as best I can, and then who knows, maybe I'll get a MEAN stack up and running for my *new awesome web app idea*.
 
