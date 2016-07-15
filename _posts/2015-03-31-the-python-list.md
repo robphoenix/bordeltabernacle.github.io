@@ -10,11 +10,11 @@ Like the numerable daily lists made with pen and paper, the list in Python is an
 
 We can start with an empty list:
 
-{% highlight python linenos %}
+```python
 >>> switches = []
 >>> type(switches)
 <type 'list'>
-{% endhighlight %}
+```
 
 add to it:
 
