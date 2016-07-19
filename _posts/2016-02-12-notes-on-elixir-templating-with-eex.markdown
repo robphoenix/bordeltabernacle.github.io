@@ -37,12 +37,12 @@ These tags, in the context of a template are evaluated by one of 4 functions, or
 
 So, examples;
 
-{% highlight elixir linenos %}
+```elixir
 iex> string = "Hello, <%= name %>!"
 "Hello, <%= name %>!"
 iex> EEx.eval_string string, [name: "World"]
 "Hello, World!"
-{% endhighlight %}
+```
 
 Here, `string` is bound to a simple template, with a variable name inside the
 tag.  We then evaluate the string, passing in a keyword list of arguments, and
@@ -50,7 +50,7 @@ hey presto, in our output the `name` variable has been replaced! Not so
 different from string interpolation really. Except we have access to all of
 Elixir inside the tag;
 
-{% highlight elixir linenos %}
+```elixir
 iex> template = "<%= if n > 100 do %> \
 ...> <%= n %> is greater than 100. \
 ...> <% else %> \
@@ -61,7 +61,7 @@ iex> EEx.eval_string template, [n: 10]
 " 10 is lower than 100. "
 iex> EEx.eval_string template, [n: 101]
 " 101 is greater than 100. "
-{% endhighlight %}
+```
 
 Notice the `<% %>` tags for the `else` & `end` of the `if` statement. The
 content of these tags is evaluated, but never returned to the template. We'll
@@ -69,7 +69,7 @@ get a compiler warning if we include an unused variable in there, or an error if
 we have an unbound variable, otherwise any results just won't appear in our
 final output;
 
-{% highlight elixir linenos %}
+```elixir
 iex> string = "Hello, <% name %>!"
 "Hello, <% name %>!"
 iex> EEx.eval_string string, [name: "World"]
@@ -85,13 +85,13 @@ iex> EEx.eval_string string
 iex> string = "Hello, <%= 2 + 2 %>!"
 iex> EEx.eval_string string
 "Hello, 4!"
-{% endhighlight %}
+```
 
 The quotation tag is interesting, it's almost like a raw string indicator,
 telling EEx to not evaluate the tag.  I've not had cause to use it yet, but I
 can see it might be useful for some kind of two-stage templating;
 
-{% highlight elixir linenos %}
+```elixir
 iex> string = "Hello, <%% 2 + 2 %>!"
 "Hello, <%% 2 + 2 %>!"
 iex> EEx.eval_string string
@@ -102,7 +102,7 @@ iex> output = EEx.eval_string string
 "Hello, <%= 2 + 2 %>!"
 iex> EEx.eval_string output
 "Hello, 4!"
-{% endhighlight %}
+```
 
 When first evaluated the quotation tag becomes a regular tag, which can then be
 evaluated again if necessary.
@@ -110,14 +110,14 @@ evaluated again if necessary.
 So, we've seen `eval_string/2` in the previous examples. `eval_file/2` is much
 the same but takes a file as it's template rather than a string;
 
-{% highlight elixir linenos %}
+```elixir
 iex> File.write("example.txt", "Hello, <%= name %>!")
 :ok
 iex(52)> EEx.eval_file "example.txt", [name: "World"]
 "Hello, World!"
 iex(53)> File.read("example.txt")
 {:ok, "Hello, <%= name %>!"}
-{% endhighlight %}
+```
 
 Note that the original template file has not been changed, EEx has just created
 a new output from the combination of the template and the given variable
@@ -144,7 +144,7 @@ Let's say we have a very large number of devices that we need to generate
 individual configurations for, in my experience this would be for Cisco switches
 and routers.  We create a template, "base_example.conf.eex":
 
-{% highlight elixir linenos %}
+```elixir
 hostname <%= hostname %>
 no logging console
 username <%= user_name %> secret <%= user_password %>
@@ -166,7 +166,7 @@ vlan <%= id %>
 interface 0
 ip address <%= ip_address %>
 no shutdown
-{% endhighlight %}
+```
 
 This is a very basic template, with some tags expecting variables. There is also
 a list comprehension towards the end, this expects `vlans` to be a list of 2
@@ -178,7 +178,7 @@ according to, in this case, the number of vlans.
 So, I've saved this template in a *templates* directory. Let's dip into iex and
 see what we can do:
 
-{% highlight elixir linenos %}
+```elixir
 iex> defmodule Render do
 ...>   require EEx
 ...>   EEx.function_from_file(:def, :base,
@@ -189,7 +189,7 @@ iex> defmodule Render do
 {:module, Render,
  <<70, 79, 82, 49, 0, 0, 14, 184, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 1, 26, 131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115, 95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>,
  {:base, 7}}
-{% endhighlight %}
+```
 
 Here, we start a new module called Render, `require EEx`, and then use the
 `function_from_file/5` macro, passing it the type of function we want (`def` or
@@ -197,7 +197,7 @@ Here, we start a new module called Render, `require EEx`, and then use the
 
 We now have a function we can use to render our template:
 
-{% highlight elixir linenos %}
+```elixir
 iex> Render.base(
 ...>   "ABC20",
 ...>   "192.168.1.20",
@@ -238,7 +238,7 @@ vlan 103
 interface 0
 ip address 192.168.1.20
 no shutdown"
-{% endhighlight %}
+```
 
 We pass our device variables in to our new function, notice the list of lists
 for `vlans`, and out pops our rendered template, including all our vlans,
@@ -253,7 +253,7 @@ nice if we could just define a single variable that represents a map, and let
 the template grab what it needs from that. First, we need to change our template
 to look like this:
 
-{% highlight elixir linenos %}
+```elixir
 hostname <%= @hostname %>
 no logging console
 username <%= @user_name %> secret <%= @user_password %>
@@ -275,14 +275,14 @@ vlan <%= id %>
 interface 0
 ip address <%= @ip_address %>
 no shutdown
-{% endhighlight %}
+```
 
 We're now using EEx's `@` macro, which enables us to grab data out of a map or
 keyword list.
 
 We'll update our `Render.base` function, like so:
 
-{% highlight elixir linenos %}
+```elixir
 iex> defmodule Render do
 ...>   require EEx
 ...>   EEx.function_from_file(:def, :base,
@@ -293,11 +293,11 @@ iex: warning: redefining module Render
 {:module, Render,
  <<70, 79, 82, 49, 0, 0, 15, 8, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 151, 131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115, 95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>,
  {:base, 1}}
-{% endhighlight %}
+```
 
 and create a map of our data:
 
-{% highlight elixir linenos %}
+```elixir
 iex> device = %{hostname: "ABC20",
 ...>   ip_address: "192.168.1.20",
 ...>   name_server: "8.8.8.8",
@@ -310,11 +310,11 @@ iex> device = %{hostname: "ABC20",
   ntp_server: "uk.pool.ntp.org", user_name: "admin", user_password: "password",
   vlans: [["999", "NATIVE"], ["100", "VOICE"], ["101", "DATA 1"],
    ["102", "DATA 2"], ["103", "DATA 3"]]}
-{% endhighlight %}
+```
 
 Now, let's see if it works...
 
-{% highlight elixir linenos %}
+```elixir
 iex> Render.base(device)
 "hostname ABC20
 no logging console
@@ -347,7 +347,7 @@ vlan 103
 interface 0
 ip address 192.168.1.20
 no shutdown"
-{% endhighlight %}
+```
 
 Ahh, that's much easier, and cleaner, super. One more thing before I go, I
 really liked with Python's Jinja how you were able to split up your templates,
@@ -357,11 +357,11 @@ we can mimic it.
 We'll start by pulling out the vlans section into it's own template,
 `vlans.conf.eex`, replacing it with this:
 
-{% highlight elixir linenos %}
+```elixir
 <%= if Map.has_key?(assigns, :vlans) do %>
   <%= vlans(@vlans) %>
 <% end %>
-{% endhighlight %}
+```
 
 There's a couple of things going on here. First, we're going to check the map of
 data to see if it has a `vlans` key. We do this, so that if we have a device
@@ -371,7 +371,7 @@ If we do have a `vlans` key, we're going to pass it to a new function called
 
 Let's have a look at it:
 
-{% highlight elixir linenos %}
+```elixir
 iex> defmodule Render do
 ...>   require EEx
 ...>
@@ -387,11 +387,11 @@ iex:15: warning: redefining module Render
 {:module, Render,
  <<70, 79, 82, 49, 0, 0, 17, 236, 66, 69, 65, 77, 69, 120, 68, 99, 0, 0, 0, 202, 131, 104, 2, 100, 0, 14, 101, 108, 105, 120, 105, 114, 95, 100, 111, 99, 115, 95, 118, 49, 108, 0, 0, 0, 4, 104, 2, ...>>,
  {:vlans, 1}}
-{% endhighlight %}
+```
 
 We redefine our `Render` module, and call our `Render.base` function again:
 
-{% highlight elixir linenos %}
+```elixir
 iex(16)> Render.base(device)
 "hostname ABC20
 no logging console
@@ -425,7 +425,7 @@ vlan 103
 interface 0
 ip address 192.168.1.20
 no shutdown"
-{% endhighlight %}
+```
 
 And, once again, we easily render our template. So, this enables us to build out
 a hierarchy of templates to cover all possibilities of data input we may have.

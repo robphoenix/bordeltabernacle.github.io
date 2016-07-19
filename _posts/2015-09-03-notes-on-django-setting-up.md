@@ -15,7 +15,7 @@ My Vagrant setup can be found on my [Github][gv], and consists of a Vagrantfile,
 
 This is my Vagrantfile:
 
-{% highlight ruby linenos %}
+```ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -81,13 +81,13 @@ Vagrant.configure(2) do |config|
     end
 
 end
-{% endhighlight %}
+```
 
 The django provision file just installs pip and runs the requirements file.  The db provision file installs Postgres and sets up the database.
 
 So, once I've updated any variables in this Vagrantfile and the db provision file, I'll set up the new remote repo on my Gitlab server.  Then we unchain Django and get developing...
 
-{% highlight bash linenos %}
+```bash
 laptop$ cd root-project-dir
 laptop$ vagrant up
 Bringing machine 'django' up with 'virtualbox' provider...
@@ -107,11 +107,11 @@ Welcome to Ubuntu 14.04.2 LTS (GNU/Linux 3.13.0-55-generic x86_64)
 
 vagrant@django:~$ cd shared/
 vagrant@django:~/shared$ django-admin startproject mysite
-{% endhighlight %}
+```
 
 At this point I need to change the Django settings file to reflect the Postgres database setup:
 
-{% highlight python linenos %}
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -124,29 +124,29 @@ DATABASES = {
 }   # Obviously these aren't the actual names and passwords I use, duh.  Though
     # the vagrant hostmanager plugin does mean you just have to put db, the name
     # of the Postgres VM, in as the Database host name, ahhhh niiice.
-{% endhighlight %}
+```
 
 Whilst in the settings file let's update our location:
 
-{% highlight python linenos %}
+```python
 LANGUAGE_CODE = 'en-gb'
 
 TIME_ZONE = 'Europe/London'
-{% endhighlight %}
+```
 
 and create the `static` directory for CSS, JavaScript, fonts etc. and `media` directory for images, pdf's and the like:
 
-{% highlight python linenos %}
+```python
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/vagrant/shared/mysite/appname/static/'
 MEDIA_URL = '/static/media/'
 MEDIA_ROOT = '/home/vagrant/shared/mysite/appname/static/media/'
-{% endhighlight %}
+```
 
 Don't forget to actually create these directories!
 Back in the django VM:
 
-{% highlight bash linenos %}
+```bash
 vagrant@django:~/shared$ cd mysite
 vagrant@django:~/shared/mysite$ python manage.py migrate
 [...omitted for brevity]
@@ -160,20 +160,20 @@ September 03, 2015 - 12:03:15
 Django version 1.8.2, using settings 'mysite.settings'
 Starting development server at http://0.0.0.0:8000/
 Quit the server with CONTROL-C.
-{% endhighlight %}
+```
 
 Running the Django server at `0.0.0.0:8000` makes the site accessible from outside the VM, on the port specified in the Vagrantfile.  So, if I used the Vagrantfile above, which contains `django_8000_fp = "8011"` then in the browser on my laptop I would got o `http://localhost:8011` which would bring up the Django site.
 
 If that works, go on to set up the app:
 
-{% highlight bash linenos %}
+```bash
 vagrant@django:~/shared/mysite$ python manage.py startapp appname
 # pop your app in the INSTALLED_APPS section of the settings.py file
 vagrant@django:~/shared/mysite$ python manage.py makemigrations appname
 vagrant@django:~/shared/mysite$ python manage.py migrate
 # might as well create the admin superuser while we're here
 vagrant@django:~/shared/mysite$ python manage.py createsuperuser
-{% endhighlight %}
+```
 
 Go build stuff.
 

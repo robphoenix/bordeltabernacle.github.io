@@ -12,7 +12,7 @@ After my last Django post I happened across [this population script][ps] from [T
 
 `example models.py`
 
-{% highlight python linenos %}
+```python
 class Genre(models.Model):
     name = models.CharField()
 
@@ -22,11 +22,11 @@ class Musician(models.Model):
     name = models.CharField()
     bio = models.TextField()
     alive = models.BooleanField()
-{% endhighlight %}
+```
 
 `example populate.py`
 
-{% highlight python linenos %}
+```python
 import os
 
 
@@ -134,13 +134,13 @@ if __name__ == '__main__':
     populate()  # Call the populate function, which calls the
                 # add_genre and add_musician functions
 
-{% endhighlight %}
+```
 
 
 And in our root project directory, where `manage.py` is, we run our script.
 
 
-{% highlight bash linenos %}
+```bash
 vagrant@django:~/shared/ProjectRootDirectory$ python populate.py
 ================================================================================
 
@@ -164,7 +164,7 @@ Currently Populated:
 SuperUser: uname
 
 ================================================================================
-{% endhighlight %}
+```
 
 
 So, buggering about with models and the database just got easier, now that it takes minutes to destroy it and rebuild it. Super.

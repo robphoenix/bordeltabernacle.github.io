@@ -11,14 +11,14 @@ So, that's what this is, a little *get to know you* with `string.format()`
 
 In it's simplest terms `.format()` takes a string that contains braces (`{}`), referred to as *replacement fields*, and replaces them with an argument.
 
-{% highlight python linenos %}
+```python
 In [1]: "Today, I'm listening to {}.".format("Blind Willie Johnson")
 Out[1]: "Today, I'm listening to Blind Willie Johnson."
-{% endhighlight %}
+```
 
 We can include a number of arguments...
 
-{% highlight python linenos %}
+```python
 In [2]: listening = ("Today, I'm listening to the musician {}."
    ...: " Their songs include: {}, {}, {}.")
 
@@ -27,11 +27,11 @@ In [3]: listening.format("Blind Willie Johnson",
    ...: "If I Had My Way I'd Tear The Building Down",
    ...: "It's Nobody's Fault But Mine")
 Out[3]: "Today, I'm listening to the musician Blind Willie Johnson. Their songs include: Dark Was The Night, Cold Was The Ground, If I Had My Way I'd Tear The Building Down, It's Nobody's Fault But Mine."
-{% endhighlight %}
+```
 
 Refer to these arguments positionally...
 
-{% highlight python linenos %}
+```python
 In [5]: listening = ("Today, I'm listening to the musician {0}."
    ...: " Their songs include: {2}, {3}, {1}.")
 
@@ -40,11 +40,11 @@ In [6]: listening.format("Blind Willie Johnson",
    ...: "If I Had My Way I'd Tear The Building Down",
    ...: "It's Nobody's Fault But Mine")
 Out[6]: "Today, I'm listening to the musician Blind Willie Johnson. Their songs include: If I Had My Way I'd Tear The Building Down, It's Nobody's Fault But Mine, Dark Was The Night, Cold Was The Ground."
-{% endhighlight %}
+```
 
 Or even use keyword arguments...
 
-{% highlight python linenos %}
+```python
 In [7]: listening = ("Today, I'm listening to the album {album}, "
 ....: "by musician {musician}.")
 
@@ -52,12 +52,12 @@ In [9]: listening.format(
    ...: musician="Blind Willie Johnson",
    ...: album="Sweeter As The Years Go By")
 Out[9]: "Today, I'm listening to the album Sweeter As The Years Go By, by musician Blind Willie Johnson."
-{% endhighlight %}
+```
 
 We can also take an iterable, and access it's elements in the string.
 For instance, a simple list:
 
-{% highlight python linenos %}
+```python
 In [10]: songs = ["John The Revelator",
    ....: "Let Your Light Shine On Me",
    ....: "Everybody Ought To Treat A Stranger Right"]
@@ -67,11 +67,11 @@ Out[11]: 'Let Your Light Shine On Me'
 
 In [12]: "{[1]} is currently playing".format(songs)
 Out[12]: 'Let Your Light Shine On Me is currently playing'
-{% endhighlight %}
+```
 
 And even something a little more complex...
 
-{% highlight python linenos %}
+```python
 In [33]: todays_music = {
    ....: "musician": "Blind Willie Johnson",
    ....: "album": "Sweeter As The Years Go By",
@@ -88,11 +88,11 @@ In [35]: sentence = ("I'm listening to the album {0[album]}"
 
 In [36]: sentence.format(todays_music)
 Out[36]: "I'm listening to the album Sweeter As The Years Go By, by Blind Willie Johnson, currently playing is Let Your Light Shine On Me"
-{% endhighlight %}
+```
 
 Note that when we're accessing more than one element from the given data structure we need to explicitly refer to that data structure. If we don't we will *use up* the given data structure with the first reference to it and have nothing left available to us...
 
-{% highlight python linenos %}
+```python
 In [9]: bad_sentence = ("I'm listening to the album {[album]}"
    ...: ", by {[musician]},")
 
@@ -103,31 +103,31 @@ IndexError                                Traceback (most recent call last)
 ----> 1 bad_sentence.format(todays_music)
 
 IndexError: tuple index out of range
-{% endhighlight %}
+```
 
 Above, we referred to our data structure by it's positional index, but we can also use a keyword argument...
 
-{% highlight python linenos %}
+```python
 In [13]: named_sentence = ("I'm listening to the album {music[album]}"
    ....: ", by {music[musician]}")
 
 In [14]: named_sentence.format(music=todays_music)
 Out[14]: "I'm listening to the album Sweeter As The Years Go By, by Blind Willie Johnson"
-{% endhighlight %}
+```
 
 As well as providing replacements for placeholders in strings, we can include options to specify the format of our arguments.
 
 We can specify the `fill`, the minimum amount of space to be filled...
 
-{% highlight python linenos %}
+```python
 In [18]: "{0:10} : {1:30}.".format("Musician", "Blind Willie Johnson")
 Out[18]: 'Musician   : Blind Willie Johnson          .'
-{% endhighlight %}
+```
 
 Here, within the braces we put a colon (`:`) before our *format specifiers*, the number afterwards is the size of the `fill`.
 we can also include an alignment specifier, and a fill character...
 
-{% highlight python linenos %}
+```python
 In [19]: "{0:10} : {1:>30}.".format("Musician", "Blind Willie Johnson")
 Out[19]: 'Musician   :           Blind Willie Johnson.'
 
@@ -142,18 +142,18 @@ Out[23]: '[[Musician : Blind Willie Johnson]]]]]]]]]].'
 
 In [46]: "{0:_<{width}}{1:_<{width}}.".format("Musician", "Blind Willie Johnson", width=len("Blind Willie Johnson"))
 Out[46]: 'Musician____________Blind Willie Johnson.'
-{% endhighlight %}
+```
 
 We can also do some interesting things with numbers.
 For instance, let's translate an IP address from decimal to binary and hexidecimal:
 
-{% highlight python linenos %}
+```python
 In [27]: "{:0>8b}.{:0>8b}.{:0>8b}.{:0>8b}".format(192,168,1,255)
 Out[27]: '11000000.10101000.00000001.11111111'
 
 In [36]: "{:^#x} {:^#x} {:^#x} {:^#x}".format(192,168,1,255)
 Out[36]: '0xc0 0xa8 0x1 0xff'
-{% endhighlight %}
+```
 
 So, in the first example, translating to binary we specify our format as so:
 

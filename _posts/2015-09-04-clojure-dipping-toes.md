@@ -13,25 +13,25 @@ Maybe because I'm such a late arrival to this programming pastime, I feel a cert
 [Leiningen][lngen] is the tool Carin recommends for getting started with Clojure, so let's install that.
 Check Java is installed first:
 
-{% highlight bash linenos %}
+```bash
 $ java -version
 java version "1.7.0_80"
 Java(TM) SE Runtime Environment (build 1.7.0_80-b15)
 Java HotSpot(TM) 64-Bit Server VM (build 24.80-b11, mixed mode)
-{% endhighlight %}
+```
 
 Initially I used my package manager to install Leiningen, but this installed an old version.
 
-{% highlight bash linenos %}
+```bash
 $ sudo apt-get update
 $ sudo apt-get leiningen
 $ lein -v
 Leiningen 1.7.1 on Java 1.7.0_80 Java HotSpot(TM) 64-Bit Server VM
-{% endhighlight %}
+```
 
 So, I uninstalled that, and followed the instructions on the Leiningen site.  Copy and Paste the contents of the [lein][lein] file, into a file called `lein`.  Move the file into my `$PATH`, and make it executable.
 
-{% highlight bash linenos %}
+```bash
 $ sudo apt-get remove leiningen # remove apt-get installed lein
 $ vim ~/lein # copy and paste the contents of the lein file
 $ echo $PATH # check path
@@ -120,11 +120,11 @@ user=>
 user=> quit
 Bye for now!
 $
-{% endhighlight %}
+```
 
 So the following is basically just me following along with Carin's book, where she starts to introduce Clojure.  So all credit goes to her, I'm just a messenger.
 
-{% highlight bash linenos %}
+```bash
 $ lein new wonderland # start a new Clojure project
 Generating a project called wonderland based on the 'default' template.
 The default template is intended for library projects, not applications.
@@ -143,9 +143,9 @@ Java HotSpot(TM) 64-Bit Server VM 1.7.0_80-b15
  Results: Stored in vars *1, *2, *3, an exception in *e
 
 user=>
-{% endhighlight %}
+```
 
-{% highlight clojure linenos %}
+g
 ; Some basic number stuff. Clojure is littered with parenthesis, you get used to
 ; it.  Clojure structures things differently to what I'm used to.  The operator
 ; goes first, then the parameters it takes.  I really quite like this, it's a
@@ -160,7 +160,7 @@ user=> 6/3  ; Clojure will reduce a ratio if it can.
 user=> 8/3  ; And won't if it can't, but will leave it as a ratio, rather than
             ; change it to a decimal
 8/3
-user=> 6.0/3 ; you can't use decimals in a ratio.  
+user=> 6.0/3 ; you can't use decimals in a ratio.
 NumberFormatException Invalid number: 6.0/3  clojure.lang.LispReader.readNumber (LispReader.java:330)
 
 user=> 6/3.0
@@ -200,7 +200,7 @@ user=> (cons "down" '(5, "blues", :music)) ; and use cons to add to our list
 ("down" 5 "blues" :music)
 user=> (cons "down" (cons 7 '(5, "blues", :music))) ; and nest our cons
 ("down" 7 5 "blues" :music)
-{% endhighlight %}
+```
 
 That's as far as I got last night. I know it's not far, but having kids makes me tired.  And I just want to reiterate again, this is basically just regurgitating Carin's work, go [buy her book][lc].
 

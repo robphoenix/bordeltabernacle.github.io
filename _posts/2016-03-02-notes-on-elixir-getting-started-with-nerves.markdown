@@ -30,7 +30,7 @@ right direction.
 
 So, to get going with Bake, we need to install some dependencies, including [fwup][fwup]:
 
-{% highlight bash linenos %}
+```bash
 ~ $ sudo apt-get install autoconf libtool squashfs-tools mtools zip unzip
 # install libconfuse 2.8, the version available in apt is too old.
 ~ $ curl -L https://github.com/martinh/libconfuse/releases/download/v2.8/confuse-2.8.tar.gz | tar -xz -C /tmp
@@ -53,20 +53,20 @@ pushd fwup
 # check fwup
 ~/fwup $ make check
 ~/fwup $ popd
-{% endhighlight %}
+```
 
 Now we can install Bake. This involves downloading a ruby script that does the work for you. It's worth having a look at it to see what's in it, especially if you run into problems, it's fairly simple and self-explanatory. I know there are [plans underway][plans] to port this script from Ruby to Elixir, which makes a lot of sense.
 
-{% highlight bash linenos %}
+```bash
 ~ $ ruby -e "$(curl -fsSL https://bakeware.herokuapp.com/bake/install)"
-{% endhighlight %}
+```
 
 The script will ask you to add `bake` to your path, so open up your `~/.bashrc` or `~/.zshrc` in your text editor of choice and pop this in:
 
 {% highlight bash lineos %}
 # add bake to path
 export PATH=$PATH:~/.bake/bin
-{% endhighlight %}
+```
 
 And back in your terminal, don't forget to type this: `source ~/.bashrc` or this `source ~/.zshrc`
 
@@ -75,16 +75,16 @@ Nerves has a couple of [example projects][ep] available, one being `blinky`,
 which is apparently the `Hello, World!` of embedded systems.  That's what
 we'll use now:
 
-{% highlight bash linenos %}
+```bash
 # clone the examples repo
 ~ $ git clone https://github.com/nerves-project/nerves-examples.git
-{% endhighlight %}
+```
 
 Thanks to [a tip from Wendy Smoak][ws], we can save some effort and
 define our target platform inside our Bakefile, saving us having to declare it every time with `--target rpi2`.
 To do this open up `nerves-examples/blinky/Bakefile` and add in `default_target :rpi2` or whatever you're building to, whether it's an earlier rpi or a Beaglebone Black.  The Bakefile should now look like this:
 
-{% highlight elixir linenos %}
+```elixir
 use Bake.Config
 
 platform :nerves
@@ -98,10 +98,10 @@ target :rpi2,
 
 target :bbb,
   recipe: {"nerves/bbb", "~> 0.1"}
-{% endhighlight %}
+```
 
 Now, we bake:
-{% highlight bash linenos %}
+```bash
 # go into the blinky directory
 ~ $ cd nerves-examples/blinky
 # get our system, which can take a little while
@@ -112,7 +112,7 @@ Now, we bake:
 ~/nerves-examples/blinky $ bake firmware
 # now we just need to burn our firmware to the SD card
 ~/nerves-examples/blinky $ bake burn -d /dev/mmcblk0
-{% endhighlight %}
+```
 
 So, that should work.  You may need to change the permissions on your SD card for the
 `bake burn` to work.  All that's left now is to plug in our rpi2 and have our minds

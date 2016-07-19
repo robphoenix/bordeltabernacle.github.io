@@ -11,7 +11,7 @@ A dictionary is a key/value store.  A value is bound to a key, stored within a d
 
 We can create an empty dictionary object in a couple of ways.
 
-{% highlight python linenos %}
+```python
 >>> blues = {}
 >>> blues
 {}
@@ -22,42 +22,42 @@ We can create an empty dictionary object in a couple of ways.
 {}
 >>> type(delta_blues)
 <type 'dict'>
-{% endhighlight %}
+```
 
 Let's create a dictionary with something already in it.
 
-{% highlight python linenos %}
+```python
 >>> blues_songs = {'Memphis Slim': 'Miss Ida B', 'Otis Spann': 'Good Morning Mr. Blues'}
 >>> blues_songs
 {'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Miss Ida B'}
-{% endhighlight %}
+```
 
 And add to it...
 
-{% highlight python linenos %}
+```python
 >>> blues_songs['J.B. Lenoir'] = 'Down In Mississippi'
 >>> blues_songs
 {'J.B. Lenoir': 'Down In Mississippi', 'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Miss Ida B'}
-{% endhighlight %}
+```
 
 Update a pre-existing entry...
 
-{% highlight python linenos %}
+```python
 >>> blues_songs['Memphis Slim'] = 'Born With the Blues'
 >>> blues_songs
 {'J.B. Lenoir': 'Down In Mississippi', 'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Born With the Blues'}
-{% endhighlight %}
+```
 
 Check the number of entries we have in our dictionary...
 
-{% highlight python linenos %}
+```python
 >>> len(blues_songs)
 3
-{% endhighlight %}
+```
 
 Remove entries...
 
-{% highlight python linenos %}
+```python
 >>> blues_songs.pop('Memphis Slim')
 'Miss Ida B'
 >>> blues_songs
@@ -65,11 +65,11 @@ Remove entries...
 >>> del blues_songs['Otis Spann']
 >>> blues_songs
 {'J.B. Lenoir': 'Down In Mississippi'}
-{% endhighlight %}
+```
 
 And combine two dictionaries...
 
-{% highlight python linenos %}
+```python
 >>> blues_songs
 {'Memphis Slim': 'Miss Ida B', 'Otis Spann': 'Good Morning Mr. Blues'}
 >>> more_blues_songs = {'J.B. Lenoir': 'Down In Mississippi', 'Elmore James': 'The Sky Is Crying'}
@@ -78,11 +78,11 @@ And combine two dictionaries...
 {'J.B. Lenoir': 'Down In Mississippi', 'Elmore James': 'The Sky Is Crying', 'Otis Spann': 'Good Morning Mr. Blues', 'Memphis Slim': 'Miss Ida B'}
 >>> more_blues_songs
 {'J.B. Lenoir': 'Down In Mississippi', 'Elmore James': 'The Sky Is Crying'}
-{% endhighlight %}
+```
 
 Let's see what we've got in our dictionary....
 
-{% highlight python linenos %}
+```python
 >>> blues_songs['Otis Spann']
 'Good Morning Mr. Blues'
 >>> blues_songs['Elmore James']
@@ -108,7 +108,7 @@ J.B. Lenoir
 Otis Spann
 Memphis Slim
 >>> for singer in blues_songs:
-...     print blues_songs[singer]                                                                                                           
+...     print blues_songs[singer]
 ...
 Down In Mississippi
 Good Morning Mr. Blues
@@ -119,11 +119,11 @@ Born With the Blues
 J.B. Lenoir sings Down In Mississippi
 Otis Spann sings Good Morning Mr. Blues
 Memphis Slim sings Born With the Blues
-{% endhighlight %}
+```
 
 The dictionary object we've created has some built-in methods we can use to access the items within it...
 
-{% highlight python linenos %}
+```python
 >>> blues_songs.items()
 [('J.B. Lenoir', 'Down In Mississippi'), ('Otis Spann', 'Good Morning Mr. Blues'), ('Memphis Slim', 'Born With the Blues')]
 >>> type(blues_songs.items())
@@ -167,11 +167,11 @@ The Key: Memphis Slim   The Value: Born With the Blues
 ...
 <type 'tuple'>
 <type 'tuple'>
-{% endhighlight %}
+```
 
 A dictionary can also be nested, enabling the building up of more complicated data structures...
 
-{% highlight python linenos %}
+```python
 >>> blues_singers = {'Memphis Slim': {'sings': ['Miss Ida B', 'Born With the Blues'], 'born': '03/09/1915', 'died': '24/02/1988'}, 'Otis Spann': {'sings': ['Good Morning Mr. Blues', 'Must Have Been the Devil'], 'born': '21/03/1930', 'died': '24/04/2970'}}
 >>> blues_singers
 {'Otis Spann': {'sings': ['Good Morning Mr. Blues', 'Must Have Been the Devil'], 'died': '24/04/2970', 'born': '21/03/1930'}, 'Memphis Slim': {'sings': ['Miss Ida B', 'Born With the Blues'], 'died': '24/02/1988', 'born': '03/09/1915'}}
@@ -183,7 +183,7 @@ A dictionary can also be nested, enabling the building up of more complicated da
 {'sings': ['Miss Ida B', 'Born With the Blues'], 'died': '24/02/1988', 'born': '03/09/1915'}
 >>> blues_singers['Memphis Slim']['born']
 '03/09/1915'
-{% endhighlight %}
+```
 
 There you have the dictionary.  Thanks to books by [Mark Lutz][learnpy] and [Charles Severance][pyinfor] for letting me lean on their knowledge.
 
