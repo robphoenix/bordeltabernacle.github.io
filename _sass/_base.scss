@@ -93,7 +93,7 @@ a {
     }
 
     &:hover {
-        color: $link-color-light;
+        color: $link-color;
     }
 }
 
@@ -133,9 +133,9 @@ pre {
 
 code {
   font-size: 14px;
-  color: #073642;
+  color: #eee8d5;
   padding: 3px 3px;
-  background: #eee8d5;
+  background: #002b36;
   border-radius: 2px;
   overflow-x: auto;
   line-height: 23px;

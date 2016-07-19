@@ -63,7 +63,7 @@ Now we can install Bake. This involves downloading a ruby script that does the w
 
 The script will ask you to add `bake` to your path, so open up your `~/.bashrc` or `~/.zshrc` in your text editor of choice and pop this in:
 
-{% highlight bash lineos %}
+```bash
 # add bake to path
 export PATH=$PATH:~/.bake/bin
 ```
