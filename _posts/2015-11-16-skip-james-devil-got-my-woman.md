@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Skip James: Devil Got My Woman"
-tags: blues
+tags: music
 published: True
 ---
 

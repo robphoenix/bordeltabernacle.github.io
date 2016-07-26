@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Robert Johnson: If I Had Possession Over Judgement Day"
-tags: blues
+tags: music
 published: True
 ---
 
