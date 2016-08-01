@@ -133,9 +133,9 @@ pre {
 
 code {
   font-size: 14px;
-  color: #eee8d5;
+  color: $code-bg-dark;
   padding: 3px 3px;
-  background: #657b83;
+  background: #eee8d5;
   border-radius: 2px;
   overflow-x: auto;
   line-height: 23px;

@@ -13,8 +13,8 @@ yeah?
 
 <!--more-->
 
-Ansible requires Python 2, and does not support Python 3. It also doesn't work
-with Windows as the control machine. Here I'm going to install Ansible on an Ubuntu
+Ansible requires Python 2, and doesn't support Python 3. It also doesn't work
+with Windows as the control machine. So I'm going to install Ansible on an Ubuntu
 14.04 virtual machine, though you could do the same on the more recent Ubuntu
 16.04 as well.
 
@@ -37,10 +37,11 @@ ansible 2.1.0.0
 The first thing we need to do is specify our target devices that we want to
 connect to. This is done using an inventory file. In my lab I have 3 Cisco
 2921 routers, each with a minimal configuration, enough to ssh to.  So,
-hostname, username/secret, ip domain name, and a `crypto key generate rsa
-modulus 2048` command. These are hooked up to a Cisco switch with no config on, and
+hostname, username/secret, ip domain name, and ssh crypto.
+These are hooked up to a Cisco switch with no config on, and
 then my laptop is connected by ethernet, with a static ip address on
-the same `192.168.0.0/24` network. Pretty basic, but enough for these purposes.
+the same `192.168.0.0/24` network, so my Ansible VM will just get NAT'd through
+this address. Pretty basic, but enough for these purposes.
 
 ![routers]({{ site.url }}/images/IMAG0131.jpg)
 
@@ -65,11 +66,11 @@ ansible_password=vagrant
 Here, I have a group called `routers` that lists each host's name,
 followed by the `ansible_host` variable, which is the ip address of the host.
 Below that are listed a couple of variables for every host in the `routers`
-group; `ansible_user` is the username on the host, and `ansible_password` is the
-password on the device, these correspond with this configuration on each router:
+group, under the heading `[routers:vars]`; `ansible_user` is the username on
+the host, and `ansible_password` is the password on the device, these correspond
+with this configuration on each router:
 
 ```text
-router-one#sh run | inc username
 username vagrant privilege 15 secret 5 $1$lGlV$sF4MKyPYZlteNVgGHo9tL1
 ```
 
@@ -88,14 +89,14 @@ So, let's run the following comand:
 ansible all -m raw -a "executable='' sh run | inc hostname" -i hosts
 ```
 
-`ansible` is the command line client
-`all`, here we're specifying we want to target all hosts in the hosts file, we
+* `ansible` is the command line client
+* `all` specifies we want to target all hosts in the hosts file, we
 could just as easily have used `routers` to only target the routers group, if we
-had a number of groups
-`-m raw` specify the raw module
-`-a "executable='' sh run | inc hostname"`, specify the module's arguments,
+had multiple groups
+* `-m raw` specifies the raw module
+* `-a "executable='' sh run | inc hostname"` specifies the module's arguments,
 the command we want to send; `sh run | inc hostname`
-`-i hosts` specifies the inventory file we want to use
+* `-i hosts` specifies the inventory file we want to use
 
 And we get the following output:
 
@@ -139,15 +140,16 @@ the future. Anyway, we won't be using the `raw` module much, so it doesn't reall
 This is a quick way to get facts off your devices, and you can send configuration
 changes this way if you really want. It's always worth messing around on a lab
 router that doesn't support critical company infrastructure, if you can, but
-Ansible has a better way to set up design and implement repeatable tasks, called
+Ansible has a better way to design and implement repeatable tasks, called
 *Playbooks*, which I'll look at in another post.
 
 Some further interesting sources of information:
-- [Ansible Network Automation Webinar](https://www.ansible.com/webinars-training/automating-your-network)
-- [Kirk Byers](https://pynet.twb-tech.com/blog/automation/cisco-ios.html)
-- [Jason Edelman](http://jedelman.com/home/network-automation-with-ansible-dynamically-configuring-interface-descriptions/)
-- [Patrick Ogenstad](https://networklore.com/ansible-device-versions/)
-- [Packet Pushers](http://packetpushers.net/ansible-cisco-snmp/)
+
+* [Ansible Network Automation Webinar](https://www.ansible.com/webinars-training/automating-your-network)
+* [Kirk Byers](https://pynet.twb-tech.com/blog/automation/cisco-ios.html)
+* [Jason Edelman](http://jedelman.com/home/network-automation-with-ansible-dynamically-configuring-interface-descriptions/)
+* [Patrick Ogenstad](https://networklore.com/ansible-device-versions/)
+* [Packet Pushers](http://packetpushers.net/ansible-cisco-snmp/)
 
 
 
