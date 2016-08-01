@@ -149,6 +149,7 @@ Some further interesting sources of information:
 * [Kirk Byers](https://pynet.twb-tech.com/blog/automation/cisco-ios.html)
 * [Jason Edelman](http://jedelman.com/home/network-automation-with-ansible-dynamically-configuring-interface-descriptions/)
 * [Patrick Ogenstad](https://networklore.com/ansible-device-versions/)
+* [Michael Kashin](https://networkop.github.io/blog/2015/06/24/ansible-intro/)
 * [Packet Pushers](http://packetpushers.net/ansible-cisco-snmp/)
 
 
