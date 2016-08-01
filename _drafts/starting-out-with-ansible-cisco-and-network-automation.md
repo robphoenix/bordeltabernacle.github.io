@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Notes on Ansible: Start Automating Cisco Devices"
+title: "Starting out with Ansible, Cisco & Network Automation"
 tags: ansible, cisco
 ---
 
