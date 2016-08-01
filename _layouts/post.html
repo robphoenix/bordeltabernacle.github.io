@@ -31,7 +31,9 @@ layout: default
 			  {% endif %}
 			  {% assign tags_list = nil %}
 			{% endunless %}
-			<p class="section-title post-meta"> • Share: </p> <a class="post-meta" href="http://twitter.com/share?text={{page.title | encode}}{% if site.author.twitter%}&via={{site.author.twitter}}{% endif %}"
+			<p class="section-title post-meta"> • Share: </p><a
+      class="post-meta" href="http://twitter.com/share?text={{page.title |
+      encode}}{% if site.twitter_username%}&via={{site.twitter_username}}{% endif %}"
 	           onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 	          Twitter
 	        </a>
