@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Starting out with Ansible, Cisco & Network Automation"
-tags: ansible, cisco
+tags: ansible cisco
 ---
 
 Recently I've been spending more time exploring network automation, using

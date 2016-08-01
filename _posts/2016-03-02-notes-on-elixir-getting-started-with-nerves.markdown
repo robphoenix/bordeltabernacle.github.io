@@ -1,7 +1,7 @@
 ---
 title: "Notes on Elixir: Getting Started with Nerves"
 layout: post
-tags: elixir, nerves
+tags: elixir nerves
 
 ---
 
