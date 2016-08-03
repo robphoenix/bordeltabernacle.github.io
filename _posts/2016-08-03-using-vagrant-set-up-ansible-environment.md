@@ -1,32 +1,62 @@
 ---
 layout: post
-title: "Using Vagrant to get an Ansible environment set up"
+title: "Using Vagrant to set up an Ansible Environment"
 tags: vagrant
 ---
 
-Vagrant is a tool for creating, managing and sharing Virtual Machines. It's really helpful for creating contained environments with specific requirements that can be easily built up, tore down and shared with others. It's especially helpful if, like me, you have to spend time working on a Windows laptop, because, well, Enterprise.
+Vagrant is a tool for creating, managing and sharing Virtual Machines. It's
+really helpful for creating contained environments with specific requirements
+that can be easily built up, tore down and shared with others. It's especially
+helpful if, like me, you have to spend time working on a Windows laptop, because,
+well, Enterprise.
 
-Following on from my [previous post](https://bordeltabernacle.github.io/2016/08/01/starting-out-with-ansible-cisco-and-network-automation.html), I've found that Vagrant is a fairly painless way to expose the network engineers I work with to Ansible. Once it's installed, I can share a zip file for them to unzip and run `vagrant up` and `vagrant ssh` in from the command line, and they're in a working Ansible environment. And if they mess something up, they can just destroy it and start again, no bother.
+Following on from my [previous post](https://bordeltabernacle.github.io/2016/08/01/starting-out-with-ansible-cisco-and-network-automation.html),
+I've found that Vagrant is a fairly painless way to expose the network engineers
+I work with to Ansible. Once it's installed, I can share a zip file for them to
+unzip and run `vagrant up` and `vagrant ssh` from the command line, and they're
+in a working Ansible environment. And if they mess something up, they can just
+destroy it and start again, no bother. Let's get set up...
 
-Vagrant manages VM's through a hypervisor, with the default being Virtualbox, though you can use VMware if you have the extra cash. Therefore we need to install Virtualbox first, from [here](https://www.virtualbox.org/wiki/Downloads). We're going ot grab the Windows `.exe` file.  Double click on it, and follow the defaults through to the end.
+<!--more-->
+
+Vagrant manages VM's through a hypervisor, with the default being Virtualbox,
+though you can use VMware if you have the extra cash. Therefore we need to
+install Virtualbox first, from [here](https://www.virtualbox.org/wiki/Downloads).
+We're going ot grab the Windows `.exe` file.  Double click on it, and follow
+the defaults through to the end.
 
 ![vbox_download]({{ site.url }}/images/vbox_download.png)
 
-Now we can install Vagrant, from [here](https://www.vagrantup.com/downloads.html), grabbing the Windows `.msi` file, double clicking on it once it's downloaded and following the defaults.
+Now we can install Vagrant, from [here](https://www.vagrantup.com/downloads.html),
+grabbing the Windows `.msi` file, double clicking on it once it's downloaded and
+following the defaults.
 
 ![vagrant_download]({{ site.url }}/images/vagrant_download.png)
 
-Vagrant is a command line tool, so you're gonna have to be comfortable on the command line, not too much, just enough to know what it is, how to access it and how to navigate the directory structure, whether it's through `cmd.exe` or Powershell. I'm not going to go into any of that here, but I would recommend getting [cmder](http://cmder.net/) if you're going to spend any sort of time on the Windows command line.
+Vagrant is a command line tool, so you're gonna have to be comfortable on the
+command line, not too much, just enough to know what it is, how to access it
+and how to navigate the directory structure, whether it's through `cmd.exe` or
+Powershell. I'm not going to go into any of that here, but I would recommend
+getting [cmder](http://cmder.net/) if you're going to spend any sort of time
+on the Windows command line.
 
-So, at your command prompt, if all has been successful you should be able to type `vagrant --version` and get the version of vagrant you have installed:
+So, at your command prompt, if all has been successful you should be able to
+type `vagrant --version` and get the version of vagrant you have installed:
 
-```
+~~~
 Vagrant 1.8.4
-```
+~~~
 
-Grand. The beauty of Vagrant is that it is configured from a simple text file, the *Vagrantfile*.  To create one, start a new directory, and then in it type `vagrant init`. This will define a new, highly commented *Vagrantfile*.  Read it, and get an idea of what the different options are. Like most things, you often start with a bare bones structure like this basic *Vagrantfile*, and build it up as you learn more and your requirements change. Here I'm going to explain the Vagrantfile I use to set up my Ansible machine.
+Grand. The beauty of Vagrant is that it's configured from a simple text file,
+the *Vagrantfile*.  To create one, start a new directory, and then, on the
+command line, navigate to within this new directory and type `vagrant init`.
+This will create a new, highly commented *Vagrantfile*.  Read it, and get an
+idea of what the different options are. Like most things, you often start with
+a bare bones structure like this basic *Vagrantfile*, and build it up as you
+learn more and your requirements change. Here I'm going to explain the Vagrantfile
+I use to set up my Ansible machine.
 
-```ruby
+~~~ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -47,19 +77,27 @@ Vagrant.configure(2) do |config|
         machine.vm.provision :shell, :path => "#{vagrant_root}/ansible-setup.sh"
     end
 end
-```
+~~~
 
 Vagrant is written in Ruby, and the first two lines are to do with the Ruby language. Next up we have a couple of variables:
 
-```ruby
+~~~ruby
 vagrant_root = File.dirname(__FILE__)
 project_name = "acp"
-```
+~~~
 
 * `vagrant_root` is the current working directory of the Vagrantfile
-* `project_name` is the name of the project, here it is `acp` for Ansible Cisco Playground. 
+* `project_name` is the name of the project, here it is `acp` for Ansible Cisco Playground.
 
-The next section of the *Vagrantfile* sets up the configuration:
+The next section of the *Vagrantfile* starts the machine configuration:
+
+~~~ruby
+config.vm.box = "ubuntu/trusty64"
+config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/trusty64"
+config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1028"
+    vb.cpus = "1"
+~~~
 
 * `config.vm.box = "ubuntu/trusty64"` defines the base operating system, or Vagrant *box*, for the VM, here we're using the official Ubuntu 14.04 Server image, but this can be changed to any one of a multitude of Vagrant *boxes*, that can be found [here](https://vagrantcloud.com/boxes/search)
 * `config.vm.box_url = "https://atlas.hashicorp.com/ubuntu/boxes/trusty64"` is the url where this box is
@@ -69,14 +107,32 @@ The next section of the *Vagrantfile* sets up the configuration:
 
 The last section is where it gets interesting...
 
+~~~ruby
+config.vm.define "#{project_name}" do |machine|
+    machine.vm.hostname = "#{project_name}"
+    machine.vm.synced_folder "#{vagrant_root}/shared", "/home/vagrant/shared"
+    machine.vm.provision :shell, :path => "#{vagrant_root}/ansible-setup.sh"
+end
+~~~
+
 * `config.vm.define "#{project_name}" do |machine|` here we start to define some parameters for the machine
 * `machine.vm.hostname = "#{project_name}"` defines the hostname of the machine as the project name
-* `machine.vm.synced_folder "#{vagrant_root}/shared", "/home/vagrant/shared"` this sets up a shared folder between the VM and the host computer, my laptop. `"#{vagrant_root}/shared"` is a folder on the host, within the same directory as the *Vagrantfile*, `"/home/vagrant/shared"` is a folder in the vagrant user's home directory on the VM. These folders will be synced, any changes made in one will be reflected in the other. This means I can edit and version control files on my host machine, using my usual workflow, and I can use them easily in the VM, rather than having to do this work inside the VM.
-* `machine.vm.provision :shell, :path => "#{vagrant_root}/ansible-setup.sh"` this defines the path to a shell script that provisions the VM, installing Ansible. There are different options for provisioning the Vm, including Ansible itself, woah, meta! but I find for small environments like this a shell script does fine.
+* `machine.vm.synced_folder "#{vagrant_root}/shared", "/home/vagrant/shared"`
+this sets up a shared folder between the VM and the host computer, my laptop.
+`"#{vagrant_root}/shared"` is a folder on the host, within the same directory
+as the *Vagrantfile*, `"/home/vagrant/shared"` is a folder in the vagrant user's
+home directory on the VM. These folders will be synced, any changes made in one
+will be reflected in the other. This means I can edit and version control files
+on my host machine, using my usual workflow, and I can use them easily in the VM,
+rather than having to do this work inside the VM.
+* `machine.vm.provision :shell, :path => "#{vagrant_root}/ansible-setup.sh"`
+this defines the path to a shell script that provisions the VM, installing Ansible.
+There are different options for provisioning the Vm, including Ansible itself,
+woah, meta! but I find for small environments like this a shell script does fine.
 
 This is the `ansible-setup.sh` file:
 
-```bash
+~~~bash
 #!/bin/bash
 TZ=Europe/London
 
@@ -107,23 +163,28 @@ echo "| Ansible Cisco Playground Machine Provisioned |"
 echo "+----------------------------------------------+"
 echo "|                Go build stuff!               |"
 echo "+----------------------------------------------+"
-```
+~~~
 
-There's a few things going on in there, including the Ansible installation and the installation of [Jason Edelman's](http://jedelman.com/) excellent third party Ansible library [ntc-ansible](https://github.com/networktocode/ntc-ansible/)
+There's a few things going on in there, including the Ansible installation and
+the installation of [Jason Edelman's](http://jedelman.com/) excellent third
+party Ansible library [ntc-ansible](https://github.com/networktocode/ntc-ansible/)
 
-Now, if we do a `tree /F` command in the project directory, we can see everything we now have, the *Vagrantfile*, the provision script, the shared folder (currently empty), and a `.vagrant` directory I've never had to do anything with since working with Vagrant.
+Now, if we do a `tree /F` command in the project directory, we can see everything
+we now have, the *Vagrantfile*, the provision script, the shared folder
+(currently empty), and a `.vagrant` directory I've never had to do anything with
+since working with Vagrant.
 
-```
+~~~
 Folder PATH listing for volume Windows
 Volume serial number is A879-5C69
 C:.
-│   Vagrantfile
+├───Vagrantfile
 ├───ansible-setup.sh
 ├───shared
 └───.vagrant
     └───machines
         └───acp
-```
+~~~
 
 Right, we're ready to go. I've found the vagrant commands I use most often are...
 
@@ -133,9 +194,13 @@ Right, we're ready to go. I've found the vagrant commands I use most often are..
 * `vagrant reload` restarts the VM
 * `vagrant destroy` destroys the VM
 
-On the command line, inside the vagrant project directory, type in `vagrant up`, and this should, fingers crossed, bring up the new VM.  If this is the first Vagrant machine you've created it's going to take some time to download the Ubuntu image, 15-20 mins maybe. I already have the relevant Ubuntu image, so it only takes ~60 secs to bring the VM up.  This is the output I get...
+On the command line, inside the Vagrant project directory, type in `vagrant up`,
+and this should, fingers crossed, bring up the new VM.  If this is the first
+Vagrant machine you've created it's going to take some time to download the
+Ubuntu image, 15-20 mins maybe. I already have the relevant Ubuntu image, so it
+only takes ~60 secs to bring the VM up.  This is the output I get...
 
-```bash
+~~~bash
 Bringing machine 'acp' up with 'virtualbox' provider...
 ==> acp: Importing base box 'ubuntu/trusty64'...
 ==> acp: Matching MAC address for NAT networking...
@@ -196,20 +261,22 @@ Bringing machine 'acp' up with 'virtualbox' provider...
 ==> acp: +----------------------------------------------+
 ==> acp: |                Go build stuff!               |
 ==> acp: +----------------------------------------------+
-```
+~~~
 
-The bottom part is the provision script, this will only run the first time the machine is started.  Otherwise the output will be:
+The bottom part is the provision script, this will only run the first time the
+machine is started.  Otherwise the output will be:
 
-```bash
+~~~bash
 ==> acp: Machine already provisioned. Run `vagrant provision` or use the `--provision`
 ==> acp: flag to force provisioning. Provisioners marked to run always will still run.
-```
+~~~
 
-It will also be a lot quicker bringing the machine up, a few seconds maybe. So much quicker than dealing with Virtualbox manually.
+It will also be a lot quicker bringing the machine up, a few seconds maybe. So
+much quicker than dealing with Virtualbox manually.
 
 We can check the status of the machine with `vagrant status`...
 
-```bash
+~~~bash
 Current machine states:
 
 acp                       running (virtualbox)
@@ -218,11 +285,12 @@ The VM is running. To stop this VM, you can run `vagrant halt` to
 shut it down forcefully, or you can run `vagrant suspend` to simply
 suspend the virtual machine. In either case, to restart it again,
 simply run `vagrant up`.
-```
+~~~
 
-And so now that we have a running VM, we need to access it. For this we use the `vagrant ssh` command, which will bring us into the VM's command line...
+And so now that we have a running VM, we need to access it. For this we use the
+`vagrant ssh` command, which will bring us into the VM's command line...
 
-```bash
+~~~bash
 Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-92-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com/
@@ -245,39 +313,58 @@ Run 'do-release-upgrade' to upgrade to it.
 
 
 vagrant@acp:~$
-```
+~~~
 
 Let's check Ansible is there...
 
-```bash
+~~~bash
 vagrant@acp:~$ ansible --version
 ansible 2.1.1.0
   config file = /etc/ansible/ansible.cfg
   configured module search path = Default w/o overrides
 vagrant@acp:~$
-```
+~~~
 
-Fantastic!  And our shared folder...
+Fantastic! Let's check we've got a network to the outside world...
 
-```bash
+~~~bash
+vagrant@acp:~$ ping 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=59 time=20.3 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=59 time=19.9 ms
+♥
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 19.930/20.155/20.381/0.266 ms
+~~~
+
+Sweet. And is our shared folder there...
+
+~~~bash
 vagrant@acp:~$ ls -l
 total 8
 drwxr-xr-x 6 root    root    4096 Aug  3 09:55 ntc-ansible
 drwxrwxrwx 1 vagrant vagrant 4096 Aug  3 09:56 shared
-```
+~~~
 
-There it is, alongside the `ntc-ansible` module. If we create a file in there, we should see it on our host machine.
+There it is, alongside the `ntc-ansible` module. If we create a file in there,
+we should see it on our host machine.
 
-```bash
+~~~bash
 vagrant@acp:~$ echo "Hello Windows, from Linux" > shared/hello.txt
 vagrant@acp:~$ ls -l shared/
 total 1
 -rwxrwxrwx 1 vagrant vagrant 26 Aug  3 10:17 hello.txt
-```
+~~~
 
 ![hello_msg]({{ site.url }}/images/hello_msg.png)
 
-Good good, we can now start creating our Ansible files on our host machine, and easily run them in the Vagrant VM.  And when we need to share what we've done, we can just zip up the directory, or version control it in git, share it, and others can `vagrant up` and `vagrant ssh` into the working environment we've created.
+Good good, we can now start creating our Ansible files on our host machine, and
+easily run them in the Vagrant VM.  And when we need to share what we've done,
+we can just zip up the directory, or version control it in git, share it, and
+others can `vagrant up` and `vagrant ssh` into the working environment we've created.
 
-This Ansible Cisco Playground directory is up on Github if you want to clone/download it and have a play.  It is a work in progress, and a little janky currently, with no documentation, but [here it is nonetheless](https://github.com/BT-repeatable-design/ansible_cisco_playground).
+This Ansible Cisco Playground directory is up on Github if you want to clone/download
+it and have a play.  It is a work in progress, and a little janky currently,
+with no documentation, but [here it is nonetheless](https://github.com/BT-repeatable-design/ansible_cisco_playground).
 
