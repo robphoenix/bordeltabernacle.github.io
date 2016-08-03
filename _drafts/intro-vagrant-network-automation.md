@@ -133,5 +133,151 @@ Right, we're ready to go. I've found the vagrant commands I use most often are..
 * `vagrant reload` restarts the VM
 * `vagrant destroy` destroys the VM
 
-On the command line, inside the vagrant project directory, type in `vagrant up`, and this should, fingers crossed, bring up the new VM.  If this is the first Vagrant machine you've created it's going to take some time to download the Ubuntu image, 15-20 mins maybe.
+On the command line, inside the vagrant project directory, type in `vagrant up`, and this should, fingers crossed, bring up the new VM.  If this is the first Vagrant machine you've created it's going to take some time to download the Ubuntu image, 15-20 mins maybe. I already have the relevant Ubuntu image, so it only takes ~60 secs to bring the VM up.  This is the output I get...
+
+```bash
+Bringing machine 'acp' up with 'virtualbox' provider...
+==> acp: Importing base box 'ubuntu/trusty64'...
+==> acp: Matching MAC address for NAT networking...
+==> acp: Checking if box 'ubuntu/trusty64' is up to date...
+==> acp: A newer version of the box 'ubuntu/trusty64' is available! You currently
+==> acp: have version '20160708.1.2'. The latest is version '20160801.0.0'. Run
+==> acp: `vagrant box update` to update.
+==> acp: Setting the name of the VM: ansible_cisco_playground_acp_1470214415769_53070
+==> acp: Clearing any previously set forwarded ports...
+==> acp: Clearing any previously set network interfaces...
+==> acp: Preparing network interfaces based on configuration...
+    acp: Adapter 1: nat
+==> acp: Forwarding ports...
+    acp: 22 (guest) => 2222 (host) (adapter 1)
+==> acp: Running 'pre-boot' VM customizations...
+==> acp: Booting VM...
+==> acp: Waiting for machine to boot. This may take a few minutes...
+    acp: SSH address: 127.0.0.1:2222
+    acp: SSH username: vagrant
+    acp: SSH auth method: private key
+    acp:
+    acp: Vagrant insecure key detected. Vagrant will automatically replace
+    acp: this with a newly generated keypair for better security.
+    acp:
+    acp: Inserting generated public key within guest...
+    acp: Removing insecure key from the guest if it is present...
+    acp: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> acp: Machine booted and ready!
+==> acp: Checking for guest additions in VM...
+    acp: The guest additions on this VM do not match the installed version of
+    acp: VirtualBox! In most cases this is fine, but in rare cases it can
+    acp: prevent things such as shared folders from working properly. If you see
+    acp: shared folder errors, please make sure the guest additions within the
+    acp: virtual machine match the version of VirtualBox you have installed on
+    acp: your host and reload your VM.
+    acp:
+    acp: Guest Additions Version: 4.3.36
+    acp: VirtualBox Version: 5.0
+==> acp: Setting hostname...
+==> acp: Mounting shared folders...
+    acp: /vagrant => C:/Users/robertph/code/ansible/ansible_cisco_playground
+    acp: /home/vagrant/shared => C:/Users/robertph/code/ansible/ansible_cisco_playground/shared
+==> acp: Running provisioner: shell...
+    acp: Running: C:/Users/robertph/AppData/Local/Temp/vagrant-shell20160803-7424-cqcd1j.sh
+==> acp: stdin: is not a tty
+==> acp: +-----------------------------------------------+
+==> acp: | Provisioning Ansible Cisco Playground Machine |
+==> acp: +-----------------------------------------------+
+==> acp: Setting timezone...
+==> acp: Adding dependencies...
+==> acp: Adding Ansible repo...
+==> acp: Updating apt-get...
+==> acp: Installing Git...
+==> acp: Installing Ansible...
+==> acp: Installing ntc-ansible module...
+==> acp: +----------------------------------------------+
+==> acp: | Ansible Cisco Playground Machine Provisioned |
+==> acp: +----------------------------------------------+
+==> acp: |                Go build stuff!               |
+==> acp: +----------------------------------------------+
+```
+
+The bottom part is the provision script, this will only run the first time the machine is started.  Otherwise the output will be:
+
+```bash
+==> acp: Machine already provisioned. Run `vagrant provision` or use the `--provision`
+==> acp: flag to force provisioning. Provisioners marked to run always will still run.
+```
+
+It will also be a lot quicker bringing the machine up, a few seconds maybe. So much quicker than dealing with Virtualbox manually.
+
+We can check the status of the machine with `vagrant status`...
+
+```bash
+Current machine states:
+
+acp                       running (virtualbox)
+
+The VM is running. To stop this VM, you can run `vagrant halt` to
+shut it down forcefully, or you can run `vagrant suspend` to simply
+suspend the virtual machine. In either case, to restart it again,
+simply run `vagrant up`.
+```
+
+And so now that we have a running VM, we need to access it. For this we use the `vagrant ssh` command, which will bring us into the VM's command line...
+
+```bash
+Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-92-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Wed Aug  3 10:08:49 BST 2016
+
+  System load:  0.48              Processes:           81
+  Usage of /:   4.2% of 39.34GB   Users logged in:     0
+  Memory usage: 12%               IP address for eth0: 10.0.2.15
+  Swap usage:   0%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+New release '16.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+
+vagrant@acp:~$
+```
+
+Let's check Ansible is there...
+
+```bash
+vagrant@acp:~$ ansible --version
+ansible 2.1.1.0
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = Default w/o overrides
+vagrant@acp:~$
+```
+
+Fantastic!  And our shared folder...
+
+```bash
+vagrant@acp:~$ ls -l
+total 8
+drwxr-xr-x 6 root    root    4096 Aug  3 09:55 ntc-ansible
+drwxrwxrwx 1 vagrant vagrant 4096 Aug  3 09:56 shared
+```
+
+There it is, alongside the `ntc-ansible` module. If we create a file in there, we should see it on our host machine.
+
+```bash
+vagrant@acp:~$ echo "Hello Windows, from Linux" > shared/hello.txt
+vagrant@acp:~$ ls -l shared/
+total 1
+-rwxrwxrwx 1 vagrant vagrant 26 Aug  3 10:17 hello.txt
+```
+
+![hello_msg]({{ site.url }}/images/hello_msg.png)
+
+Good good, we can now start creating our Ansible files on our host machine, and easily run them in the Vagrant VM.  And when we need to share what we've done, we can just zip up the directory, or version control it in git, share it, and others can `vagrant up` and `vagrant ssh` into the working environment we've created.
+
+This Ansible Cisco Playground directory is up on Github if you want to clone/download it and have a play.  It is a work in progress, and a little janky currently, with no documentation, but [here it is nonetheless](https://github.com/BT-repeatable-design/ansible_cisco_playground).
 
