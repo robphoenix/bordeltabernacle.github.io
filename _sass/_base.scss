@@ -125,9 +125,12 @@ pre {
   white-space: pre;
 
     > code {
+        white-space: pre-wrap;
+        color: #ebdbb2;
         border: 0;
         padding-right: 0;
         padding-left: 0;
+        background: #002b36;
     }
 }
 

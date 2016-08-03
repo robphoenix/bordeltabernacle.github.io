@@ -6,10 +6,11 @@
   border-radius: 4px;
   padding: 5px 0 5px 20px;
   font-family: $code-font;
-  margin: 30px;
+  margin: 30px 0 30px 0;
 
   .hll { background-color: #002636 }
-  pre code {color: #ebdbb2; display: block; white-space: pre; overflow-x: auto; word-wrap: normal; background-color: $code-bg-dark;}
+  pre code {color: #ebdbb2; display: block; white-space: pre; overflow-x: auto;
+  word-wrap: break-word; overflow-wrap: break-word; background-color: $code-bg-dark;}
     .highlight { background-color: #002b36; color: #93a1a1 }
     .c { color: #586e75 } /* Comment */
     .err { color: #93a1a1 } /* Error */
