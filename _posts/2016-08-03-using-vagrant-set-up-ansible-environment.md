@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using Vagrant to set up an Ansible Environment"
-tags: vagrant
+tags: vagrant ansible
 ---
 
 Vagrant is a tool for creating, managing and sharing Virtual Machines. It's
