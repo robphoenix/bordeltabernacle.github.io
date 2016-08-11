@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Songs to code to: Talk Is Cheap"
+title:  "Songs to Code to: Talk Is Cheap"
 date:   2016-07-26
 tags:   music
 ---
