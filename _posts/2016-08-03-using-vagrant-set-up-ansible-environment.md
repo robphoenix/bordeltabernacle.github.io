@@ -366,5 +366,5 @@ others can `vagrant up` and `vagrant ssh` into the working environment we've cre
 
 This Ansible Cisco Playground directory is up on Github if you want to clone/download
 it and have a play.  It is a work in progress, and a little janky currently,
-with no documentation, but [here it is nonetheless](https://github.com/repeatable-design/ansible_cisco_playground).
+with no documentation, but [here it is nonetheless](https://github.com/bordeltabernacle/ansible_cisco_playground).
 
